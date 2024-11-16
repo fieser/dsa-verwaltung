@@ -1,0 +1,178 @@
+<style>
+
+* {
+   margin: 0;
+   padding: 0;
+   font-family: 'Arimo', sans-serif;
+   -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+   background: #d7d7d7;
+   color: white;
+}
+
+/*=================
+* TIMER
+*=================*/
+
+.timer {
+   width: 550px;
+   height: 248px;
+   display: block;
+   position: absolute;
+   top: 50%; left: 50%;
+   margin-left: -(550px / 2);
+   margin-top: -(248px / 2);
+   color: white;
+   
+   * { cursor: default; }
+
+   h3 {
+      width: 100%;
+      font-size: 26px;
+      letter-spacing: 4px;
+      text-align: center;
+   }
+
+   &--clock {
+      width: 100%;
+      position: relative;
+      padding-left: 6px;
+      margin-top: 22px;;
+      overflow: hidden;
+
+      .clock-display-grp {
+         width: 100%;
+         position: relative;
+
+         .number-grp {
+            width: auto;
+            display: block;
+            height: 156px;
+            float: left;
+            overflow: hidden;
+
+            .number-grp-wrp {
+               width: 100%;
+               position: relative;
+
+               .num {
+                  width: 100%;
+                  position: relative;
+                  height: 156px;
+
+                  p {
+                     width: auto;
+                     display: table;
+                     font-size: 205px;
+                     line-height: 150px; //180
+                     font-weight: bold;
+                  }
+
+               }
+
+            }
+
+         }
+      }
+
+      .clock-separator {
+         width: auto;
+         float: left;
+         display: block;
+         height: 156px;
+
+         p {
+            width: auto;
+            display: table;
+            font-size: 205px;
+            line-height: 150px; //180
+            font-weight: bold;
+         }
+
+      }
+
+   }
+   h4 {
+      width: 100%;
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-align: center;
+      padding-top: 25px;
+      float: left;
+   }
+}
+
+.reload {
+   width: 125px;
+   height: 14px;
+   position: absolute;
+   bottom: 50vh;
+   left: 50%;
+   margin-left: -(125px / 2);
+   opacity: 0;
+   display: none;
+   cursor: pointer;
+   z-index: 9999;
+   
+   &:hover {
+      svg path { fill: darken(white, 60%); }
+      p { color: darken(white, 60%); }
+   }
+   
+   svg {
+      width: 12px;
+      height: 12px;
+      float: left;
+      margin-right: 10px;
+   }
+   p {
+      color: #2b2b2b;
+      font-size: 12px;
+      float: left;
+      line-height: 11px;
+   }
+}
+
+/* Akkordeon: */
+
+.acc input[name="ac"] { display:none }
+
+.acc .panel {
+  margin: 0;
+  height: 0;
+  overflow:hidden;
+  background-color: hsla(12, 50%, 95%);
+  line-height: 1.5;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+.acc input.open:checked~.panel {
+  height: auto;
+  padding: 2rem;
+  transition: 0.5s;
+}
+
+/* Plus und Minus: */
+
+.acc label:nth-child(odd)::after  { 
+  content: "+"; 
+  float:right; 
+}
+
+/* Fach geöffnet, dann verschwindet das Plus-Zeichen */
+.acc input.open:checked ~ label:nth-child(odd)::after { content: ""; }
+
+/* und statt dessen erscheint das Minus-Zeichen */
+.acc input.open:checked ~ label.close::after {
+  content: "– ";
+}
+</style>
