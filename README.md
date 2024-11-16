@@ -1,2 +1,2 @@
-# dsa-formular
-Formular zur digitalen Schüleranmeldung an BBS für edoo.sys RLP
+# dsa-verwaltung
+Verwaltungstool zur Verwaltung digitaler Schüleranmeldungen an BBS für edoo.sys RLP
