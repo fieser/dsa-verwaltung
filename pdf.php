@@ -8,15 +8,9 @@
 //include "./rechte.php";
 
 
-//@session_start();
+@session_start();
 
 
-
-
-$schule_name1 = 'Berufsbildende Schule 1';
-$schule_name2 = '- Gewerbe und Technik -';
-$schule_strasse_nr = 'Am Judensand 12';
-$schule_plz_ort = '55122 Mainz';
 
 
 
@@ -220,10 +214,10 @@ $pdf->AddPage();
 // create some HTML content
 $html = '<p><br><br><br><br>
 <small>'.$_SESSION["vorname"].' '.$_SESSION["nachname"].' - '.$_SESSION["strasse"].' '.$_SESSION["hausnummer"].' - '.$_SESSION["plz"].' '.$_SESSION["wohnort"].'</small><br>
-&nbsp;<br>'.$schule_name1.'
-<br>'.$schule_name2.'<br>
-<br>'.$schule_strasse_nr.'
-<br>'.$schule_plz_ort.'
+&nbsp;<br>'.$_SESSION["schule_name_zeile1"].'
+<br>'.$_SESSION["schule_name_zeile2"].'<br>
+<br>'.$_SESSION["schule_strasse_nr"].'
+<br>'.$_SESSION["schule_plz_ort"].'
 </p>
 <br>&nbsp;
 <br>&nbsp;<p align="right">'.$_SESSION["wohnort"].', '.date("d.m.Y").'</p>

@@ -3,17 +3,17 @@ set_time_limit(0);
 ignore_user_abort(true); //auch wenn der Nutzer die Sete verlässt, läuft das Skript weiter
 
 /*
-include("/var/www/html/verwaltung/kopf.php");
+include($pfad_workdir."kopf.php");
 
 
-include("/var/www/html/verwaltung/login_inc.php");
+include($pfad_workdir."login_inc.php");
 @session_start();
 
 
 
 
 */	
-include("/var/www/html/verwaltung/config.php");
+include($pfad_workdir."config.php");
 
 
 // Überprüfen, ob die Verbindungen erfolgreich waren
@@ -294,7 +294,7 @@ foreach($select_bewk as $bewk) {
 }
 
 if ($upload_documents == 1) {
-	include("/var/www/html/verwaltung/download_and_decrypt.php");
+	include($pfad_workdir."download_and_decrypt.php");
 }
 
 
@@ -307,6 +307,6 @@ if ($upload_documents == 1) {
 </form></p>
 <?php
 
-	include("/var/www/html/verwaltung/fuss.php");
+	include($pfad_workdir."fuss.php");
 	*/
 ?>

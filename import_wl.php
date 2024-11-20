@@ -2,14 +2,14 @@
 
 
 
-include("/var/www/html/verwaltung/kopf.php");
+include($pfad_workdir."kopf.php");
 @session_start();
 
 
 
 
 	
-include("/var/www/html/verwaltung/config.php");
+include($pfad_workdir."config.php");
 
 
 
@@ -36,7 +36,7 @@ $jgst_4 = trim($jgst_1 - 3);
 
 $betriebe_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_betrieb.csv")) {
+if (file_exists($pfad_workdir."daten/svp_betrieb.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -48,7 +48,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_betrieb.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_betrieb.csv";
+		$file_an = $pfad_workdir."daten/svp_betrieb.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -108,7 +108,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_betrieb.csv")) {
 
 $berufe_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_wl_ausbildungsberuf.csv")) {
+if (file_exists($pfad_workdir."daten/svp_wl_ausbildungsberuf.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -120,7 +120,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_wl_ausbildungsberuf.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_wl_ausbildungsberuf.csv";
+		$file_an = $pfad_workdir."daten/svp_wl_ausbildungsberuf.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -174,7 +174,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_wl_ausbildungsberuf.csv")) {
 
 $berufe_bet = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_betrieb_berufe.csv")) {
+if (file_exists($pfad_workdir."daten/svp_betrieb_berufe.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -186,7 +186,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_betrieb_berufe.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_betrieb_berufe.csv";
+		$file_an = $pfad_workdir."daten/svp_betrieb_berufe.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -244,7 +244,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_betrieb_berufe.csv")) {
 
 $beruf_schule = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_berufe_ist.csv")) {
+if (file_exists($pfad_workdir."daten/svp_berufe_ist.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -256,7 +256,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_berufe_ist.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_berufe_ist.csv";
+		$file_an = $pfad_workdir."daten/svp_berufe_ist.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -310,7 +310,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_berufe_ist.csv")) {
 
 $neu_staaten = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_staaten.csv")) {
+if (file_exists($pfad_workdir."daten/svp_staaten.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -322,7 +322,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_staaten.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_staaten.csv";
+		$file_an = $pfad_workdir."daten/svp_staaten.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -376,7 +376,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_staaten.csv")) {
 
 $neu_sprachen = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_sprachen.csv")) {
+if (file_exists($pfad_workdir."daten/svp_sprachen.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -388,7 +388,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_sprachen.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_sprachen.csv";
+		$file_an = $pfad_workdir."daten/svp_sprachen.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -441,7 +441,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_sprachen.csv")) {
 
 $neu_vorbildung = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_wl_vorbildung.csv")) {
+if (file_exists($pfad_workdir."daten/svp_wl_vorbildung.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -453,7 +453,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_wl_vorbildung.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_wl_vorbildung.csv";
+		$file_an = $pfad_workdir."daten/svp_wl_vorbildung.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -514,7 +514,7 @@ if ($db_temp->exec("UPDATE `vorbildung`
 
 $neu_schularten = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_schularten.csv")) {
+if (file_exists($pfad_workdir."daten/svp_schularten.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -526,7 +526,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_schularten.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_schularten.csv";
+		$file_an = $pfad_workdir."daten/svp_schularten.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -581,7 +581,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_schularten.csv")) {
 
 $neu_sorgeart = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_sorge.csv")) {
+if (file_exists($pfad_workdir."daten/svp_sorge.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -593,7 +593,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_sorge.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_sorge.csv";
+		$file_an = $pfad_workdir."daten/svp_sorge.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -645,7 +645,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_sorge.csv")) {
 
 		$neu_ort = 0;
 
-		if (file_exists("/var/www/html/verwaltung/daten/svp_wl_ort_gemeinde.csv")) {
+		if (file_exists($pfad_workdir."daten/svp_wl_ort_gemeinde.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -656,7 +656,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_sorge.csv")) {
 
 					}
 
-		$file_an = "/var/www/html/verwaltung/daten/svp_wl_ort_gemeinde.csv";
+		$file_an = $pfad_workdir."daten/svp_wl_ort_gemeinde.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -707,5 +707,5 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_sorge.csv")) {
 </form></p>
 <?php
 
-	include("/var/www/html/verwaltung/fuss.php");
+	include($pfad_workdir."fuss.php");
 ?>

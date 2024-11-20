@@ -3,17 +3,17 @@
 set_time_limit(0);
 ignore_user_abort(true); //auch wenn der Nutzer die Sete verlässt, läuft das Skript weiter
 
-include("/var/www/html/verwaltung/kopf.php");
+include($pfad_workdir."kopf.php");
 
 
-include("/var/www/html/verwaltung/login_inc.php");
+include($pfad_workdir."login_inc.php");
 @session_start();
 
 
 
 
 	
-include("/var/www/html/verwaltung/config.php");
+include($pfad_workdir."config.php");
 
 
 
@@ -40,7 +40,7 @@ $jgst_4 = trim($jgst_1 - 3);
 
 $schueler_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_schueler.csv")) {
+if (file_exists($pfad_workdir."daten/svp_dsa_schueler.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -52,7 +52,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_schueler.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_dsa_schueler.csv";
+		$file_an = $pfad_workdir."daten/svp_dsa_schueler.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -159,7 +159,7 @@ echo $schueler_neu." Schülerdatensätze importiert.";
 
 $bewerber_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_bewerber.csv")) {
+if (file_exists($pfad_workdir."daten/svp_dsa_bewerber.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -171,7 +171,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_bewerber.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_dsa_bewerber.csv";
+		$file_an = $pfad_workdir."daten/svp_dsa_bewerber.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -342,11 +342,11 @@ echo "<br>".$bewerber_neu." Bewerberdatensätze importiert.";
 
 $bewerber_neu2 = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_bewerber.csv")) {
+if (file_exists($pfad_workdir."daten/svp_dsa_bewerber.csv")) {
 			
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_dsa_bewerber.csv";
+		$file_an = $pfad_workdir."daten/svp_dsa_bewerber.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -441,7 +441,7 @@ echo "<br>".$bewerber_neu2." Bewerberdatensätze mit Sorgeberechtigten ergänzt.
 
 $bildungsgang_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_bewerbungsziel.csv")) {
+if (file_exists($pfad_workdir."daten/svp_bewerbungsziel.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -453,7 +453,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_bewerbungsziel.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_bewerbungsziel.csv";
+		$file_an = $pfad_workdir."daten/svp_bewerbungsziel.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -510,12 +510,12 @@ echo "<br>".$bildungsgang_neu." Bewerberziele importiert.";
 
 $kommunikation_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_bewerber_kommunikation.csv")) {
+if (file_exists($pfad_workdir."daten/svp_dsa_bewerber_kommunikation.csv")) {
 			
 
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_dsa_bewerber_kommunikation.csv";
+		$file_an = $pfad_workdir."daten/svp_dsa_bewerber_kommunikation.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -595,7 +595,7 @@ echo "<br>".$kommunikation_neu." Kommunikantionsadressen für Bewerber ergänzt.
 
 $fremdsprechen_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_bewerber_fremdsprachen.csv")) {
+if (file_exists($pfad_workdir."daten/svp_dsa_bewerber_fremdsprachen.csv")) {
 			
 		// Tabelle leeren:
 				
@@ -607,7 +607,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_bewerber_fremdsprachen.c
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_dsa_bewerber_fremdsprachen.csv";
+		$file_an = $pfad_workdir."daten/svp_dsa_bewerber_fremdsprachen.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -696,7 +696,7 @@ echo "<br>".$fremdsprechen_neu." Fremdsprachen für Bewerber importiert.";
 
 $betrieb_id_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_schueler_m_betrieb.csv")) {
+if (file_exists($pfad_workdir."daten/svp_dsa_schueler_m_betrieb.csv")) {
 			
 		// Tabelle leeren:
 				
@@ -708,7 +708,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_dsa_schueler_m_betrieb.csv")
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_dsa_schueler_m_betrieb.csv";
+		$file_an = $pfad_workdir."daten/svp_dsa_schueler_m_betrieb.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -763,7 +763,7 @@ echo "<br>".$betrieb_id_neu." Betriebs-IDs für BS-SuS importiert.";
 
 $sus_klasse_id_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/svp_schueler_klasse.csv")) {
+if (file_exists($pfad_workdir."daten/svp_schueler_klasse.csv")) {
 			
 		// Tabelle leeren:
 				
@@ -775,7 +775,7 @@ if (file_exists("/var/www/html/verwaltung/daten/svp_schueler_klasse.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/svp_schueler_klasse.csv";
+		$file_an = $pfad_workdir."daten/svp_schueler_klasse.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -835,5 +835,5 @@ echo "<br>".$sus_klasse_id_neu." Schüler-Klassen-Kombis importiert.";
 </form></p>
 <?php
 
-	include("/var/www/html/verwaltung/fuss.php");
+	include($pfad_workdir."fuss.php");
 ?>

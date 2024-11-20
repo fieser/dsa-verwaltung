@@ -2,17 +2,17 @@
 
 
 
-include("/var/www/html/verwaltung/kopf.php");
+include($pfad_workdir."kopf.php");
 
 
-include("/var/www/html/verwaltung/login_inc.php");
+include($pfad_workdir."login_inc.php");
 @session_start();
 
 
 
 
 	
-include("/var/www/html/verwaltung/config.php");
+include($pfad_workdir."config.php");
 
 
 
@@ -39,7 +39,7 @@ $jgst_4 = trim($jgst_1 - 3);
 
 $schueler_neu = 0;
 
-if (file_exists("/var/www/html/verwaltung/daten/anmeldungen_vorjahr.csv")) {
+if (file_exists($pfad_workdir."daten/anmeldungen_vorjahr.csv")) {
 			
 				// Tabelle leeren:
 				
@@ -51,7 +51,7 @@ if (file_exists("/var/www/html/verwaltung/daten/anmeldungen_vorjahr.csv")) {
 					}
 
 		 
-		$file_an = "/var/www/html/verwaltung/daten/anmeldungen_vorjahr.csv";
+		$file_an = $pfad_workdir."daten/anmeldungen_vorjahr.csv";
 		 
 		$file_handle = fopen($file_an, 'r');
 								 
@@ -112,5 +112,5 @@ echo $schueler_neu." Schülerdatensätze importiert.";
 </form></p>
 <?php
 
-	include("/var/www/html/verwaltung/fuss.php");
+	include($pfad_workdir."fuss.php");
 ?>

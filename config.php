@@ -1,4 +1,5 @@
  <?php
+
  //ob_start();
 // Liste der erlaubten IP-Adressbereiche (lokales Netzwerk)
 //$allowed_ips = ['172.0.0.0/8'];
@@ -49,6 +50,7 @@ if (!ip_is_allowed($user_ip, $allowed_ips) AND $user_ip != "" AND time() > strto
 }
 
 
+
 //Schuljahr der aktuellen Planung: 
 
 	$schuljahr = $_SESSION['schuljahr'];
@@ -90,10 +92,7 @@ $schuljahre["25-26"]["jahr"] = "2025-2026";
 
 
 
- // URL zum Verzeichnis in dem die PHP-Dateien und Unterordner abgelegt wurden:
- $url_termin = "https://service.bbs1-mainz.de/anmldung/"; // BITTE mit / abschließen!
- 
-//Schuljahr der aktuellen Planung: 
+//Aktuelles Schuljahr: 
 
 	$schuljahr = $_SESSION['schuljahr'];
 	foreach($schuljahre as $perioden) {
@@ -101,26 +100,32 @@ $schuljahre["25-26"]["jahr"] = "2025-2026";
 	$periode = $perioden['periode'];
 		}
 	}
-	$erster_tag = "05.09.2022";
-	$letzter_tag = "21.07.2023";
+
 
 
 //Schuldaten
-$schule_name_zeile1 = "Berufsbildende Schule 1";
-$schule_name_zeile2 = "- Gewerbe und Technik -";
+$_SESSION['schule_name_zeile1'] = "Berufsbildende Schule 1";
+$_SESSION['schule_name_zeile2'] = "- Gewerbe und Technik -";
 
-$schule_strasse_nr = "Am Judensand 12";
-$schule_plz_ort = "55122 Mainz";
+$_SESSION['schule_kurz'] = 'bbs1'; //Bitte nur Kleinbuchstaben
 
-$schule_tel = "06131-90603-0";
-$schule_fax = "06131-90603-99";
+$_SESSION['schule_strasse_nr'] = "Am Judensand 12";
+$_SESSION['schule_plz_ort'] = "55122 Mainz";
 
-$schule_mail = "sekretariat@bbs1-mainz.de";
-$schule_url = "https://www.bbs1-mainz.de";
+$_SESSION['schule_tel'] = "06131-90603-0";
+$_SESSION['schule_fax'] = "06131-90603-99";
+
+$_SESSION['schule_mail'] = "sekretariat@bbs1-mainz.de";
+$_SESSION['schule_url'] = "https://www.bbs1-mainz.de";
  
  
 
-	
+//Pfade:
+$url = "https://service.bbs1-mainz.de/verwaltung/"; // BITTE mit / abschließen!
+$website = "https://www.bbs1-mainz.com";
+$workdir = "/verwaltung/"; // BITTE mit / beginnen und abschließen!
+$pfad_workdir = "/var/www/html/verwaltung/";
+
 	
 
  

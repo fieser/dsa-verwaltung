@@ -9,7 +9,7 @@
 			}
 		}
 
-include("/var/www/html/verwaltung/kopf.php");
+include($pfad_workdir."kopf.php");
 
 include("./login_inc.php");
 @session_start();
@@ -18,7 +18,7 @@ include("./login_inc.php");
 
 
 	
-include("/var/www/html/verwaltung/config.php");
+include($pfad_workdir."config.php");
 
 
 
@@ -880,5 +880,5 @@ echo $fehler." Abweichungen in edoo.sys gefunden!";
 </form></p>
 <?php
 
-	include("/var/www/html/verwaltung/fuss.php");
+	include($pfad_workdir."fuss.php");
 ?>

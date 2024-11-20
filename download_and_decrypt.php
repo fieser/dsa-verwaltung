@@ -10,7 +10,7 @@ include("./login_inc.php");
 @session_start();
 
 
-include("/var/www/html/verwaltung/config.php");
+include($pfad_workdir."config.php");
 */
 
 function decryptFile($sourcePath, $destPath, $passphrase) {
@@ -30,8 +30,8 @@ function decryptFile($sourcePath, $destPath, $passphrase) {
 }
 
 $remoteZipUrl = "https://anmeldung.bbs1-mainz.de/dokumente/dokumente.zip"; // URL der ZIP-Datei
-$localZipPath = '/var/www/html/verwaltung/dokumente/dokumente.zip'; // Lokaler Pfad für die heruntergeladene ZIP-Datei
-$extractPath = '/var/www/html/verwaltung/dokumente/unpacked/'; // Verzeichnis, in dem die Dateien entpackt werden sollen
+$localZipPath = '".$pfad_workdir."dokumente/dokumente.zip'; // Lokaler Pfad für die heruntergeladene ZIP-Datei
+$extractPath = '".$pfad_workdir."dokumente/unpacked/'; // Verzeichnis, in dem die Dateien entpackt werden sollen
 
 // Löschen der alten ZIP-Datei, falls vorhanden
 if (file_exists($localZipPath)) {

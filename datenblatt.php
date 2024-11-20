@@ -1390,17 +1390,17 @@ $bodytext .= "\n";
 $bodytext .= "i.A. ".$_SESSION['firstname']." ".$_SESSION['lastname']." \n";
 $bodytext .= "\n";
 $bodytext .= "_______________________________________________ \n";
-$bodytext .= $schule_name_zeile1."\n";
-$bodytext .= $schule_name_zeile2."\n";
+$bodytext .= $_SESSION['schule_name_zeile1']."\n";
+$bodytext .= $_SESSION['schule_name_zeile2']."\n";
 $bodytext .= "\n";
-$bodytext .= $schule_strasse_nr."\n";
-$bodytext .= $schule_plz_ort."\n";
+$bodytext .= $_SESSION['schule_strasse_nr']."\n";
+$bodytext .= $_SESSION['schule_plz_ort']."\n";
 $bodytext .= "\n";
-$bodytext .= $schule_tel."\n";
-$bodytext .= $schule_fax."\n";
+$bodytext .= $_SESSION['schule_tel']."\n";
+$bodytext .= $_SESSION['schule_fax']."\n";
 $bodytext .= "\n";
-$bodytext .= $schule_mail."\n";
-$bodytext .= $schule_url."\n";
+$bodytext .= $_SESSION['schule_mail']."\n";
+$bodytext .= $_SESSION['schule_url']."\n";
 
 
 

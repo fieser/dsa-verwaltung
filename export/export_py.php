@@ -404,9 +404,9 @@ echo "<p><b>".$treffer_an." Schülerdatensätze</b> in xls-Datei geschrieben.<br
 
 
 // Pfad zum Python-Skript
-$scriptPath = '/var/www/html/verwaltung/export/main.py';
+$scriptPath = '".$pfad_workdir."export/main.py';
 // Argumente für das Python-Skript, falls benötigt
-$args = '/var/www/html/verwaltung/export/csv2xls.csv /var/www/html/verwaltung/export/Bewerber_Import.xls';
+$args = '".$pfad_workdir."export/csv2xls.csv ".$pfad_workdir."export/Bewerber_Import.xls';
 // Ausführen des Python-Skripts
 //exec("/usr/bin/python3 $scriptPath $args", $output, $return_var);
 // $output enthält die Ausgabe des Skripts, $return_var den Statuscode
