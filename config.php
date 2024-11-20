@@ -108,6 +108,7 @@ $_SESSION['schule_name_zeile1'] = "Berufsbildende Schule 1";
 $_SESSION['schule_name_zeile2'] = "- Gewerbe und Technik -";
 
 $_SESSION['schule_kurz'] = 'bbs1'; //Bitte nur Kleinbuchstaben
+$_SESSION['schule_kurzname'] = 'BBS1-Mainz';
 
 $_SESSION['schule_strasse_nr'] = "Am Judensand 12";
 $_SESSION['schule_plz_ort'] = "55122 Mainz";
@@ -125,6 +126,7 @@ $url = "https://service.bbs1-mainz.de/verwaltung/"; // BITTE mit / abschließen!
 $website = "https://www.bbs1-mainz.com";
 $workdir = "/verwaltung/"; // BITTE mit / beginnen und abschließen!
 $pfad_workdir = "/var/www/html/verwaltung/";
+$url_impressum ="http://ilias.bbs1-mainz.de/ilias/goto.php?target=impr_0&client_id=bbs1";
 
 	
 

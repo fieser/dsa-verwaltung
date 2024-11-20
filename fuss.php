@@ -19,10 +19,11 @@
 <div id="minheight"></div>
 <footer class="ilFooter">
         <div class="container">
-                <div class="row ilFooterContainer"><bdo class="" dir="ltr">powered by BBS1-Mainz</bdo> |
+ <?php         
+      echo "<div class='row ilFooterContainer'><bdo class='' dir='ltr'>powered by ".$_SESSION['schule_kurzname'] ."</bdo> |";
 
-<a href="http://ilias.bbs1-mainz.de/ilias/goto.php?target=impr_0&client_id=bbs1" target="_blank">Impressum</a> | <i>Made in 2nd Corona</i>
-
+      echo "<a href='".$url_impressum."' target='_blank'>Impressum</a> | <i>Made in 2nd Corona</i>";
+?>
 
 
 
