@@ -201,6 +201,11 @@ if ($_SESSION['admin'] == 1) {
 <form  class='flex-container' method="post" action="./fehler_ermitteln.php">
 <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Abweichungen ermitteln"  />
 </form>
+
+<form  class='flex-container' method="post" action="./setup.php">
+<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Setup"  />
+</form>
+
 <?php
 }
 

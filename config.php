@@ -52,8 +52,9 @@ if (!ip_is_allowed($user_ip, $allowed_ips) AND $user_ip != "" AND time() > strto
 
 
 //Schuljahr der aktuellen Planung: 
-
+if (isset($_SESSION['schuljahr'])) {
 	$schuljahr = $_SESSION['schuljahr'];
+}
 	
 	if (!isset($_SESSION['schuljahr']) OR $schuljahr == "") {
 		$schuljahr = "2025-2026"; //In diese Schuljahr gehen derzeit alle neuen Anmeldungen und gelangt man nach dem Login
