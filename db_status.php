@@ -13,13 +13,23 @@ include($pfad_workdir . "login_inc.php");
 
 
     
-    $mig_password =$_SESSION['mig_password'];
+    $mig_password = $_SESSION['mig_password'];
+    //$datenbankname = "anmeldung_www_2526";
+
+    
+    if (isset($_GET['db']) AND $_GET['db'] != "") {
+        $datenbankname = $_GET['db'];
+
+    }
+        
+
 
 // Datenbankkonfiguration
 $dbConfigs = [
-    'anmeldung_temp_leer' => [
+    $datenbankname => [
         'host' => 'localhost',
         'user' => 'root',
+        'datenbankname' => $datenbankname,
         'password' => $mig_password,
         'template' => 'db/migrations/db_structure_verwaltung_temp.sql',
     ],
@@ -33,7 +43,15 @@ function connectToMySQLDatabase($dbName, $host, $user, $password) {
     try {
         return new PDO($dsn, $user, $password);
     } catch (PDOException $e) {
+        
+        
+        echo "<p>
+        <form method='post' action='./setup.php'>
+            <input style='margin-top: 3em;' type='submit' class='btn btn-default btn-sm' name='cmd[doStandardAuthentication]' value='zurück' />
+        </form>
+        </p>";
         die("MySQL-Verbindungsfehler: " . $e->getMessage());
+        
     }
 }
 
@@ -230,7 +248,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $config = $dbConfigs[$dbKey];
-    $mysqlPdo = connectToMySQLDatabase('anmeldung_temp_leer', $config['host'], $config['user'], $config['password']);
+    $mysqlPdo = connectToMySQLDatabase($config['datenbankname'], $config['host'], $config['user'], $config['password']);
 
     if ($action === 'add_table' && $tableName) {
         $sqlitePdo = createSQLiteDatabase(loadSqlFile($config['template']));
@@ -253,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function checkDatabase($dbConfigs) {
     foreach ($dbConfigs as $dbKey => $config) {
         echo "<h2><b>Datenbank prüfen:</b> $dbKey</h2>";
-        $mysqlPdo = connectToMySQLDatabase('anmeldung_temp_leer', $config['host'], $config['user'], $config['password']);
+        $mysqlPdo = connectToMySQLDatabase($config['datenbankname'], $config['host'], $config['user'], $config['password']);
         $rawSql = loadSqlFile($config['template']);
         $cleanSql = cleanMySQLSqlForSQLite($rawSql);
         $sqlitePdo = createSQLiteDatabase($cleanSql);
