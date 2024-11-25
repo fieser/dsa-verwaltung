@@ -1,0 +1,3 @@
+@reboot /etc/init.d/ilserver start
+*/10    *       *       *       *       /root/skripte/check_upload_edoo2anmeldung.sh
+*/8     *      *       *       *       /root/skripte/vorschaubilder.sh > /dev/null
