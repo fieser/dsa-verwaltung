@@ -13,7 +13,7 @@ Verwaltungstool zur Verwaltung digitaler Schüleranmeldungen an BBS für edoo.sy
 <li>Vermeidung Doppelter Anmeldungen für eine Schulform</li>
 <li>Priorisierung mehrerer Anmeldungen für unterschiedlicher Schulformen</li>
 <li>Generierung eines Anschreibens als PDF-Datei zur Zusendung der Bewerbungsunterlagen</li>
-<li><b>NEU:</b> Upload von Bewerbungsdokumenten (bei der Anmeldung und zu einem späteren Zeitpunkt)</li>
+<li>Upload von Bewerbungsdokumenten (bei der Anmeldung und zu einem späteren Zeitpunkt)</li>
 
 <li>Liste eingegangener Anmeldungen</li>
 <li>Filterung und Sortierung</li>
@@ -78,87 +78,89 @@ Verwaltungstool zur Verwaltung digitaler Schüleranmeldungen an BBS für edoo.sy
 
 <img src='./images/systemskizze.jpg'>
 
-<h1 style='margin-top: 2em;'>Hinweise zur Installation</h1>
+<h1>Hinweise zur Installation</h1>
 
 
 
 <h2>Interner Webserver</h2>
 <p>Kern des Sytems ist der interne Webserver. Das kann z.B., wie bei uns, eine VM mit einem Linux sein.</p>
 
-	1. Installieren und konfigurieren Sie einen Webserver (Apache, PHP und MySQL)
-	2. Installieren Sie optional das Tool <i>phpMyAdmin</i>, das die Verwaltung der Datenbank deutlich erleichtert.
-	3. Clonen Sie das Github-Repository <i>dsa-verwaltung</i> in das Webverzeichnis Ihres Servers:
-	
-	```
-	mkdir /var/www/html/verwaltung
-	cd /var/www/html/verwaltung
-	git clone https://github.com/fieser/dsa-verwaltung.git
-	```
 
-	4. Laden Sie sich die Datenbankdateien <i>./db/migrations/db_structure_verwaltung_www.sql</i> und <i>./db/migrations/db_structure_verwaltung_temp.sql</i> herunter und importieren Sie sie in zwei separate MySQL-Datenbanken <i>anmeldung_www_2425</i> (für aktuelles Anmeldeschuljahr) und <i>anmeldung_temp</i>.
+1. Installieren und konfigurieren Sie einen Webserver (Apache, PHP und MySQL)
+2. Installieren Sie optional das Tool <i>phpMyAdmin</i>, das die Verwaltung der Datenbank deutlich erleichtert.
+3. Clonen Sie das Github-Repository <i>dsa-verwaltung</i> in das Webverzeichnis Ihres Servers:
+
+```
+mkdir /var/www/html/verwaltung
+cd /var/www/html/verwaltung
+git clone https://github.com/fieser/dsa-verwaltung.git
+```
+
+4. Laden Sie sich die Datenbankdateien <i>``./db/migrations/db_structure_verwaltung_www.sql``</i> und <i>``./db/migrations/db_structure_verwaltung_temp.sql``</i> herunter und importieren Sie sie in zwei separate MySQL-Datenbanken <i>anmeldung_www_2425</i>
+(für aktuelles Anmeldeschuljahr) und <i>anmeldung_temp</i>.
+
+> <b>Zwei separate Datenbanken, weil...</b><br>
+...der öffentliche Server nicht auf alle Schülerdaten zugreifen können soll. Von außerhalb des Verwaltungsnetzes kann man nur auf die Datenbank <i>anmeldung_temp</i>
+ zugreifen. Das öffentliche Anmeldeformular schreibt in die Datenbank <i>anmeldung_temp</i>. Der interne Webserver nutzt aber grundsätzlich die Datenbank <i>anmeldung_www</i>.
+ Wenn das Sekretariat auf ihm die Anmeldeliste aufruft, werden alle neu eingegangenen Anmeldungen von der Datenbank <i>anmeldung_temp</i> in die Datenbank <i>anmeldung_www</i>
+verschoben.
 	
-	> <b>Zwei separate Datenbanken, weil...</b><br>
-	...der öffentliche Server nicht auf alle Schülerdaten zugreifen können soll. Von außerhalb des Verwaltungsnetzes kann man nur auf die Datenbank <i>anmeldung_temp</i>
-	 zugreifen. Das öffentliche Anmeldeformular schreibt in die Datenbank <i>anmeldung_temp</i>. Der interne Webserver nutzt aber grundsätzlich die Datenbank <i>anmeldung_www</i>.
-	 Wenn das Sekretariat auf ihm die Anmeldeliste aufruft, werden alle neu eingegangenen Anmeldungen von der Datenbank <i>anmeldung_temp</i> in die Datenbank <i>anmeldung_www</i>
- verschoben.
-	
-	5. Verschieben oder Kopieren Sie die php-Datein im Verzeichnis ./systemumgebung/DB-Verbindungen... außerhalb Ihres Webverzeichnises.</i>
-	6. Legen Sie für beide Datenbanken die Nutzernamen und Zugriffsberechtigungen fest.
-	7. Tragen Sie die Zugangsdaten zu den beiden MySQL-Datenbanken in die Dateien <i>verbinden_www.php</i>, <i>verbinden_www.php</i> und <i>verbinden_temp.php</i> ein.
-	8. In der Datei <i>config.php</i> können Sie die Email-Signatur der Schule konfigurieren.
-	9. In der Datei <i>login_ad.php</i> können Sie die Verbindung zu Ihrem LDAP-Server (z.B. Windows ActivDirectory) konfigurieren.<br>
-	Alternativ können Sie eine Benutzerverwaltung per MySQL-Datenbank einrichten.
-	10. In der Datei <i>rechte.php</i> können Sie den Gruppen Admins, Sekretariatskräften und Lehrkräften Nutzernamen zuordnen.
-	11. Das Layout (Stylesheet) wird in der Datei kopf.php geladen. Dort wird auch das Schullogo eingebunden.
-	12. Installieren Sie über die Linux-Paketverwaltung das Tool <i>ImageMagick</i>, damit PHP Vorschaubilder generieren kann.
-	13. Optional: Installieren Sie Python3, um das Skript zur Generierung der Excel-Importdatei für edoo.sys RLP direkt auf dem Server generieren zu können. 
-	Dieses Skript befindet sich im Verzeichnis ./export/. Testen Sie es zunächst in der Linux-Konsole, um evtl. fehlende Python-Module zu bemerken und nachinstallieren zu können.<br>
+5. Verschieben oder Kopieren Sie die php-Datein im Verzeichnis ./systemumgebung/DB-Verbindungen... außerhalb Ihres Webverzeichnises.</i>
+6. Legen Sie für beide Datenbanken die Nutzernamen und Zugriffsberechtigungen fest.
+7. Tragen Sie die Zugangsdaten zu den beiden MySQL-Datenbanken in die Dateien <i>``verbinden.php``</i>, <i>``verbinden_www.php``</i> und <i>``verbinden_temp.php``</i> ein.
+8. In der Datei <i>config.php</i> können Sie die Email-Signatur der Schule konfigurieren.
+9. In der Datei <i>login_ad.php</i> können Sie die Verbindung zu Ihrem LDAP-Server (z.B. Windows ActivDirectory) konfigurieren.<br>
+Alternativ können Sie eine Benutzerverwaltung per MySQL-Datenbank einrichten.
+10. In der Datei <i>rechte.php</i> können Sie den Gruppen Admins, Sekretariatskräften und Lehrkräften Nutzernamen zuordnen.
+11. Das Layout (Stylesheet) wird in der Datei kopf.php geladen. Dort wird auch das Schullogo eingebunden.
+12. Installieren Sie über die Linux-Paketverwaltung das Tool <i>ImageMagick</i>, damit PHP Vorschaubilder generieren kann.
+13. Optional: Installieren Sie Python3, um das Skript zur Generierung der Excel-Importdatei für edoo.sys RLP direkt auf dem Server generieren zu können. 
+Dieses Skript befindet sich im Verzeichnis ./export/. Testen Sie es zunächst in der Linux-Konsole, um evtl. fehlende Python-Module zu bemerken und nachinstallieren zu können.<br>
 
 
 <h2>Öffentlicher Webserver</h2>
 <p>Dieser Webserver befindet sich außerhalb des Verwaltungsnetzes.<br>Wir haben einen VServer bei <i>Strato</i> - 11,- Euro/M.) - angemietet.</p>
 
 	
-	1. Installieren und konfigurieren Sie auch hier einen Webserver (Apache mit PHP).
-	2. Eine Datenbank wird nicht benötigt.
-	3. Clonen Sie das Github-Repository <i>dsa-anmeldung</i> in das Webverzeichnis Ihres Servers:
-	
-	```
-	mkdir /var/www/html/anmeldung
-	cd /var/www/html/anmeldung
-	git clone https://github.com/fieser/dsa-anmeldung.git
-	```
+1. Installieren und konfigurieren Sie auch hier einen Webserver (Apache mit PHP).
+2. Eine Datenbank wird nicht benötigt.
+3. Clonen Sie das Github-Repository <i>dsa-anmeldung</i> in das Webverzeichnis Ihres Servers:
 
-	4. In der Datei <i>config.php</i> können Sie Ihre Schulformen aktivieren und deaktivieren.
-	5. Die Schwerpunkte/Fachrichtungen der einzelnen Schulformen werden nicht auf diesem Server, sondern direkt in edoo.sys über die definierten Bewerbungsziele konfiguriert.
-	6. Speichern und konfigurieren Sie in der Datei <i>verbinden_temp.php</i> die Verbindung zur Datenbank <i>anmeldung_temp</i> des internen Webservers.<br>
-	Sichern Sie die Verbindung zur Datenbank <i>anmeldung_temp</i> des internen Servers bestmöglich ab.
-	7. Passen Sie die Datei <i>.htaccess</i> im Unterverzeichnis <i>dokumente</i> an.<br>
-	Dort muss zumindest die öffentliche IP des internen Webservers freigegeben sein.
-	
-	<div class='box-grau' style='margin-top: 5px;'>
-	<b>Sicherheitskonzept bezüglich Upload von Zeugnissen und Ausweisdokumenten:</b><br>
-	<ul>
-	<li>Übertragung per SSL</li>
-	<li>Verschlüsselte Speicherung auf dem öffentlichen Server (AES-256)</li>
-	<li>Dynamische Passwörter je Datensatz</li>
-	<li>Regelmäßige "Abholung" durch (ausschließlich) den internen Webserver</li>
-	<li>Lediglich temporäre Speicherung (max. 40 min) auf dem öffentlichen Webserver</li>
-	<li>Langzeitspeicherung nur auf dem internen Webserver</li>
-	</ul>
-	</div>
-	
-	<h2>Ex- und Import der edoo.sys-Daten</h2>
-	<p>Unser edoo.sys-Server (DSS) läuft auf einem Windows-System.</p>
+```
+mkdir /var/www/html/anmeldung
+cd /var/www/html/anmeldung
+git clone https://github.com/fieser/dsa-anmeldung.git
+```
 
-	1. Laden Sie sich die Datei <i>./systemumgebung/exportskripte_edooSYS-Server/edoo2anmeldung_vorlage.ps1</i> herunter speichern Sie dieses PowerShell-Skript in einem Verzeichnis auf dem edoo.sys-Server.</li>
-	2. Im Skript müssen einige Variablen konfiguriert werden.</li>
-	3. Das Skript exportiert die Wertelisten und Schülerdaten und kopiert sie auf den internen Webserver. Erstellen Sie (mit <i>Puttygen</i>) ein Zertifikat, mit dem sich das Skript per SSH-Verbindung am Server authentifizieren kann. Testen Sie das Skript und starten Sie es regelmäßig über die Windows-Aufgabenplanung.
-	4. Im Verzeichnis <i>systemumgebung/bash-skripte_fuer_DB-Import/</i> finden Sie mehrer Dateien. Kopieren oder verschieben Sie diese Dateien in ein auf dem internen Webserver in ein Verzeichnis außerhalb des Webverzeichnisses.
-	<br>In den Shellskripten müssen ggf. noch Pfade angepasst werden.
-	5. Richten Sie auf dem internen Werserver zwei Cronjobs ein, die regelmäßig die Dateien <i>check_upload_edoo2anmeldung.sh</i> und <ausführen.>vorschaubilder.sh ausführen.<br>In der Datei <i>./systemumgebung/bash-skripte_fuer_DB-Import/Beispiele_crontab-Einträge.txt</i> finden Sie Beispiele zur Einrichtung der Cronjobs.
-	6. Sie importieren die edoo.sys-Daten und generieren Vorschaubilder für eingereichte Nachweisdokumente.</li>
+4. In der Datei <i>config.php</i> können Sie Ihre Schulformen aktivieren und deaktivieren.
+5. Die Schwerpunkte/Fachrichtungen der einzelnen Schulformen werden nicht auf diesem Server, sondern direkt in edoo.sys über die definierten Bewerbungsziele konfiguriert.
+6. Speichern und konfigurieren Sie in der Datei <i>verbinden_temp.php</i> die Verbindung zur Datenbank <i>anmeldung_temp</i> des internen Webservers.<br>
+Sichern Sie die Verbindung zur Datenbank <i>anmeldung_temp</i> des internen Servers bestmöglich ab.
+7. Passen Sie die Datei <i>.htaccess</i> im Unterverzeichnis <i>dokumente</i> an.<br>
+Dort muss zumindest die öffentliche IP des internen Webservers freigegeben sein.
+
+<div class='box-grau' style='margin-top: 5px;'>
+<b>Sicherheitskonzept bezüglich Upload von Zeugnissen und Ausweisdokumenten:</b><br>
+<ul>
+<li>Übertragung per SSL</li>
+<li>Verschlüsselte Speicherung auf dem öffentlichen Server (AES-256)</li>
+<li>Dynamische Passwörter je Datensatz</li>
+<li>Regelmäßige "Abholung" durch (ausschließlich) den internen Webserver</li>
+<li>Lediglich temporäre Speicherung (max. 40 min) auf dem öffentlichen Webserver</li>
+<li>Langzeitspeicherung nur auf dem internen Webserver</li>
+</ul>
+</div>
+
+<h2>Ex- und Import der edoo.sys-Daten</h2>
+<p>Unser edoo.sys-Server (DSS) läuft auf einem Windows-System.</p>
+
+1. Laden Sie sich die Datei <i>./systemumgebung/exportskripte_edooSYS-Server/edoo2anmeldung_vorlage.ps1</i> herunter speichern Sie dieses PowerShell-Skript in einem Verzeichnis auf dem edoo.sys-Server.
+2. Im Skript müssen einige Variablen konfiguriert werden.
+3. Das Skript exportiert die Wertelisten und Schülerdaten und kopiert sie auf den internen Webserver. Erstellen Sie (mit <i>Puttygen</i>) ein Zertifikat, mit dem sich das Skript per SSH-Verbindung am Server authentifizieren kann. Testen Sie das Skript und starten Sie es regelmäßig über die Windows-Aufgabenplanung.
+4. Im Verzeichnis <i>./systemumgebung/bash-skripte_fuer_DB-Import/</i> finden Sie mehrer Dateien. Kopieren oder verschieben Sie diese Dateien in ein auf dem internen Webserver in ein Verzeichnis außerhalb des Webverzeichnisses.
+<br>In den Shellskripten müssen ggf. noch Pfade angepasst werden.
+5. Richten Sie auf dem internen Werserver zwei Cronjobs ein, die regelmäßig die Dateien <i>check_upload_edoo2anmeldung.sh</i> und vorschaubilder.sh ausführen.<br>In der Datei <i>./systemumgebung/bash-skripte_fuer_DB-Import/Beispiele_crontab-Einträge.txt</i> finden Sie Beispiele zur Einrichtung der Cronjobs.
+6. Sie importieren die edoo.sys-Daten und generieren Vorschaubilder für eingereichte Nachweisdokumente.
 	
 
 
