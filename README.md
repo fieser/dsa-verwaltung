@@ -1,6 +1,12 @@
 # dsa-verwaltung
 Verwaltungstool zur Verwaltung digitaler Schüleranmeldungen an BBS für edoo.sys RLP
 
+Das Gesamtprojekt besteht aus 2 Repositorys für 2 Server:
+- [github.com/fieser/dsa-formular](github.com/fieser/dsa-formular)
+- [github.com/fieser/dsa-anmeldung](github.com/fieser/dsa-anmeldung)
+
+Diese README.md berücksichtigt beide Repositorys.
+
 <h2>Umgesetzte Funktionen</h2>
 
 <ul>
