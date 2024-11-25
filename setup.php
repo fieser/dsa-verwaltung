@@ -15,14 +15,13 @@ include($pfad_workdir."login_inc.php");
 if (isset($_POST['mig_password'])) {
     $_SESSION['mig_password'] = $_POST['mig_password'];
 } else {
-    $_SESSION['mig_password'] = "";
+ //   $_SESSION['mig_password'] = "";
 }
 
 
 
 echo "<h1>Aktualisierung der Datenbanken</h1>";
 
-include("./db_suchen_opw.php");
 
 echo "<p style='margin-top: 2em;'>";
 echo "Geben Sie Ihr Datenpasswort ein!";
@@ -32,18 +31,18 @@ echo "<input style='width: 20em;' type='submit' class='btn btn-default btn-sm' n
 echo "</form>";
 echo "</p>";
 
-if ($treffer_temp == 0 OR $treffer_www == 0) {
+if ((isset($treffer_temp) OR isset($treffer_www)) AND ($treffer_temp == 0 OR $treffer_www == 0)) {
 echo "<p>
 <a href='./db_update.php' class='btn btn-default btn-sm' style='width: 20em; display: inline-block; margin: 0 0 1em 0;'>Datenbank Migration</a>
 </p>";
 }
-
+/*
 echo "<p>
 <a href='./db_status.php' class='btn btn-default btn-sm' style='width: 20em; display: inline-block; margin: 0 0 4em 0;'>Tabellen prüfen</a>
 </p>";
+*/
 
-
-
+include("./db_suchen_opw.php");
 
 
 

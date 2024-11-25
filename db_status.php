@@ -21,6 +21,13 @@ include($pfad_workdir . "login_inc.php");
         $datenbankname = $_GET['db'];
 
     }
+
+    if (strpos($datenbankname, "temp") != false) {
+
+        $tamplate_file = 'db/migrations/db_structure_verwaltung_temp.sql';
+    } else {
+        $tamplate_file = 'db/migrations/db_structure_verwaltung_www.sql';
+    }
         
 
 
@@ -31,7 +38,7 @@ $dbConfigs = [
         'user' => 'root',
         'datenbankname' => $datenbankname,
         'password' => $mig_password,
-        'template' => 'db/migrations/db_structure_verwaltung_temp.sql',
+        'template' => $tamplate_file,
     ],
 ];
 
@@ -269,6 +276,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Hauptprüfung
 function checkDatabase($dbConfigs) {
+    $hasDifferences = false; // Variable, um zu verfolgen, ob Abweichungen gefunden wurden
+
     foreach ($dbConfigs as $dbKey => $config) {
         echo "<h2><b>Datenbank prüfen:</b> $dbKey</h2>";
         $mysqlPdo = connectToMySQLDatabase($config['datenbankname'], $config['host'], $config['user'], $config['password']);
@@ -278,7 +287,15 @@ function checkDatabase($dbConfigs) {
         $sqliteStructure = getSQLiteTableStructure($sqlitePdo);
         $mysqlStructure = getMySQLTableStructure($mysqlPdo);
         $differences = compareStructures($mysqlStructure, $sqliteStructure);
-        renderDifferences($differences, $sqliteStructure, $dbKey);
+        
+        if (!empty($differences['missing_tables']) || !empty($differences['missing_columns'])) {
+            renderDifferences($differences, $sqliteStructure, $dbKey);
+            $hasDifferences = true; // Setze die Variable auf true, wenn Abweichungen gefunden wurden
+        }
+    }
+
+    if (!$hasDifferences) {
+        echo "<p style='margin-top: 3em;'>Alles korrekt - keine Abweichungen gefunden!</p>"; // Nachricht, wenn keine Abweichungen gefunden wurden
     }
 }
 
