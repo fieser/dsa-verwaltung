@@ -144,6 +144,7 @@ $fremdsprachen_export_deaktivieren = 0;
 $debug = 0; //Anzeige zusätzlicher Infos zur Fehlersuche
 $mail_status = 1; //Anzeige Spalte E-Mail in Liste
 $upload_documents = 1; //Die Einstellung $upload_dokumente o.ä. muss auch auf dem öffentlichen Server entsprechend in config.php eingestellt sein!
+$ldap_aktiviert = 1; //Passen Sie die Datei login_ad.php an, bevor Sie LDAP aktivieren!
 
 
 // FUNKTIONEN:
@@ -165,7 +166,10 @@ function dateivergleich($a,$b) {
 } //Ende Funktion
 
 
-
+//Diese Zeilen ermöglichen den initialen Zugriff vor der LDAP-Konfiguration
+if ($ldap_aktiviert != 1) {
+	$_SESSION['username'] = "Fieser"; //Adminnutzer gemäß rechte.php
+}
 	
 
 //ob_end_flush();

@@ -5,6 +5,10 @@ include("./login_inc.php");
 @session_start();
 
 
+//Aktivieren Sie LDAP in der config.php, 
+//nachdem Sie diese Datei konfiguriert haben!
+
+
 // Daten des zu authentifizierenden Benutzers (z.B. aus Formular)
 $domain = "bbs-t1";
 $username = $_POST['username'];
