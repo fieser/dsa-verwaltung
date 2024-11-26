@@ -91,9 +91,9 @@ Diese README.md berücksichtigt beide Repositorys.
 <h2>Interner Webserver</h2>
 <p>Kern des Sytems ist der interne Webserver. Das kann z.B., wie bei uns, eine VM mit einem Linux sein.</p>
 
-##Installationsskript für Ubuntu 24.01 LTS
+>[Installationsskript für Ubuntu 24.01 LTS](https://github.com/fieser/dsa-verwaltung/wiki/Installationsskript-f%C3%BCr-Ubuntu-Server-24.01-LTS)
 
-[install_ubuntu_24-04-LTS.sh](/https://raw.githubusercontent.com/fieser/dsa-verwaltung/main/db/migrations/install_ubuntu_24-04-LTS.sh)
+
 
 
 1. Installieren und konfigurieren Sie einen Webserver (Apache, PHP und MySQL)
