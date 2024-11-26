@@ -91,7 +91,8 @@ Diese README.md berücksichtigt beide Repositorys.
 <h2>Interner Webserver</h2>
 <p>Kern des Sytems ist der interne Webserver. Das kann z.B., wie bei uns, eine VM mit einem Linux sein.</p>
 
->[Installationsskript für Ubuntu 24.04.1 LTS](https://github.com/fieser/dsa-verwaltung/wiki/Installationsskript-f%C3%BCr-Ubuntu-Server-24.04.1-LTS)
+> [!TIP]
+> [Installationsskript für Ubuntu 24.04.1 LTS](https://github.com/fieser/dsa-verwaltung/wiki/Installationsskript-f%C3%BCr-Ubuntu-Server-24.04.1-LTS) (Dieses Installationsskript erledigt die folgenden Schritte 1 bis 12 in wenigen Sekunden) 
 
 
 
