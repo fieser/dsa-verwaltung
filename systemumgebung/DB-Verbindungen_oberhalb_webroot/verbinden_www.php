@@ -4,7 +4,7 @@ $DB_HOST = "localhost"; // Host-Adresse
  $erstes_jahr = 22;
 
 
-$DB_NAME = "anmeldung_www"; // Datenbankname
+$DB_NAME = "anmeldung_www_2526"; // Datenbankname
 
 /////////////////////////////////////////////
 
