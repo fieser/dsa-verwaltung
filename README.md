@@ -91,6 +91,10 @@ Diese README.md berücksichtigt beide Repositorys.
 <h2>Interner Webserver</h2>
 <p>Kern des Sytems ist der interne Webserver. Das kann z.B., wie bei uns, eine VM mit einem Linux sein.</p>
 
+##Installationsskript für Ubuntu 24.01 LTS
+
+[install_ubuntu_24-04-LTS.sh](/https://raw.githubusercontent.com/fieser/dsa-verwaltung/main/db/migrations/install_ubuntu_24-04-LTS.sh)
+
 
 1. Installieren und konfigurieren Sie einen Webserver (Apache, PHP und MySQL)
 2. Installieren Sie optional das Tool <i>phpMyAdmin</i>, das die Verwaltung der Datenbank deutlich erleichtert.
