@@ -24,10 +24,10 @@ DROP TABLE IF EXISTS `berufe`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `berufe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `langform` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2034 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,9 +41,9 @@ DROP TABLE IF EXISTS `berufe_angebot`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `berufe_angebot` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
-  `schueler` varchar(200) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `langform` varchar(500),
+  `schueler` varchar(200),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3512 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -57,11 +57,11 @@ DROP TABLE IF EXISTS `berufe_angebot_betriebe`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `berufe_angebot_betriebe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
-  `betrieb_kuerzel` varchar(100) COLLATE NOT NULL,
-  `betrieb_name1` varchar(500) COLLATE NOT NULL,
-  `betrieb_name2` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `langform` varchar(500),
+  `betrieb_kuerzel` varchar(100),
+  `betrieb_name1` varchar(500),
+  `betrieb_name2` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2173 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -75,10 +75,10 @@ DROP TABLE IF EXISTS `betriebe`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `betriebe` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_edoo` varchar(200) COLLATE NOT NULL,
-  `kuerzel` varchar(200) COLLATE NOT NULL,
-  `name1` varchar(500) COLLATE NOT NULL,
-  `name2` varchar(500) COLLATE NOT NULL,
+  `id_edoo` varchar(200),
+  `kuerzel` varchar(200),
+  `name1` varchar(500),
+  `name2` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1649 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -92,8 +92,8 @@ DROP TABLE IF EXISTS `dauer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dauer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `anzeigeform` varchar(200) COLLATE NOT NULL,
-  `langform` varchar(200) COLLATE NOT NULL,
+  `anzeigeform` varchar(200),
+  `langform` varchar(200),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -107,53 +107,53 @@ DROP TABLE IF EXISTS `dsa_bewerberdaten`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dsa_bewerberdaten` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `md5` varchar(200) COLLATE NOT NULL,
+  `md5` varchar(200),
   `code` int(50) NOT NULL,
-  `status` varchar(200) COLLATE NOT NULL,
-  `nachname` varchar(200) COLLATE NOT NULL,
-  `vorname` varchar(200) COLLATE NOT NULL,
-  `geschlecht` varchar(100) COLLATE NOT NULL,
-  `geburtsdatum` varchar(100) COLLATE NOT NULL,
-  `geburtsort` varchar(200) COLLATE NOT NULL,
-  `geburtsland` varchar(200) COLLATE NOT NULL,
-  `zuzug` varchar(100) COLLATE NOT NULL,
-  `staatsangehoerigkeit` varchar(200) COLLATE NOT NULL,
-  `muttersprache` varchar(200) COLLATE NOT NULL,
-  `religion` varchar(100) COLLATE NOT NULL,
-  `herkuftsland` varchar(200) COLLATE NOT NULL,
-  `strasse` varchar(200) COLLATE NOT NULL,
-  `plz` varchar(100) COLLATE NOT NULL,
-  `wohnort` varchar(200) COLLATE NOT NULL,
-  `hausnummer` varchar(200) COLLATE NOT NULL,
-  `telefon1` varchar(200) COLLATE NOT NULL,
-  `telefon2` varchar(200) COLLATE NOT NULL,
-  `mail` varchar(200) COLLATE NOT NULL,
-  `schulart` varchar(200) COLLATE NOT NULL,
-  `schulname` varchar(200) COLLATE NOT NULL,
-  `jahrgang` varchar(200) COLLATE NOT NULL,
-  `abschluss` varchar(200) COLLATE NOT NULL,
-  `sorge1_nachname` varchar(200) COLLATE NOT NULL,
-  `sorge1_vorname` varchar(200) COLLATE NOT NULL,
-  `sorge1_anrede` varchar(200) COLLATE NOT NULL,
-  `sorge1_art` varchar(200) COLLATE NOT NULL,
-  `sorge1_strasse` varchar(200) COLLATE NOT NULL,
-  `sorge1_hausnummer` varchar(200) COLLATE NOT NULL,
-  `sorge1_plz` varchar(200) COLLATE NOT NULL,
-  `sorge1_wohnort` varchar(200) COLLATE NOT NULL,
-  `sorge1_telefon1` varchar(200) COLLATE NOT NULL,
-  `sorge1_telefon2` varchar(200) COLLATE NOT NULL,
-  `sorge1_mail` varchar(200) COLLATE NOT NULL,
-  `sorge2_vorname` varchar(200) COLLATE NOT NULL,
-  `sorge2_nachname` varchar(200) COLLATE NOT NULL,
-  `sorge2_anrede` varchar(200) COLLATE NOT NULL,
-  `sorge2_art` varchar(200) COLLATE NOT NULL,
-  `sorge2_strasse` varchar(200) COLLATE NOT NULL,
-  `sorge2_hausnummer` varchar(200) COLLATE NOT NULL,
-  `sorge2_plz` varchar(200) COLLATE NOT NULL,
-  `sorge2_wohnort` varchar(200) COLLATE NOT NULL,
-  `sorge2_telefon1` varchar(200) COLLATE NOT NULL,
-  `sorge2_telefon2` varchar(200) COLLATE NOT NULL,
-  `sorge2_mail` varchar(200) COLLATE NOT NULL,
+  `status` varchar(200),
+  `nachname` varchar(200),
+  `vorname` varchar(200),
+  `geschlecht` varchar(100),
+  `geburtsdatum` varchar(100),
+  `geburtsort` varchar(200),
+  `geburtsland` varchar(200),
+  `zuzug` varchar(100),
+  `staatsangehoerigkeit` varchar(200),
+  `muttersprache` varchar(200),
+  `religion` varchar(100),
+  `herkuftsland` varchar(200),
+  `strasse` varchar(200),
+  `plz` varchar(100),
+  `wohnort` varchar(200),
+  `hausnummer` varchar(200),
+  `telefon1` varchar(200),
+  `telefon2` varchar(200),
+  `mail` varchar(200),
+  `schulart` varchar(200),
+  `schulname` varchar(200),
+  `jahrgang` varchar(200),
+  `abschluss` varchar(200),
+  `sorge1_nachname` varchar(200),
+  `sorge1_vorname` varchar(200),
+  `sorge1_anrede` varchar(200),
+  `sorge1_art` varchar(200),
+  `sorge1_strasse` varchar(200),
+  `sorge1_hausnummer` varchar(200),
+  `sorge1_plz` varchar(200),
+  `sorge1_wohnort` varchar(200),
+  `sorge1_telefon1` varchar(200),
+  `sorge1_telefon2` varchar(200),
+  `sorge1_mail` varchar(200),
+  `sorge2_vorname` varchar(200),
+  `sorge2_nachname` varchar(200),
+  `sorge2_anrede` varchar(200),
+  `sorge2_art` varchar(200),
+  `sorge2_strasse` varchar(200),
+  `sorge2_hausnummer` varchar(200),
+  `sorge2_plz` varchar(200),
+  `sorge2_wohnort` varchar(200),
+  `sorge2_telefon1` varchar(200),
+  `sorge2_telefon2` varchar(200),
+  `sorge2_mail` varchar(200),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2398 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -167,42 +167,42 @@ DROP TABLE IF EXISTS `dsa_bildungsgang`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dsa_bildungsgang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `md5` varchar(200) COLLATE NOT NULL,
-  `prio` varchar(11) COLLATE NOT NULL,
+  `md5` varchar(200),
+  `prio` varchar(11),
   `id_dsa_bewerberdaten` int(11) NOT NULL,
   `time` varchar(200) COLLATE  DEFAULT NULL,
-  `schulform` varchar(200) COLLATE NOT NULL,
-  `beruf` varchar(200) COLLATE NOT NULL,
-  `beruf_anz` varchar(500) COLLATE NOT NULL,
-  `dauer` varchar(200) COLLATE NOT NULL,
-  `beginn` varchar(200) COLLATE NOT NULL,
-  `ende` varchar(200) COLLATE NOT NULL,
-  `beruf2` varchar(200) COLLATE NOT NULL,
-  `betrieb` varchar(200) COLLATE NOT NULL,
-  `betrieb2` varchar(200) COLLATE NOT NULL,
-  `betrieb_plz` varchar(200) COLLATE NOT NULL,
-  `betrieb_ort` varchar(200) COLLATE NOT NULL,
-  `betrieb_strasse` varchar(200) COLLATE NOT NULL,
-  `betrieb_hausnummer` varchar(200) COLLATE NOT NULL,
-  `betrieb_telefon` varchar(200) COLLATE NOT NULL,
-  `betrieb_mail` varchar(200) COLLATE NOT NULL,
-  `ausbilder_nachname` varchar(200) COLLATE NOT NULL,
-  `ausbilder_vorname` varchar(200) COLLATE NOT NULL,
-  `ausbilder_telefon` varchar(200) COLLATE NOT NULL,
-  `ausbilder_telefon2` varchar(200) COLLATE NOT NULL,
-  `ausbilder_mail` varchar(200) COLLATE NOT NULL,
-  `bgy_sp1` varchar(200) COLLATE NOT NULL,
-  `bgy_sp2` varchar(200) COLLATE NOT NULL,
-  `bgy_sp3` varchar(200) COLLATE NOT NULL,
-  `fs1` varchar(200) COLLATE NOT NULL,
-  `fs1_von` varchar(200) COLLATE NOT NULL,
-  `fs1_bis` varchar(200) COLLATE NOT NULL,
-  `fs2` varchar(200) COLLATE NOT NULL,
-  `fs2_von` varchar(200) COLLATE NOT NULL,
-  `fs2_bis` varchar(200) COLLATE NOT NULL,
-  `fs3` varchar(200) COLLATE NOT NULL,
-  `fs3_von` varchar(200) COLLATE NOT NULL,
-  `fs3_bis` varchar(200) COLLATE NOT NULL,
+  `schulform` varchar(200),
+  `beruf` varchar(200),
+  `beruf_anz` varchar(500),
+  `dauer` varchar(200),
+  `beginn` varchar(200),
+  `ende` varchar(200),
+  `beruf2` varchar(200),
+  `betrieb` varchar(200),
+  `betrieb2` varchar(200),
+  `betrieb_plz` varchar(200),
+  `betrieb_ort` varchar(200),
+  `betrieb_strasse` varchar(200),
+  `betrieb_hausnummer` varchar(200),
+  `betrieb_telefon` varchar(200),
+  `betrieb_mail` varchar(200),
+  `ausbilder_nachname` varchar(200),
+  `ausbilder_vorname` varchar(200),
+  `ausbilder_telefon` varchar(200),
+  `ausbilder_telefon2` varchar(200),
+  `ausbilder_mail` varchar(200),
+  `bgy_sp1` varchar(200),
+  `bgy_sp2` varchar(200),
+  `bgy_sp3` varchar(200),
+  `fs1` varchar(200),
+  `fs1_von` varchar(200),
+  `fs1_bis` varchar(200),
+  `fs2` varchar(200),
+  `fs2_von` varchar(200),
+  `fs2_bis` varchar(200),
+  `fs3` varchar(200),
+  `fs3_von` varchar(200),
+  `fs3_bis` varchar(200),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -216,10 +216,10 @@ DROP TABLE IF EXISTS `edoo_bewerbungsziel`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `edoo_bewerbungsziel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_edoo` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(200) COLLATE NOT NULL,
-  `id_bildungsgang` varchar(100) COLLATE NOT NULL,
+  `id_edoo` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(200),
+  `id_bildungsgang` varchar(100),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -233,8 +233,8 @@ DROP TABLE IF EXISTS `geschlecht`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `geschlecht` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `anzeigeform` varchar(200) COLLATE NOT NULL,
-  `langform` varchar(200) COLLATE NOT NULL,
+  `anzeigeform` varchar(200),
+  `langform` varchar(200),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -249,9 +249,9 @@ DROP TABLE IF EXISTS `ignorieren`;
 CREATE TABLE `ignorieren` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_bewerber` int(11) NOT NULL,
-  `wert_edoo` varchar(200) COLLATE NOT NULL,
-  `wert_dsa` varchar(200) COLLATE NOT NULL,
-  `okay_admin` varchar(11) COLLATE NOT NULL,
+  `wert_edoo` varchar(200),
+  `wert_dsa` varchar(200),
+  `okay_admin` varchar(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -265,10 +265,10 @@ DROP TABLE IF EXISTS `klassenstufen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `klassenstufen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `langform` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -282,8 +282,8 @@ DROP TABLE IF EXISTS `log`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE NOT NULL,
-  `wert` varchar(100) COLLATE NOT NULL,
+  `name` varchar(100),
+  `wert` varchar(100),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -297,8 +297,8 @@ DROP TABLE IF EXISTS `plz_ort`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `plz_ort` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `plz` varchar(100) COLLATE NOT NULL,
-  `ort` varchar(200) COLLATE NOT NULL,
+  `plz` varchar(100),
+  `ort` varchar(200),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11479 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -312,10 +312,10 @@ DROP TABLE IF EXISTS `religion`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `religion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `sortierung` varchar(11) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `sortierung` varchar(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -329,10 +329,10 @@ DROP TABLE IF EXISTS `schularten`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `schularten` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `langform` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -346,9 +346,9 @@ DROP TABLE IF EXISTS `schulformen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `schulformen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `kuerzel` varchar(50) COLLATE NOT NULL,
-  `name` varchar(200) COLLATE NOT NULL,
-  `aktiv` varchar(11) COLLATE NOT NULL,
+  `kuerzel` varchar(50),
+  `name` varchar(200),
+  `aktiv` varchar(11),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -362,10 +362,10 @@ DROP TABLE IF EXISTS `senden_texte`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `senden_texte` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schulform` varchar(200) COLLATE NOT NULL,
-  `bezeichnung` varchar(200) COLLATE NOT NULL,
-  `feldname` varchar(200) COLLATE NOT NULL,
-  `text` longtext COLLATE NOT NULL,
+  `schulform` varchar(200),
+  `bezeichnung` varchar(200),
+  `feldname` varchar(200),
+  `text` longtext,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -379,10 +379,10 @@ DROP TABLE IF EXISTS `sorge`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sorge` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `langform` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -396,10 +396,10 @@ DROP TABLE IF EXISTS `sprachen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sprachen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `langform` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -413,10 +413,10 @@ DROP TABLE IF EXISTS `staaten`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `staaten` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `langform` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=253 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -430,10 +430,10 @@ DROP TABLE IF EXISTS `summen`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `summen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `md5` varchar(200) COLLATE NOT NULL,
-  `md5_o_sf` varchar(200) COLLATE NOT NULL,
-  `time` varchar(100) COLLATE NOT NULL,
-  `schulform` varchar(100) COLLATE NOT NULL,
+  `md5` varchar(200),
+  `md5_o_sf` varchar(200),
+  `time` varchar(100),
+  `schulform` varchar(100),
   `prio` varchar(11) COLLATE  DEFAULT NULL,
   `papierkorb` varchar(200) COLLATE  DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -449,9 +449,9 @@ DROP TABLE IF EXISTS `testtabelle`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `testtabelle` (
   `id` int(4) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE NOT NULL,
-  `mail` varchar(50) COLLATE NOT NULL,
-  `ort` varchar(50) COLLATE NOT NULL,
+  `name` varchar(50),
+  `mail` varchar(50),
+  `ort` varchar(50),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -465,19 +465,19 @@ DROP TABLE IF EXISTS `umfrage`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `umfrage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `md5` varchar(200) COLLATE NOT NULL,
-  `zeit` varchar(100) COLLATE NOT NULL,
-  `umfrage1` varchar(100) COLLATE NOT NULL,
-  `umfrage2` varchar(100) COLLATE NOT NULL,
-  `umfrage3` varchar(100) COLLATE NOT NULL,
-  `umfrage4` varchar(100) COLLATE NOT NULL,
-  `umfrage5` varchar(100) COLLATE NOT NULL,
-  `umfrage6` varchar(100) COLLATE NOT NULL,
-  `umfrage7` varchar(100) COLLATE NOT NULL,
-  `umfrage8` varchar(100) COLLATE NOT NULL,
-  `umfrage9` varchar(100) COLLATE NOT NULL,
-  `umfrage10` varchar(100) COLLATE NOT NULL,
-  `umfrage11` varchar(100) COLLATE NOT NULL,
+  `md5` varchar(200),
+  `zeit` varchar(100),
+  `umfrage1` varchar(100),
+  `umfrage2` varchar(100),
+  `umfrage3` varchar(100),
+  `umfrage4` varchar(100),
+  `umfrage5` varchar(100),
+  `umfrage6` varchar(100),
+  `umfrage7` varchar(100),
+  `umfrage8` varchar(100),
+  `umfrage9` varchar(100),
+  `umfrage10` varchar(100),
+  `umfrage11` varchar(100),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1583 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -491,10 +491,10 @@ DROP TABLE IF EXISTS `vorbildung`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vorbildung` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `schluessel` varchar(200) COLLATE NOT NULL,
-  `kurzform` varchar(200) COLLATE NOT NULL,
-  `anzeigeform` varchar(500) COLLATE NOT NULL,
-  `langform` varchar(500) COLLATE NOT NULL,
+  `schluessel` varchar(200),
+  `kurzform` varchar(200),
+  `anzeigeform` varchar(500),
+  `langform` varchar(500),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -509,14 +509,14 @@ DROP TABLE IF EXISTS `vorgang`;
 CREATE TABLE `vorgang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_dsa_bewerberdaten` int(11) NOT NULL,
-  `bemerkungen` varchar(500) COLLATE NOT NULL,
-  `dok_zeugnis` varchar(11) COLLATE NOT NULL,
-  `dok_lebenslauf` varchar(11) COLLATE NOT NULL,
-  `dok_ausweis` varchar(11) COLLATE NOT NULL,
-  `dok_erfahrung` varchar(11) COLLATE NOT NULL,
-  `last_user` varchar(200) COLLATE NOT NULL,
-  `last_time` varchar(200) COLLATE NOT NULL,
-  `log` longtext COLLATE NOT NULL,
+  `bemerkungen` varchar(500),
+  `dok_zeugnis` varchar(11),
+  `dok_lebenslauf` varchar(11),
+  `dok_ausweis` varchar(11),
+  `dok_erfahrung` varchar(11),
+  `last_user` varchar(200),
+  `last_time` varchar(200),
+  `log` longtext,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=;
 /*!40101 SET character_set_client = @saved_cs_client */;
