@@ -60,11 +60,12 @@ sudo sed -i "s/root/$USER_TEMP/g" /var/www/verbinden_temp.php
 sudo sed -i "s/$ldap_aktiviert = 1/$ldap_aktiviert = 0/g" /var/www/html/verwaltung/config.php
 
 # SQL-Dateien in die Datenbanken importieren
-sudo mysql -u root -p$MYSQL_ROOT_PASSWORD anmeldung_temp < /var/www/html/verwaltung/db/migrations/db_structure_verwaltung_temp.sql
-sudo mysql -u root -p$MYSQL_ROOT_PASSWORD anmeldung_www_2526 < /var/www/html/verwaltung/db/migrations/db_structure_verwaltung_www.sql
+sudo mysql -u 'root' -p$MYSQL_ROOT_PASSWORD anmeldung_temp < /var/www/html/verwaltung/db/migrations/db_structure_verwaltung_temp.sql
+sudo mysql -u 'root' -p$MYSQL_ROOT_PASSWORD anmeldung_www_2526 < /var/www/html/verwaltung/db/migrations/db_structure_verwaltung_www.sql
 
 # Datenimport auf Zielserver
-sudo mysql -u root -p$MYSQL_ROOT_PASSWORD anmeldung_www_2526 < tb_inhalt_verwaltung_temp_senden_texte.sql
+sudo mysql -u 'root' -p$MYSQL_ROOT_PASSWORD anmeldung_www_temp < tb_inhalt_verwaltung_temp_senden_texte.sql
+sudo mysql -u 'root' -p$MYSQL_ROOT_PASSWORD anmeldung_www_temp < tb_inhalt_verwaltung_temp_schulformen.sql
 
 # Zeilen aus der Datei config.php löschen
 CONFIG_FILE="/var/www/html/verwaltung/config.php"

@@ -7,3 +7,6 @@ Befehle zum Export der Datenbankstrukturen:
 Befehl zum Export der Daten einzelner Tabellen:
 
     mysqldump -u root -p anmeldung_temp_2526 senden_texte > tb_inhalt_verwaltung_temp_senden_texte.sql
+
+    mysqldump -u root -p anmeldung_temp_2526 schulformen > tb_inhalt_verwaltung_temp_schulformen.sql
+
