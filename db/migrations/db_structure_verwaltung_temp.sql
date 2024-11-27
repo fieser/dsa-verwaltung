@@ -170,7 +170,7 @@ CREATE TABLE `dsa_bildungsgang` (
   `md5` varchar(200),
   `prio` varchar(11),
   `id_dsa_bewerberdaten` int(11) NOT NULL,
-  `time` varchar(200) COLLATE  DEFAULT NULL,
+  `time` varchar(200) COLLATE DEFAULT NULL,
   `schulform` varchar(200),
   `beruf` varchar(200),
   `beruf_anz` varchar(500),
@@ -434,8 +434,8 @@ CREATE TABLE `summen` (
   `md5_o_sf` varchar(200),
   `time` varchar(100),
   `schulform` varchar(100),
-  `prio` varchar(11) COLLATE  DEFAULT NULL,
-  `papierkorb` varchar(200) COLLATE  DEFAULT NULL,
+  `prio` varchar(11) COLLATE DEFAULT NULL,
+  `papierkorb` varchar(200) COLLATE DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
