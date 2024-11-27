@@ -118,7 +118,7 @@ if (isset($_POST['submit'])) {
 }
 
 
-echo "<h1><b>Hinweistexte für Nuzter</b></h1>";
+echo "<h1><b>Hinweistexte für Nutzer</b></h1>";
 echo "<p style='margin-bottom: 3em;'>Diese Texte werden den Nutzern direkt nach dem Versenden des Anmeldeformulars angezeigt.</p>";
 ?>
 <p>
