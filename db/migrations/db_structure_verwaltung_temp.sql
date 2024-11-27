@@ -29,7 +29,7 @@ CREATE TABLE `berufe` (
   `anzeigeform` varchar(500),
   `langform` varchar(500),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2034 DEFAULT CHARSET=utf8 COLLATE=;
+) ENGINE=InnoDB AUTO_INCREMENT=2034 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
