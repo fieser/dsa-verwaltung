@@ -132,6 +132,8 @@ Dieses Skript befindet sich im Verzeichnis ./export/. Testen Sie es zunächst in
 <h2>Öffentlicher Webserver</h2>
 <p>Dieser Webserver befindet sich außerhalb des Verwaltungsnetzes.<br>Wir haben einen VServer bei <i>Strato</i> - 11,- Euro/M.) - angemietet.</p>
 
+> [!TIP]
+> [Installationsskript für den Formularserver auf Ubuntu 24.04.1 LTS](https://github.com/fieser/dsa-verwaltung/wiki/Installationsskript-auf-Ubuntu-Server-24.04.1-LTS)<br>(Dieses Installationsskript erledigt die folgenden Schritte 1 bis 3 in wenigen Sekunden) 
 	
 1. Installieren und konfigurieren Sie auch hier einen Webserver (Apache mit PHP).
 2. Eine Datenbank wird nicht benötigt.
