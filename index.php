@@ -107,150 +107,168 @@ echo "</table>";
     <title>Bewerberdaten</title>
     <style>
 
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewerberdaten</title>
+    <style>
+        .box-grau {
+            padding: 10px;
+            background-color: #d3d3d3;
+            margin-bottom: 20px;
+        }
 
-.box-grau {
-   padding: 10px;
-   background-color: #E0E0E0;
-   margin-bottom: 20px;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-* {
-  box-sizing: border-box;
-}
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+        }
 
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-}
-      .hidden {
-            display: none;
-        }  
-		
-.flex-item-left {
-  padding: 10px;
-  flex: 50%;
-  text-align: left;
-}
+        .flex-item-left {
+            padding: 10px;
+            flex: 30%;
+            text-align: left;
+        }
 
-.flex-item-right {
-  padding: 10px;
-  flex: 50%;
-  text-align: left;
-}
+        .flex-item-right {
+            padding: 10px;
+            flex: 70%;
+            text-align: left;
+        }
 
-.flex-item-drei {
-  padding: 10px;
-  flex: 33.3%;
-  text-align: left;
-}
-
-/* Responsive layout - makes a one column-layout instead of two-column layout */
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
-  
-
-}
-</style>
+        /* Responsive layout - makes a one column-layout instead of two-column layout */
+        @media (max-width: 800px) {
+            .flex-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1 style='margin-bottom: 2em;'> </h1>
-	
-	<form method="post" action="./liste.php?pk=0">
-<input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Liste Schüleranmeldungen" />
-</form>
 
-	<form method="post" action="./einschulung.php">
-<input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-warning btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Übersicht Einschulung 2024" />
-</form>
-<?php
+    <div class="flex-container">
+        <div class="flex-item-left">
+            <form method="post" action="./liste.php?pk=0">
+                <input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Liste Schüleranmeldungen" />
+            </form>
 
-if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) {	
-?>
-	<form method="post" action="./klassenlisten.php?pk=0">
-<input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Aktuelle Klassenlisten" />
-</form>
-<?php
-}
-if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) {	
-?>
-<form class='flex-container' method="post" action="./todo.php">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="ToDo-Liste" />
-</form>
-<?php
-} else {
-?>
-<form class='flex-container' method="post" action="./todo.php">
-<input style="width: 23.3em;" class='btn btn-defau	lt btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="ToDo-Liste" disabled />
-</form>
-<?php
-}
+            <form method="post" action="./einschulung.php">
+                <input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-warning btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Übersicht Einschulung 2024" />
+            </form>
+            <?php
 
-if ($_SESSION['admin'] == 1) {	
-?>
-<form  class='flex-container' method="post" action="./import_edoo.php">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="edoo.sys-Daten aktualisieren"  />
-</form>
-<?php
-} 
+            if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) { ?>
+                <form method="post" action="./klassenlisten.php?pk=0">
+                    <input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Aktuelle Klassenlisten" />
+                </form>
+            <?php }
+            if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) { ?>
+                <form class='flex-container' method="post" action="./todo.php">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="ToDo-Liste" />
+                </form>
+            <?php } else { ?>
+                <form class='flex-container' method="post" action="./todo.php">
+                    <input style="width: 23.3em;" class='btn btn-defau	lt btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="ToDo-Liste" disabled />
+                </form>
+            <?php }
 
-if ($_SESSION['admin'] == 1) {	
-?>
-<form  class='flex-container' method="post" action="./fehler_ermitteln.php">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Abweichungen ermitteln"  />
-</form>
+            if ($_SESSION['admin'] == 1) { ?>
+                <form class='flex-container' method="post" action="./import_edoo.php">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="edoo.sys-Daten aktualisieren" />
+                </form>
+            <?php }
+            if ($_SESSION['admin'] == 1) { ?>
+                <form class='flex-container' method="post" action="./fehler_ermitteln.php">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Abweichungen ermitteln" />
+                </form>
 
-<form  class='flex-container' method="post" action="./setup.php">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Setup"  />
-</form>
+                <form class='flex-container' method="post" action="./setup.php">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Setup" />
+                </form>
 
-<?php
-}
+            <?php }
 
 
-if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) {	
-?>
-<form class='flex-container' method="post" action="./senden_texte.php">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Hinweistexte anpassen" />
-</form>
+            if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) { ?>
+                <form class='flex-container' method="post" action="./senden_texte.php">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Hinweistexte anpassen" />
+                </form>
 
-<form class='flex-container' method="post" action="../querliste/index.php">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Querliste 2.0" />
-</form>
-<?php
-} else {
-?>
-<form class='flex-container' method="post" action="./todosenden_textephp">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Hinweistexte anpassen" disabled />
-</form>
-<?php
-}
-if ($_SESSION['admin'] == 1 OR $_SESSION['sek'] == 1) {	
-?>
-<form  class='flex-container' method="post" action="./liste.php?pk=1">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Papierkorb" />
-</form>
-<?php
-}
+                <form class='flex-container' method="post" action="../querliste/index.php">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Querliste 2.0" />
+                </form>
+            <?php } else { ?>
+                <form class='flex-container' method="post" action="./todosenden_textephp">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Hinweistexte anpassen" disabled />
+                </form>
+            <?php }
+            if ($_SESSION['admin'] == 1 OR $_SESSION['sek'] == 1) { ?>
+                <form class='flex-container' method="post" action="./liste.php?pk=1">
+                    <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Papierkorb" />
+                </form>
+            <?php }
 
-//if ($_SESSION['admin'] == 1) {	
-?>
-<form  class='flex-container' method="post" action="./statistik.php">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Statistik" />
-</form>
-<?php
-//}
-?>
+            //if ($_SESSION['admin'] == 1) { ?>
+            <form class='flex-container' method="post" action="./statistik.php">
+                <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Statistik" />
+            </form>
+            <?php //} ?>
 
-<form class='flex-container' method="post" target='-blank' action="https://anmeldung.bbs1-mainz.de">
-<input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Formularseite auf Website" />
-</form>
 
-<form method="post" action="./logout_ad.php">
-<input style='margin-top: 20px;' type="submit" name="cmd[doStandardAuthentication]" value="Abmelden" />
-</form>
+            <form class='flex-container' method="post" target='-blank' action="https://anmeldung.bbs1-mainz.de">
+                <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Formularseite auf Website" />
+            </form>
+
+            <form method="post" action="./logout_ad.php">
+                <input style='margin-top: 20px;' type="submit" name="cmd[doStandardAuthentication]" value="Abmelden" />
+            </form>
+        </div>
+        <div class="flex-item-right">
+          <?php
+            if ($_SESSION['admin'] == 1) {
+            echo "<div class='box-grau' style='padding: 10px; background-color: #d3d3d3;'>";
+              
+
+                echo "<h2 style='padding: 0px 0 0 25px;'><b>Konfiguration</b></h2>";
+                echo "<ul>";
+
+                //LDAP-Einstellungen:
+                if ($ldap_aktiviert != 1) {
+                echo "<li><font color='red'><b>Authentifizierung per LDAP einrichten!</b></font><br>";
+                echo "Konfigurieren Sie in der Datei <i>login_ad.php</i> IP und DN Ihres LDAP-Servers bzw. Windows-AD.<br>
+                Durch Aktivierung der Variable <code>\$ldap_aktiviert</code> <i>config.php</i> werden die Einstellunge wirksam.</li>";
+                }
+
+                //Anmeldezeiträume konfigurieren:
+                if ($hinweise_conf_anzeigen == 1) {
+                  echo "<li><b>Anmeldeperioden konfigurieren</b><br>";
+                  echo "In der Datei <i>config.php</i> lassen sich weitere Anmeldeperioden konfigurieren.<br>";
+                  echo "Beachten Sie dort den Kommentar.</li>";
+                  }
+
+                //Info zu Git:
+                if ($hinweise_conf_anzeigen == 1 AND file_exists("./.git/index")) {
+                  echo "<li><b>System aktualisieren</b><br>";
+                  echo "Im Webverzeichnis können Sie mit dem Befehl <code>git pull</code> dieses Tool aktualisieren.<br>";
+                  echo "Prüfen Sie anschließend über die Schaltfläche <i>Setup</i> die Datenbankstruckturen.</li>";
+                }
+
+                       
+
+                echo "</ul>";
+              
+                
+            echo"</div>";
+              }
+            ?>
+        </div>
+    </div>
 </body>
 </html>
 <?php

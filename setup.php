@@ -15,7 +15,9 @@ include($pfad_workdir."login_inc.php");
 if (isset($_POST['mig_password'])) {
     $_SESSION['mig_password'] = $_POST['mig_password'];
 } else {
- //   $_SESSION['mig_password'] = "";
+    if (!isset($_SESSION['mig_password'])) {
+    $_SESSION['mig_password'] = "";
+    }
 }
 
 
