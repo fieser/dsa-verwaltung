@@ -8,9 +8,9 @@ from xlutils.copy import copy
 import os
 
 # Dateinamen und Pfad definieren
-csv_file = '".$pfad_workdir."export/csv2edoo.csv'
-xls_file = '".$pfad_workdir."export/Bewerber_Import_leer.xls'
-xls_file_neu = '".$pfad_workdir."export/Bewerber_Import.xls'
+csv_file = '/var/www/html/verwaltung/export/csv2edoo.csv'
+xls_file = '/var/www/html/verwaltung/export/Bewerber_Import_leer.xls'
+xls_file_neu = '/var/www/html/verwaltung/export/Bewerber_Import.xls'
 
 # Workbook aus der Excel-Datei öffnen
 workbook = xlrd.open_workbook(xls_file, formatting_info=True)
