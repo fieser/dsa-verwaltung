@@ -176,6 +176,5 @@ Dort muss zumindest die öffentliche IP des internen Webservers freigegeben sein
 6. Sie importieren die edoo.sys-Daten und generieren Vorschaubilder für eingereichte Nachweisdokumente.
 	
 
-
-<p>Alle hier zum Download bereitgestellten Dateien dürfen beliebig angegepasst, weiterentwickelt und weitergereicht werden.
-Die Verwendung erfolgt jedoch auf Ihre eingene Verantwortung. Wir übernehmen keine Haftung für durch deren Nutzung entstandener Schäden.</p>
+## Lizenz
+Dieses Projekt steht unter der GNU General Public License v3.0 (GPLv3). Weitere Informationen finden Sie in der Datei [LICENSE](./LICENSE.txt).
