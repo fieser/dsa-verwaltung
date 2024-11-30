@@ -259,6 +259,50 @@ echo "</table>";
                   echo "Prüfen Sie anschließend über die Schaltfläche <i>Setup</i> die Datenbankstruckturen.</li>";
                 }
 
+                //Exportverzeichnis für Transferfunktion prüfen:
+                if ($hinweise_conf_anzeigen == 1) {
+                    echo "<li><b>Transferverzeichnis prüfen</b><br>";
+                $directory = './export';
+
+                // Überprüfen, ob das Verzeichnis existiert
+                if (is_dir($directory)) {
+                    // Alle Dateien im Verzeichnis abrufen
+                    $files = scandir($directory);
+                    $allPermissionsCorrect = true;
+
+                    foreach ($files as $file) {
+                        // Ignoriere '.' und '..'
+                        if ($file !== '.' && $file !== '..') {
+                            $filePath = $directory . '/' . $file;
+
+                            // Überprüfen, ob es sich um eine Datei handelt
+                            if (is_file($filePath)) {
+                                // Berechtigungen überprüfen
+                                $permissions = substr(sprintf('%o', fileperms($filePath)), -3);
+                                
+                                if ($permissions !== '777') {
+                                    echo "<font color='red'>Die Datei $file hat nicht die Berechtigung 777</font>, sondern $permissions.";
+                                    $allPermissionsCorrect = false;
+                                }
+                            }
+                        }
+                    }
+
+                    // Überprüfen der Berechtigungen für das Verzeichnis selbst
+                    $directoryPermissions = substr(sprintf('%o', fileperms($directory)), -3);
+                    if ($directoryPermissions !== '777') {
+                        echo "<font color='red'>Das Verzeichnis hat nicht die Berechtigung 777</font>, sondern $directoryPermissions.";
+                        $allPermissionsCorrect = false;
+                    }
+
+                    if ($allPermissionsCorrect) {
+                        echo "Berechtigungen sind OK!";
+                    }
+                } else {
+                    echo "<font color='red'>Das Verzeichnis $directory existiert nicht.</font>";
+                }
+                echo "</li>";
+            }
                        
 
                 echo "</ul>";

@@ -47,7 +47,7 @@ $f_beruf = $_POST['f_beruf'];
 
 
 
-$select_an = $db->query("SELECT DISTINCT dsa_bewerberdaten.*, dsa_bildungsgang.* FROM dsa_bewerberdaten LEFT JOIN dsa_bildungsgang ON dsa_bildungsgang.md5 = dsa_bewerberdaten.md5 WHERE papierkorb NOT LIKE '1' AND schulform LIKE '%$f_schulform%' AND status LIKE 'vollständig' AND nachname LIKE '%$f_nachname%' AND vorname LIKE '%$f_vorname%' AND ((bgy_sp1 LIKE '%$f_beruf%' AND schulform NOT LIKE 'bs') OR (beruf2 LIKE '%$f_beruf%' AND schulform = 'bs') OR (beruf_anz LIKE '%$f_beruf%' AND schulform = 'bs')) GROUP BY dsa_bewerberdaten.id ORDER BY prio, nachname ASC");
+$select_an = $db->query("SELECT DISTINCT dsa_bewerberdaten.*, dsa_bildungsgang.* FROM dsa_bewerberdaten LEFT JOIN dsa_bildungsgang ON dsa_bildungsgang.md5 = dsa_bewerberdaten.md5 WHERE schulform LIKE '%$f_schulform%' AND status LIKE 'vollständig' AND nachname LIKE '%$f_nachname%' AND vorname LIKE '%$f_vorname%' AND ((bgy_sp1 LIKE '%$f_beruf%' AND schulform NOT LIKE 'bs') OR (beruf2 LIKE '%$f_beruf%' AND schulform = 'bs') OR (beruf_anz LIKE '%$f_beruf%' AND schulform = 'bs')) GROUP BY dsa_bewerberdaten.id ORDER BY prio, nachname ASC");
 	
 	$treffer_an = $select_an->rowCount();
 	
@@ -176,14 +176,6 @@ if (trim($bgy_sp1) == "") {
 	
 	}
 	
-		if ($an['schulform'] == "fsof") {
-		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_860100%' ORDER BY anzeigeform ASC");
-			foreach($select_bz as $bz) {
-				$bgy_sp1 = trim($bz['kurzform']);
-			}
-	
-	}
-	
 }
 /*
 	echo "<pre>";
@@ -260,14 +252,6 @@ if (trim($bgy_sp1) == "") {
 											
 									if ($bild_dub['schulform'] == "aph") {
 										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8609010' ORDER BY anzeigeform ASC");
-											foreach($select_bz as $bz) {
-												$dup_sp1 = trim($bz['kurzform']);
-											}
-									
-									}
-									
-									if ($bild_dub['schulform'] == "fsof") {
-										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_860100%' ORDER BY anzeigeform ASC");
 											foreach($select_bz as $bz) {
 												$dup_sp1 = trim($bz['kurzform']);
 											}
@@ -429,9 +413,9 @@ echo "<p><b>".$treffer_an." Schülerdatensätze</b> in xls-Datei geschrieben.<br
 
 
 // Pfad zum Python-Skript
-$scriptPath = '".$pfad_workdir."export/main.py';
+$scriptPath = '/var/www/html/verwaltung/export/main.py';
 // Argumente für das Python-Skript, falls benötigt
-$args = '".$pfad_workdir."export/csv2xls.csv ".$pfad_workdir."export/Bewerber_Import.xls';
+$args = '/var/www/html/verwaltung/export/csv2xls.csv /var/www/html/verwaltung/export/Bewerber_Import.xls';
 // Ausführen des Python-Skripts
 //exec("/usr/bin/python3 $scriptPath $args", $output, $return_var);
 // $output enthält die Ausgabe des Skripts, $return_var den Statuscode
