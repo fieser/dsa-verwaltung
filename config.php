@@ -74,7 +74,7 @@ Wie legt man im Herbst eine neue Anmeldeperiode an?
 
 */
  
-//EXLUDE INSTALL START
+//EXCLUDE INSTALL START
 	
 $schuljahre["24-25"]["jahr"] = "2024-2025";
 	$schuljahre["24-25"]["erster_tag"] = "12.08.2024";
