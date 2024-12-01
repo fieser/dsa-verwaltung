@@ -420,6 +420,9 @@ ORDER BY {$sort_dok_neu}{$sort} {$rfg}
 		
 		} else {
 		//alle anzeigen:
+		//Vermeidung Group-Fehler:
+		$db->query("SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+
 		$select_an = $db->query("SELECT DISTINCT dsa_bewerberdaten.*, dsa_bildungsgang.* FROM dsa_bewerberdaten LEFT JOIN dsa_bildungsgang ON dsa_bildungsgang.md5 = dsa_bewerberdaten.md5 WHERE papierkorb NOT LIKE '1' AND schulform LIKE '%$f_schulform%' AND status LIKE '%$f_status%' AND nachname LIKE '%$f_nachname%' AND vorname LIKE '%$f_vorname%' AND abschluss LIKE '%$f_abschluss%' AND ((bgy_sp1 LIKE '%$f_beruf%' AND schulform NOT LIKE 'bs') OR (beruf2 LIKE '%$f_beruf%' AND schulform = 'bs') OR (beruf_anz LIKE '%$f_beruf%' AND schulform = 'bs')) GROUP BY dsa_bewerberdaten.id ORDER BY {$sort_dok_neu}{$sort} {$rfg}");
 	}
 	
