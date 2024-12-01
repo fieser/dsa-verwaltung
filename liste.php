@@ -363,6 +363,9 @@ GROUP BY dsa_bewerberdaten.id
 ORDER BY {$sort} {$rfg}");
 */
 
+//Vermeidung GROUP-Fehler:
+$db->query("SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+
 
 if ($_SESSION['papierkorb'] != 1) {
 $select_an = $db->query("SELECT DISTINCT dsa_bewerberdaten.*, dsa_bildungsgang.* 
