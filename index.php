@@ -261,7 +261,7 @@ echo "</table>";
 
                 //Exportverzeichnis für Transferfunktion prüfen:
                 if ($hinweise_conf_anzeigen == 1) {
-                    echo "<li><b>Transferverzeichnis prüfen</b><br>";
+                    echo "<li><b>Transferverzeichnis prüfen</b> <i>(Anmeldungen &#10132; edoo.sys)</i><br>";
                 $directory = './export';
 
                 // Überprüfen, ob das Verzeichnis existiert
