@@ -124,6 +124,7 @@ $_SESSION['schule_url'] = "https://www.bbs1-mainz.de";
 
 //Pfade:
 $url = "https://service.bbs1-mainz.de/verwaltung/"; // BITTE mit / abschließen!
+$url_anmeldung = "https://anmeldung.bbs1-mainz.de/"; // BITTE mit / abschließen!
 $website = "https://www.bbs1-mainz.com";
 $workdir = "/verwaltung/"; // BITTE mit / beginnen und abschließen!
 $pfad_workdir = "/var/www/html/verwaltung/";
