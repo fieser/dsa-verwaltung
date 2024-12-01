@@ -73,7 +73,15 @@ Wie legt man im Herbst eine neue Anmeldeperiode an?
 5.	Und dann auch mal ein älteres Schuljahr löschen...
 
 */
-
+ 
+	
+$schuljahre["24-25"]["jahr"] = "2024-2025";
+	$schuljahre["24-25"]["erster_tag"] = "12.08.2024";
+	$schuljahre["24-25"]["letzter_tag"] = "04.07.2025";
+	$schuljahre["24-25"]["start_periode"] = "01.11.2023";
+	$schuljahre["24-25"]["stichtag_statistik"] = "02.10.2025";
+	$schuljahre["24-25"]["sichtbar_lk"] = 1; //Bei 0 erscheint das SJ für Lehrkräfte nicht im Drop
+	$schuljahre["24-25"]["periode"] = "ab November 2023";
 	
 $schuljahre["25-26"]["jahr"] = "2025-2026";
 	$schuljahre["25-26"]["erster_tag"] = "";
