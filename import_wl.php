@@ -500,7 +500,72 @@ if (file_exists($pfad_workdir."daten/svp_sprachen.csv")) {
 		} else {
 			echo "<p>CSV-Datei nicht gefunden!</p>";
 		}
+
+// Religionszugehörigkeit importieren:
+
+$neu_religion = 0;
+
+if (file_exists($pfad_workdir."daten/svp_wl_religion.csv")) {
+			
+				// Tabelle leeren:
+				
+				
+					if ($db_temp->exec("TRUNCATE TABLE `religion`")) {
 		
+						echo "<font color='orange'>Alle Religionen gelöscht!<br>";
+
+					}
+
+		 
+		$file_an = $pfad_workdir."daten/svp_wl_religion.csv";
+		 
+		$file_handle = fopen($file_an, 'r');
+								 
+			while (!feof($file_handle)) {
+				
+
+			  $line2 = fgets($file_handle);
+			  
+			  $line2 = str_replace("'"," ", $line2); // Entfernt die Ausführungszeichen
+			  $line2 = str_replace("\"","", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  //$line2 = str_replace("§"", "", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  
+			  $teilung = explode(";", $line2);
+			  
+			  $schluessel = $teilung[1];
+			  $kurzform = $teilung[2];
+			  $anzeigeform = $teilung[3];
+			  $langform = $teilung[4];
+			  
+
+			  
+			  				// Datensatz neu in DB schreiben:
+
+					if ($db_temp->exec("INSERT INTO `religion`
+								   SET
+									`schluessel` = '$schluessel',
+									`kurzform` = '$kurzform',
+									`anzeigeform` = '$anzeigeform',
+									`sortierung` = '$schluessel'")) {
+					
+					$last_id = $db_temp->lastInsertId();
+					
+					//echo "<font color='black'>Datensatz <b>".$anzeigeform."</b> wurde neu angelegt!<br>";
+					$neu_religion = ($neu_religion + 1);
+					
+						
+					}
+
+			}	
+
+		fclose($file_handle);
+		
+		echo $neu_religion." Religionen importiert.<br>";
+
+		} else {
+			echo "<p>CSV-Datei nicht gefunden!</p>";
+		}		
+
 // Vorbildung importieren:
 
 $neu_vorbildung = 0;
