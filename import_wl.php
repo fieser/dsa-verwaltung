@@ -371,7 +371,71 @@ if (file_exists($pfad_workdir."daten/svp_staaten.csv")) {
 			echo "<p>CSV-Datei nicht gefunden!</p>";
 		}
 		
+
 		
+		
+// Geschlechter importieren:
+
+$neu_gewchlecht = 0;
+
+if (file_exists($pfad_workdir."daten/svp_geschlecht.csv")) {
+			
+				// Tabelle leeren:
+				
+				
+					if ($db_temp->exec("TRUNCATE TABLE `geschlecht`")) {
+		
+						echo "<font color='orange'>Alle Einträge zum Geschlecht gelöscht!<br>";
+
+					}
+
+		 
+		$file_an = $pfad_workdir."daten/svp_geschlecht.csv";
+		 
+		$file_handle = fopen($file_an, 'r');
+								 
+			while (!feof($file_handle)) {
+				
+
+			  $line2 = fgets($file_handle);
+			  
+			  $line2 = str_replace("'"," ", $line2); // Entfernt die Ausführungszeichen
+			  $line2 = str_replace("\"","", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  //$line2 = str_replace("§"", "", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  
+			  $teilung = explode(";", $line2);
+			  
+				$anzeigeform = $teilung[2];
+			  	$langform = $teilung[3];
+			  
+				if ($teilung[2] != "") {
+			  
+			  		// Datensatz neu in DB schreiben:
+
+					if ($db_temp->exec("INSERT INTO `geschlecht`
+								   SET
+									`anzeigeform` = '$anzeigeform',
+									`langform` = '$langform'")) {
+					
+					$last_id = $db_temp->lastInsertId();
+					
+					//echo "<font color='black'>Datensatz <b>".$anzeigeform."</b> wurde neu angelegt!<br>";
+					$neu_gewchlecht = ($neu_gewchlecht + 1);
+					
+						
+					}
+				}
+
+			}	
+
+		fclose($file_handle);
+		
+		echo $neu_gewchlecht." Geschlechter importiert.<br>";
+
+		} else {
+			echo "<p>CSV-Datei nicht gefunden!</p>";
+		}
+
 // Sprachen importieren:
 
 $neu_sprachen = 0;

@@ -146,6 +146,9 @@ $mail_status = 1; //Anzeige Spalte E-Mail in Liste
 $upload_documents = 1; //Die Einstellung $upload_dokumente o.ä. muss auch auf dem öffentlichen Server entsprechend in config.php eingestellt sein!
 $ldap_aktiviert = 1; //Passen Sie die Datei login_ad.php an, bevor Sie LDAP aktivieren!
 $hinweise_conf_anzeigen = 1;//Anzeige der Hinweise auf der Startseite ein-/ausblenden
+$button_querliste = 1; //Anzeige des Button Querliste im Menü ein-/ausblenden
+$button_einschulung = 1; //Anzeige des Button Einschulung im Menü ein-/ausblenden
+$button_klassenlisten = 0; //Anzeige des Button Klassenlisten im Menü ein-/ausblenden
 
 // FUNKTIONEN:
 

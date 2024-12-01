@@ -157,13 +157,15 @@ echo "</table>";
             <form method="post" action="./liste.php?pk=0">
                 <input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Liste Schüleranmeldungen" />
             </form>
-
+            <?php
+            if ($button_einschulung == 1) {
+            ?>
             <form method="post" action="./einschulung.php">
                 <input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-warning btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Übersicht Einschulung 2024" />
             </form>
             <?php
-
-            if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) { ?>
+            }
+            if (($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) AND $button_klassenlisten == 1) { ?>
                 <form method="post" action="./klassenlisten.php?pk=0">
                     <input style="width: 23.3em; margin-bottom: 2em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Aktuelle Klassenlisten" />
                 </form>
@@ -199,11 +201,16 @@ echo "</table>";
                 <form class='flex-container' method="post" action="./senden_texte.php">
                     <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Hinweistexte anpassen" />
                 </form>
+                <?php
+                if ($button_querliste == 1) {
+                ?>
 
                 <form class='flex-container' method="post" action="../querliste/index.php">
                     <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Querliste 2.0" />
                 </form>
-            <?php } else { ?>
+            <?php 
+                }
+            } else { ?>
                 <form class='flex-container' method="post" action="./todosenden_textephp">
                     <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Hinweistexte anpassen" disabled />
                 </form>
