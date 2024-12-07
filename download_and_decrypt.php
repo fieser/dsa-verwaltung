@@ -1,5 +1,14 @@
 <?php
+set_time_limit(0);
+ignore_user_abort(true); //auch wenn der Nutzer die Sete verlässt, läuft das Skript weiter
 
+@session_start();
+
+
+
+include($pfad_workdir."config.php");
+	
+//include("config.php");
 
 function decryptFile($sourcePath, $destPath, $passphrase) {
     $key = openssl_digest($passphrase, 'SHA256', TRUE);
@@ -18,8 +27,8 @@ function decryptFile($sourcePath, $destPath, $passphrase) {
 }
 
 $remoteZipUrl = $url_anmeldung."dokumente/dokumente.zip"; // URL der ZIP-Datei
-$localZipPath = '".$pfad_workdir."dokumente/dokumente.zip'; // Lokaler Pfad für die heruntergeladene ZIP-Datei
-$extractPath = '".$pfad_workdir."dokumente/unpacked/'; // Verzeichnis, in dem die Dateien entpackt werden sollen
+$localZipPath = $pfad_workdir."dokumente/dokumente.zip"; // Lokaler Pfad für die heruntergeladene ZIP-Datei
+$extractPath =  $pfad_workdir."dokumente/unpacked/"; // Verzeichnis, in dem die Dateien entpackt werden sollen
 
 // Löschen der alten ZIP-Datei, falls vorhanden
 if (file_exists($localZipPath)) {

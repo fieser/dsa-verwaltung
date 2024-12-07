@@ -252,24 +252,59 @@ echo "</table>";
                 Durch Aktivierung der Variable <code>\$ldap_aktiviert</code> <i>config.php</i> werden die Einstellunge wirksam.</li>";
                 }
 
+                 //Origin Repo auf Aktualisierungen prüfen
+                if ($hinweise_conf_anzeigen == 1 AND file_exists("./.git/index")) {
+
+                    echo "<li><b>Github auf Aktualisierungen prüfen</b><br>";
+
+                    
+                    // Verzeichnis des lokalen Git-Repositories
+                    $repoPath = './';
+                    
+                    // Sicherstellen, dass das Skript in das Repository-Verzeichnis wechselt
+                    chdir($repoPath);
+                    
+                    // Schritt 1: Git Fetch ausführen
+                    exec('git fetch 2>&1', $outputFetch, $returnFetch);
+                    if ($returnFetch !== 0) {
+                        echo "Fehler beim Abrufen der Änderungen auf Github: " . implode("\n", $outputFetch);
+                        exit;
+                    }
+                    
+                    // Schritt 2: Status prüfen
+                    exec('git status -uno 2>&1', $outputStatus, $returnStatus);
+                    if ($returnStatus !== 0) {
+                        echo "Fehler beim Überprüfen des Status: " . implode("\n", $outputStatus);
+                        exit;
+                    }
+                    
+                    // Ausgabe des Status analysieren
+                    $status = implode("\n", $outputStatus);
+                    if (strpos($status, 'Your branch is behind') !== false) {
+                        echo "Es gibt Updates auf Github!<br>";
+                        echo "Im Webverzeichnis können Sie mit dem Befehl <code>git pull</code> dieses Tool aktualisieren.<br>";
+                        echo "Prüfen Sie anschließend über die Schaltfläche <i>Setup</i> die Datenbankstruckturen.</li>";
+ 
+                    } else {
+                        echo "Ihr System ist aktuell.";
+                    }
+
+                    echo "</li>";
+                }
+
+
+
                 //Anmeldezeiträume konfigurieren:
                 if ($hinweise_conf_anzeigen == 1) {
-                  echo "<li><b>Anmeldeperioden konfigurieren</b><br>";
-                  echo "In der Datei <i>config.php</i> lassen sich weitere Anmeldeperioden konfigurieren.<br>";
-                  echo "Beachten Sie dort den Kommentar.</li>";
-                  }
-
-                //Info zu Git:
-                if ($hinweise_conf_anzeigen == 1 AND file_exists("./.git/index")) {
-                  echo "<li><b>System aktualisieren</b><br>";
-                  echo "Im Webverzeichnis können Sie mit dem Befehl <code>git pull</code> dieses Tool aktualisieren.<br>";
-                  echo "Prüfen Sie anschließend über die Schaltfläche <i>Setup</i> die Datenbankstruckturen.</li>";
-                }
+                    echo "<li><b>Anmeldeperioden konfigurieren</b><br>";
+                    echo "In der Datei <i>config.php</i> lassen sich weitere Anmeldeperioden konfigurieren.<br>";
+                    echo "Beachten Sie dort den Kommentar.</li>";
+                    }
 
                 //Exportverzeichnis für Transferfunktion prüfen:
                 if ($hinweise_conf_anzeigen == 1) {
-                    echo "<li><b>Transferverzeichnis prüfen</b> <i>(Anmeldungen &#10132; edoo.sys)</i><br>";
-                $directory = './export';
+                    echo "<li><b>Berechtigungen im Webverzeichnis prüfen</b><br>";
+                $directory = './';
 
                 // Überprüfen, ob das Verzeichnis existiert
                 if (is_dir($directory)) {
@@ -287,8 +322,8 @@ echo "</table>";
                                 // Berechtigungen überprüfen
                                 $permissions = substr(sprintf('%o', fileperms($filePath)), -3);
                                 
-                                if ($permissions !== '777') {
-                                    echo "<font color='red'>Die Datei $file hat nicht die Berechtigung 777</font>, sondern $permissions.";
+                                if ($permissions !== '777' AND $permissions !== '775') {
+                                    echo "<font color='red'>Die Datei $file hat nicht die Berechtigung 775</font>, sondern $permissions.";
                                     $allPermissionsCorrect = false;
                                 }
                             }
@@ -297,8 +332,8 @@ echo "</table>";
 
                     // Überprüfen der Berechtigungen für das Verzeichnis selbst
                     $directoryPermissions = substr(sprintf('%o', fileperms($directory)), -3);
-                    if ($directoryPermissions !== '777') {
-                        echo "<font color='red'>Das Verzeichnis hat nicht die Berechtigung 777</font>, sondern $directoryPermissions.";
+                    if ($directoryPermissions !== '777' AND $directoryPermissions !== '775') {
+                        echo "<font color='red'>Das Verzeichnis hat nicht die Berechtigung 775</font>, sondern $directoryPermissions.";
                         $allPermissionsCorrect = false;
                     }
 
@@ -308,10 +343,51 @@ echo "</table>";
                 } else {
                     echo "<font color='red'>Das Verzeichnis $directory existiert nicht.</font>";
                 }
-                echo "</li>";
-            }
-                       
 
+                    ///Prüfung, ob Eigentümer oder Gruppe root
+                    function checkRootOwnership($path) {
+                        $rootUserId = 0; // ID für root-Eigentümer
+                        $rootGroupId = 0; // ID für root-Gruppe
+                    
+                        // Initialisiere Directory-Iterator
+                        $iterator = new RecursiveIteratorIterator(
+                            new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)
+                        );
+                        $anzahl_root = 0;
+                        foreach ($iterator as $fileInfo) {
+                            $filePath = $fileInfo->getPathname();
+                    
+                            // Überspringe .git-Verzeichnis
+                            if (strpos($filePath, DIRECTORY_SEPARATOR . '.git') !== false OR strpos($filePath, DIRECTORY_SEPARATOR . 'dokumente/unpacked') !== false) {
+                                continue;
+                            }
+                    
+                            // Hole Besitzer- und Gruppen-IDs
+                            $ownerId = $fileInfo->getOwner();
+                            $groupId = $fileInfo->getGroup();
+                    
+                            // Überprüfe auf root-Eigentum
+                            if ($ownerId === $rootUserId AND $groupId === $rootGroupId) {
+                                //echo "Root-Eigentum gefunden: {$filePath}\n";
+                                $anzahl_root++;
+                            }
+                        }
+                        if ($anzahl_root > 0) {
+                            echo "<br><font color='red'>Ihr Webverzeichnis enthält Dateien, auf die momentan nur <i>root</i> zugriff hat!</font>";
+                        }
+                    }
+                    
+                    // Starte Prüfung im aktuellen Verzeichnis
+                    $startPath = __DIR__;
+                    checkRootOwnership($startPath);
+
+
+
+                echo "</li>";
+
+            }
+            
+           
                 echo "</ul>";
               
                 
