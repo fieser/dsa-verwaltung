@@ -265,7 +265,7 @@ echo "</table>";
                     chdir($repoPath);
                     
                     // Schritt 1: Git Fetch ausführen
-                    exec('git fetch 2>&1', $outputFetch, $returnFetch);
+                    exec('git fetch --dry-run 2>&1', $outputFetch, $returnFetch);
                     if ($returnFetch !== 0) {
                         echo "Fehler beim Abrufen der Änderungen auf Github: " . implode("\n", $outputFetch);
                         exit;
@@ -358,7 +358,9 @@ echo "</table>";
                             $filePath = $fileInfo->getPathname();
                     
                             // Überspringe .git-Verzeichnis
-                            if (strpos($filePath, DIRECTORY_SEPARATOR . '.git') !== false OR strpos($filePath, DIRECTORY_SEPARATOR . 'dokumente/unpacked') !== false) {
+                            if (strpos($filePath, DIRECTORY_SEPARATOR . '.git') !== false
+                             OR strpos($filePath, DIRECTORY_SEPARATOR . 'dokumente/unpacked') !== false
+                             OR strpos($filePath, DIRECTORY_SEPARATOR . 'dokumente/unpacked') !== false) {
                                 continue;
                             }
                     
