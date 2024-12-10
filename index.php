@@ -227,8 +227,9 @@ echo "</table>";
             </form>
             <?php //} ?>
 
-
-            <form class='flex-container' method="post" target='-blank' action="https://anmeldung.bbs1-mainz.de">
+<?php
+            echo "<form class='flex-container' method='post' target='-blank' action='".$url_anmeldung."'>";
+                ?>
                 <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Formularseite auf Website" />
             </form>
 

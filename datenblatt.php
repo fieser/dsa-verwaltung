@@ -1132,41 +1132,43 @@ for ($tabIndex = 1; $tabIndex <= 6; $tabIndex++) {
 		</td>
 		</tr>
 		<?PHP
-		//Liste mit der hogeladenen Dokumente:
-$md5_o_sf = md5($bew['mail'].$bew['geburtsdatum']);  // Dies ist die Variable, die den Dateinamensbeginn definiert.
-$directory = 'dokumente/unpacked'; // Verzeichnis, in dem die PDFs und ihre Vorschaubilder gespeichert sind.
-
-// Dateien im Verzeichnis auflisten
-$files = scandir($directory);
-$filteredFiles = array_filter($files, function ($file) use ($md5_o_sf) {
-    // Überprüfen, ob die Datei eine PDF ist und ob sie mit dem spezifischen Namensteil beginnt.
-    return pathinfo($file, PATHINFO_EXTENSION) === 'pdf' && explode('.', $file)[0] === $md5_o_sf;
-});
-
-if (!empty($filteredFiles)) {
-    
-	$n_bilder = 1;
-    foreach ($filteredFiles as $file) {
-		if ($n_bilder % 2 != 0) {
-		echo "<tr>";
-		}	
-		echo "<td>";
-        $pdfPath = htmlspecialchars($directory . '/' . $file); // Pfad zur PDF-Datei
-        $thumbnailPath = htmlspecialchars($directory . '/' . pathinfo($file, PATHINFO_FILENAME) . '.jpg'); // Pfad zum Vorschaubild, das als JPG angenommen wird
-        echo "<div style='margin: 10 0 10 0'>";
-		echo "<a href='$pdfPath' target='_blank'><img src='$thumbnailPath' alt='Vorschau erscheint in 5 min' style='width:200px; height:auto; box-shadow: 10px 20px 30px grey;'></a>"; // Erstellen eines Bild-Links in einer Liste
-		echo "</div>";
-		echo "</td>";
-		if ($n_bilder % 2 == 0) {
-		echo "</tr>";
-		}	
-		$n_bilder = ($n_bilder + 1);
-	}
-    echo "</tr>";
-} else {
-    //echo "Keine passenden PDF-Dateien gefunden.";
-}
 		
+if ($upload_documents == 1) {
+	//Liste mit der hogeladenen Dokumente:
+	$md5_o_sf = md5($bew['mail'].$bew['geburtsdatum']);  // Dies ist die Variable, die den Dateinamensbeginn definiert.
+	$directory = 'dokumente/unpacked'; // Verzeichnis, in dem die PDFs und ihre Vorschaubilder gespeichert sind.
+
+	// Dateien im Verzeichnis auflisten
+	$files = scandir($directory);
+	$filteredFiles = array_filter($files, function ($file) use ($md5_o_sf) {
+		// Überprüfen, ob die Datei eine PDF ist und ob sie mit dem spezifischen Namensteil beginnt.
+		return pathinfo($file, PATHINFO_EXTENSION) === 'pdf' && explode('.', $file)[0] === $md5_o_sf;
+	});
+
+	if (!empty($filteredFiles)) {
+		
+		$n_bilder = 1;
+		foreach ($filteredFiles as $file) {
+			if ($n_bilder % 2 != 0) {
+			echo "<tr>";
+			}	
+			echo "<td>";
+			$pdfPath = htmlspecialchars($directory . '/' . $file); // Pfad zur PDF-Datei
+			$thumbnailPath = htmlspecialchars($directory . '/' . pathinfo($file, PATHINFO_FILENAME) . '.jpg'); // Pfad zum Vorschaubild, das als JPG angenommen wird
+			echo "<div style='margin: 10 0 10 0'>";
+			echo "<a href='$pdfPath' target='_blank'><img src='$thumbnailPath' alt='Vorschau erscheint in 5 min' style='width:200px; height:auto; box-shadow: 10px 20px 30px grey;'></a>"; // Erstellen eines Bild-Links in einer Liste
+			echo "</div>";
+			echo "</td>";
+			if ($n_bilder % 2 == 0) {
+			echo "</tr>";
+			}	
+			$n_bilder = ($n_bilder + 1);
+		}
+		echo "</tr>";
+	} else {
+		//echo "Keine passenden PDF-Dateien gefunden.";
+	}
+		}		
 		?>
 		
 		

@@ -101,8 +101,7 @@ echo "</td>";
 echo "<td width='20px'>";
 echo "</td>";
 echo "<td>";
-echo "<p style='margin-top: 0px;'>Es werden ausschließlich Anmeldungen für das Schuljahr ".date("Y")."/".(date("Y")+1)." berücksichtigt.</p>";
-echo "<p><i><small>(Im Schuljahr 2023/2024 gab es möglicherweise noch einzelne hier nicht erfasste Papieranmeldungen.)</small></i></p>";
+echo "<p style='margin-top: 0px;'>Es werden ausschließlich Anmeldungen für das Schuljahr ".$_SESSION['schuljahr']." berücksichtigt.</p>";
 echo "<p>Klicken Sie auf die Legende, um Schulformen aus- und einzublenden.</p>";
 echo "</td>";
 echo "</table></tr>";
@@ -223,13 +222,13 @@ $neujahr_vj = ($neujahr - 3600*24*365);
 
 $next_weeks = (time() - 3600*24*365 + 3600*24*7*2);
 
-$query_vorjahr = "SELECT time, schulform FROM dsa_bildungsgang_vorjahr WHERE (time >= '$neujahr_vj' AND time <= '$next_weeks')";
-$stmt_vorjahr = $db->query($query_vorjahr);
+$query_vorjahr = "SELECT time, schulform FROM dsa_bildungsgang WHERE (time >= '$neujahr_vj' AND time <= '$next_weeks')";
+$stmt_vorjahr = $db_vj->query($query_vorjahr);
 
 // START Vor_Vorjahr
 
-$query_vj2 = "SELECT time, schulform FROM dsa_bildungsgang_vorjahr WHERE (time < '$neujahr_vj')";
-$stmt_vj2 = $db->query($query_vj2);
+$query_vj2 = "SELECT time, schulform FROM dsa_bildungsgang WHERE (time < '$neujahr_vj')";
+$stmt_vj2 = $db_vj->query($query_vj2);
 
 // Daten aufbereiten
 $data_vj2 = [];
