@@ -1,6 +1,7 @@
 <?php
-
-
+if (!isset($pfad_workdir)) {
+	$pfad_workdir = "/var/www/html/verwaltung/";
+}
 
 include($pfad_workdir."kopf.php");
 @session_start();

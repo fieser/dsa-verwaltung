@@ -98,7 +98,6 @@ $schuljahre["25-26"]["jahr"] = "2025-2026";
 
 //Aktuelles Schuljahr: 
 
-	$schuljahr = $_SESSION['schuljahr'];
 	foreach($schuljahre as $perioden) {
 		if ($perioden['jahr'] == $schuljahr) {
 	$periode = $perioden['periode'];

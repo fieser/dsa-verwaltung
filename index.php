@@ -293,7 +293,10 @@ echo "</table>";
                     echo "</li>";
                 }
 
-
+                if ($upload_documents == 1 && !file_exists("./dokumente/unpacked")) {
+                    echo "<li><font color='red'><b>Kein Uploadverzeichnis vorhanden!</b></font><br>";
+                    echo "Bitte legen Sie auf dem internen Webserver das Verzeichnis <i>/var/www/html".$workdir."dokumente/unpacked</i> an.</li>";
+                }
 
                 //Anmeldezeiträume konfigurieren:
                 if ($hinweise_conf_anzeigen == 1) {

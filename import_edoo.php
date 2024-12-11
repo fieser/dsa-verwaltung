@@ -3,6 +3,10 @@
 set_time_limit(0);
 ignore_user_abort(true); //auch wenn der Nutzer die Sete verlässt, läuft das Skript weiter
 
+if (!isset($pfad_workdir)) {
+	$pfad_workdir = "/var/www/html/verwaltung/";
+}
+
 include($pfad_workdir."kopf.php");
 
 

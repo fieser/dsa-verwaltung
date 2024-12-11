@@ -9,10 +9,13 @@ include($pfad_workdir."kopf.php");
 include($pfad_workdir."login_inc.php");
 @session_start();
 
+*/
+
+if (!isset($pfad_workdir)) {
+	$pfad_workdir = "/var/www/html/verwaltung/";
+}
 
 
-
-*/	
 include($pfad_workdir."config.php");
 
 
