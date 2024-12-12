@@ -39,5 +39,20 @@ catch (PDOException $e) {
 }
 
 
+//Für den Vorjahresvergleich der Statistik:
+  if (!isset($DB_NAME_VJ) OR $DB_NAME_VJ == "") {
+    $DB_NAME_VJ = "anmeldung_www_".$_SESSION['schuljahr'][2].($_SESSION['schuljahr'][3] - 1).$_SESSION['schuljahr'][7].($_SESSION['schuljahr'][8] - 1); // Datenbankname
+    }
+    
+    try {
+    // Verbindung zur Datenbank aufbauen
+    $db_vj = new PDO("mysql:host=" . $DB_HOST . ";dbname=" . $DB_NAME_VJ,
+      $DB_BENUTZER, $DB_PASSWORT, $OPTION);
+    
+    }
+    catch (PDOException $e_vj) {
+
+    }
+
 
 ?> 
