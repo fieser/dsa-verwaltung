@@ -468,14 +468,14 @@ foreach($select_an as $an) {
 	$treffer_bew_dub = $select_bew_dub->rowCount();
 	
 	
-
+	$jahr_neu = substr($schuljahr,0,4);
 	
 	//Hovereffekt:
 	
 	//echo "<tr bgcolor='' onmouseover=\"this.style.backgroundColor='d3d3d3'\" onclick=\"window.open('./datenblatt.php?id=".$id."&md=".$md5_bew."','Fenster')\" onmouseout=\"this.style.backgroundColor=''\">";
 	
 	//Wenn keine neuen Dokumente und nicht vor dem 01.08. des Jahres
-	if (($an['dok_neu'] != 1 AND ($an['beginn'] == "" OR strtotime($an['beginn']) >= strtotime(date("Y",time())."-08-01") OR ((strtotime($an['beginn']) < strtotime(date("Y",time())."-08-01") AND trim($an['status']) == "reaktivierbar")) OR $an['status'] == "übertragen"))
+	if (($an['dok_neu'] != 1 AND ($an['beginn'] == "" OR strtotime($an['beginn']) >= strtotime($jahr_neu."-08-01") OR ((strtotime($an['beginn']) < strtotime(date("Y",time())."-08-01") AND trim($an['status']) == "reaktivierbar")) OR $an['status'] == "übertragen"))
 		OR ($_SESSION['sek'] != 1 AND $_SESSION['admin'] != 1 AND $_SESSION['ft'] != 1)) {
 			if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) { //kein Link für Lehrkräfte
 				echo "<tr bgcolor='' onmouseover=\"this.style.backgroundColor='#d3d3d3'\" onclick=\"window.location.href='./datenblatt.php?id=".$id."&md=".$md5_bew."'\" onmouseout=\"this.style.backgroundColor=''\">";
@@ -662,9 +662,30 @@ foreach($select_an as $an) {
 		$nachname = trim($an['nachname']);
 		$vorname = trim($an['vorname']);
 		$geburtsort = trim($an['geburtsort']);
-	
-		$select_edoo = $db_www->query("SELECT id FROM edoo_bewerber WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname' AND geburtsort = '$geburtsort' AND status_uebernahme = '0'");	
+
+		$select_edoo = $db_www->prepare("
+			SELECT id 
+			FROM edoo_bewerber 
+			WHERE 
+				geburtsdatum = :geburtsdatum 
+				AND nachname = :nachname
+				AND geburtsort = :geburtsort 
+				AND status_uebernahme = '0' 
+				AND (vorname = :vorname OR vorname LIKE :vorname_like)
+		");
+
+		$vorname_like = '%' . $vorname . '%'; // Für "enthält" Bedingung
+
+		$select_edoo->execute([
+			':geburtsdatum' => $geburtsdatum,
+			':nachname' => $nachname,
+			':geburtsort' => $geburtsort,
+			':vorname' => $vorname,
+			':vorname_like' => $vorname_like
+		]);
+
 		$treffer_edoo = $select_edoo->rowCount();
+
 		
 		if ($treffer_edoo > 0 AND $temp_status_voll == 1) {
 					if ($db->exec("UPDATE `dsa_bewerberdaten`
