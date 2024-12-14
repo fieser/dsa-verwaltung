@@ -720,7 +720,17 @@ foreach($select_an as $an) {
 			
 			
 			//Mit Austritt:
-			$select_edoo_a = $db_www->query("SELECT id FROM edoo_schueler WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname' AND geburtsort = '$geburtsort' AND austritt > '2000-01-01'");	
+			//$select_edoo_a = $db_www->query("SELECT id FROM edoo_schueler WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname' AND geburtsort = '$geburtsort' AND austritt > '2000-01-01'");	
+			$select_edoo_a = $db_www->query("SELECT id FROM edoo_schueler 
+			WHERE (geburtsdatum = '$geburtsdatum' 
+			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '%{$vg_tag}')
+			OR (geburtsdatum LIKE '{$vg_jahr}%' AND geburtsdatum LIKE '%{$vg_tag}')
+			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '{$vg_jahr}%')
+			)
+			AND nachname = '$nachname' 
+			AND (vorname = '$vorname' OR vorname LIKE '%$vorname$')
+			AND austritt > '2000-01-01'");
+			
 			$treffer_edoo_a = $select_edoo_a->rowCount();
 			
 				if ($treffer_edoo_a > 0 AND $temp_status_voll == 1) {
