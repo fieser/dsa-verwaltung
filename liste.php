@@ -663,26 +663,8 @@ foreach($select_an as $an) {
 		$vorname = trim($an['vorname']);
 		$geburtsort = trim($an['geburtsort']);
 
-		$select_edoo = $db_www->prepare("
-			SELECT id 
-			FROM edoo_bewerber 
-			WHERE 
-				geburtsdatum = :geburtsdatum 
-				AND nachname = :nachname
-				AND geburtsort = :geburtsort 
-				AND status_uebernahme = '0' 
-				AND (vorname = :vorname OR vorname LIKE :vorname_like)
-		");
-
-		$vorname_like = '%' . $vorname . '%'; // Für "enthält" Bedingung
-
-		$select_edoo->execute([
-			':geburtsdatum' => $geburtsdatum,
-			':nachname' => $nachname,
-			':geburtsort' => $geburtsort,
-			':vorname' => $vorname,
-			':vorname_like' => $vorname_like
-		]);
+		$select_edoo = $db_www->query("SELECT id, klasse FROM edoo_bewerber WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname'");	
+			
 
 		$treffer_edoo = $select_edoo->rowCount();
 
@@ -696,9 +678,21 @@ foreach($select_an as $an) {
 										}
 			} else { //Falls ergebnislos, Schülerdaten durchsuchen:
 		
+			// Datum aufsplitten
+			list($jahr, $monat, $tag) = explode('-', $geburtsdatum);
+				$vg_monat = "-".$monat."-";
+				$vg_jahr = $jahr."-";
+				$vg_tag = "-".$tag;
 		
 			//Ohne Austritt:
-			$select_edoo = $db_www->query("SELECT id, klasse FROM edoo_schueler WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname'");	
+			$select_edoo = $db_www->query("SELECT id, klasse FROM edoo_schueler 
+			WHERE (geburtsdatum = '$geburtsdatum' 
+			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '%{$vg_tag}')
+			OR (geburtsdatum LIKE '{$vg_jahr}%' AND geburtsdatum LIKE '%{$vg_tag}')
+			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '{$vg_jahr}%')
+			)
+			AND nachname = '$nachname' 
+			AND (vorname = '$vorname' OR vorname LIKE '%$vorname$')");
 			$treffer_edoo = $select_edoo->rowCount();
 			//echo $an['nachname']." ".$temp_status_voll." ".$treffer_edoo."<br>";
 			if ($treffer_edoo > 0 AND trim($temp_status_voll) == 1) {
