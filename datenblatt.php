@@ -112,6 +112,23 @@ if (isset($_POST['bemerkungen'])) {
 					
 					$last_id = $db->lastInsertId();
 									}
+
+					//Status vollständig/unvollständig setzen:
+					if ($dok_zeugnis == 1 AND $dok_ausweis == 1 AND $dok_lebenslauf == 1) {
+						if ($db->exec("UPDATE `dsa_bewerberdaten`
+											SET
+												`status` = 'vollständig' WHERE `id` = '$id'")) { 
+			
+												}
+					} else {
+						if ($db->exec("UPDATE `dsa_bewerberdaten`
+											SET
+												`status` = 'unvollständig' WHERE `id` = '$id'")) { 
+			
+												}
+
+					
+					}
 			
 		} else {
 			
@@ -128,8 +145,23 @@ if (isset($_POST['bemerkungen'])) {
 							`log` = '$log',
 							`last_user` = '$last_user'	 WHERE `id_dsa_bewerberdaten` = '$id'")) {
 			//$last = "LAST_INSERT_ID(UserID)";
+								//Status vollständig/unvollständig setzen:
+								if ($dok_zeugnis == 1 AND $dok_ausweis == 1 AND $dok_lebenslauf == 1) {
+									if ($db->exec("UPDATE `dsa_bewerberdaten`
+														SET
+															`status` = 'vollständig' WHERE `id` = '$id'")) { 
+						
+															}
+								} else {
+									if ($db->exec("UPDATE `dsa_bewerberdaten`
+														SET
+															`status` = 'unvollständig' WHERE `id` = '$id'")) { 
+						
+															}
 
-		
+								
+								}
+			
 							}
 			
 		

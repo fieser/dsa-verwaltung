@@ -544,8 +544,13 @@ foreach($select_an as $an) {
 	if ($an['schulform'] != "bs") {
 		echo "<td style='padding: 10px;' align='left'>".$an['bgy_sp1']."</td>";
 	}
-	
+
+	if ($status_pruefung_in_liste == 1) {
+		include("./status_setzen.php");
+	}
 	/*
+	// ############## Start Statusprüfung ##################
+
 	if ($an['schulform'] != "bs") {
 		echo "<td style='padding: 10px;' align='left'>".$an['bgy_sp1']."</td>";
 	}
@@ -748,6 +753,7 @@ foreach($select_an as $an) {
 
 			}
 			
+			// ############## ENDE Statusprüfung ##################
 			*/
 		
 		$c_status = "black";
