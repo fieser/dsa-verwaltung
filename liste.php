@@ -668,6 +668,16 @@ foreach($select_an as $an) {
 		$vg_monat = "-".$monat."-";
 		$vg_jahr = $jahr."-";
 		$vg_tag = "-".$tag;
+
+		
+		$namensteile = explode(' ', $nachname); // Beispiel: "Maximilian Mustermann" → ['Maximilian', 'Mustermann']
+		$whereClauses = [];
+		foreach ($namensteile as $teil) {
+			$whereClauses[] = "(nachname LIKE '%$teil%' OR vorname LIKE '%$teil%')";
+		}
+
+		$whereSQL = implode(' OR ', $whereClauses);
+		//echo $whereSQL;
 	
 		//$select_edoo = $db_www->query("SELECT id FROM edoo_bewerber WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname' AND geburtsort = '$geburtsort' AND status_uebernahme = '0'");	
 		$select_edoo = $db_www->query("SELECT id FROM edoo_bewerber 
@@ -676,8 +686,8 @@ foreach($select_an as $an) {
 			OR (geburtsdatum LIKE '{$vg_jahr}%' AND geburtsdatum LIKE '%{$vg_tag}')
 			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '{$vg_jahr}%')
 			)
-			AND nachname = '$nachname' 
-			AND (vorname = '$vorname' OR vorname LIKE '%$vorname%') 
+			AND nachname = '$nachname' OR $whereSQL
+			AND (vorname = '$vorname' OR $whereSQL) 
 			AND status_uebernahme = '0'");
 		$treffer_edoo = $select_edoo->rowCount();
 		
@@ -691,7 +701,7 @@ foreach($select_an as $an) {
 			} else { //Falls ergebnislos, Schülerdaten durchsuchen:
 		
 			
-		
+		/*
 			//Ohne Austritt:
 			$select_edoo = $db_www->query("SELECT id, klasse FROM edoo_schueler 
 			WHERE (geburtsdatum = '$geburtsdatum' 
@@ -717,7 +727,36 @@ foreach($select_an as $an) {
 						$klasse = $ed['klasse'];
 						}
 			}
-			
+						*/
+
+
+			//Ohne Austritt:
+			$select_edoo = $db_www->query("SELECT id, klasse FROM edoo_schueler 
+			WHERE (geburtsdatum = '$geburtsdatum' 
+			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '%{$vg_tag}')
+			OR (geburtsdatum LIKE '{$vg_jahr}%' AND geburtsdatum LIKE '%{$vg_tag}')
+			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '{$vg_jahr}%')
+			)
+			AND (nachname = '$nachname' OR $whereSQL) 
+			AND (vorname = '$vorname' OR $whereSQL)
+			");
+			$treffer_edoo = $select_edoo->rowCount();
+			//echo $an['nachname']." ".$temp_status_voll." ".$treffer_edoo."<br>";
+			if ($treffer_edoo > 0 AND trim($temp_status_voll) == 1) {
+				//echo $an['nachname']."<br>";
+						if ($db->exec("UPDATE `dsa_bewerberdaten`
+										   SET
+											`status` = 'übertragen' WHERE `id` = '$id'")) {
+											
+												
+											}
+						
+						//Anzeige Klasse vorbereiten:
+						foreach($select_edoo as $ed) {
+						$klasse = $ed['klasse'];
+						}
+			}
+						
 			
 			//Mit Austritt:
 			//$select_edoo_a = $db_www->query("SELECT id FROM edoo_schueler WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname' AND geburtsort = '$geburtsort' AND austritt > '2000-01-01'");	

@@ -830,7 +830,6 @@ echo "<br>".$sus_klasse_id_neu." Schüler-Klassen-Kombis importiert.";
 
 
 
-
 ?>
 
 <p>
