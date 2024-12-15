@@ -215,7 +215,10 @@ if ($treffer_fe = 0) {
 		echo "<table width='100%'><tr>";
 			echo "<td width='60%'>";
 			echo "<div class='box-grau' bgcolor='' onmouseover=\"this.style.backgroundColor='d3d3d3'\" onclick=\"window.open('./datenblatt.php?id=".$fe_id_bewerberdaten."&back=todo&tab=".$tab."','Fenster')\" onmouseout=\"this.style.backgroundColor=''\">";
-			echo $be_nachname.", ".$be_vorname." <small><i><b>(".strtoupper($fe['wo_in_edoo']).")</b></i></small>:<br>";
+			if ($fe['id_edoo'] != "") { //Erforderlich, wenn Namen oder Geburtstag nicht passt.
+			echo $be_nachname.", ".$be_vorname;
+			}
+			echo "<small><i><b> (".strtoupper($fe['wo_in_edoo']).")</b></i></small>:<br>";
 			if (($fe['feld_edoo'] != "" OR $fe['feld_dsa'] != "") AND ($fe['feld_edoo'] != "O" AND $fe['feldname'] != "Geschlecht")) {
 				
 				if ($fe['feldname'] == "Eintrittsdatum") {

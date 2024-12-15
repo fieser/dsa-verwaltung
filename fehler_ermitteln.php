@@ -54,7 +54,7 @@ $treffer_an = $select_an->rowCount();
 
 		$schueler_vergleich = 1;
 		
-					//Bewerberdaten durchsuchen:
+			//Bewerberdaten durchsuchen:
 			
 			$select_edoo_b = $db_www->query("SELECT * FROM edoo_bewerber WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname' AND status_uebernahme = '0'");	
 			$treffer_edoo_b = $select_edoo_b->rowCount();
@@ -481,6 +481,30 @@ $treffer_an = $select_an->rowCount();
 			$select_edoo_s = $db_www->query("SELECT * FROM edoo_schueler WHERE geburtsdatum = '$geburtsdatum' AND nachname = '$nachname'");	
 			$treffer_edoo_s = $select_edoo_s->rowCount();
 			
+				// Übermittelt, aber keine Treffer wegen Namensdifferenz
+				if ($treffer_edoo_s == 0 AND $treffer_edoo_b == 0) {
+
+					$hinweis = "Vornamen oder Nachnamen überprüfen!";
+						$feld_edoo = "";
+						$feld_dsa = $an['vorname'];
+
+							if ($db->exec("INSERT INTO `fehler`
+										   SET
+											`id_edoo` = '',
+											`id_bewerberdaten` = '$id_bewerberdaten',
+											`id_bildungsgang` = '$id_bildungsgang',
+											`feld_edoo` = '$feld_edoo',
+											`feld_dsa` = '$feld_dsa',
+											`feldname` = 'Vorname oder Nachname',
+											`wo_in_edoo` = 'sc oder bw',
+											`hinweis` = '$hinweis',
+											`erledigt` = '0'")) {
+							}
+					$fehler = ($fehler + 1);
+				}
+
+				
+
 				foreach($select_edoo_s as $edoo) {
 					
 					$id_edoo = $edoo['id'];
