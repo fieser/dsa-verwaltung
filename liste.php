@@ -267,8 +267,6 @@ echo "<td style='".$style_kopf."' align='left'><a href='./liste.php?sort=status&
 if ($mail_status == 1 AND ($_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1 OR $_SESSION['sek'] == 1)) {
 echo "<td style='".$style_kopf."' align='left'><a href='./liste.php?sort=mail&rfg=".$rfg."'><b></b></a></td>";
 }
-//echo "<td style='".$style_kopf."'><a href='./liste.php?sort=time&rfg=".$rfg."'><b></b></a></td>";
-//echo "<td style='".$style_kopf."'><a href='./liste.php?sort=time&rfg=".$rfg."'><b>Klasse<br><small>(aktuell)</small></b></a></td>";
 echo "<td style='".$style_kopf."'><a href='./liste.php'><b>Klasse<br><small>(aktuell)</small></b></a></td>";
 
 echo "</tr>";
@@ -331,12 +329,7 @@ echo "</td>";
 
 
 echo "</tr>";
-/*
-<label>
 
-<select name='bereich' style='width:340px;'size='1' onchange='change1()'>
-</select>
-*/
 echo "</form>";
 
 
@@ -344,24 +337,7 @@ echo "</form>";
 		$datum_von = date("Y-m-d");
 	if ((!isset($_SESSION['erledigte'])) OR (isset($_SESSION['erledigte']) AND $_SESSION['erledigte'] == 0)) {
 		//nur unerledigte anzeigen:
-/*	ALTE VARIANTE ohne internes SELECT für ignorierte Fehler
-	
-$select_an = $db->query("SELECT DISTINCT dsa_bewerberdaten.*, dsa_bildungsgang.* 
-FROM dsa_bewerberdaten 
-LEFT JOIN dsa_bildungsgang ON dsa_bildungsgang.md5 = dsa_bewerberdaten.md5 
-LEFT JOIN fehler ON dsa_bewerberdaten.id = fehler.id_bewerberdaten 
-LEFT JOIN ignorieren ON dsa_bewerberdaten.id = ignorieren.id_bewerber 
-WHERE (schulform LIKE '%$f_schulform%' AND 
-       status LIKE '%$f_status%' AND 
-       nachname LIKE '%$f_nachname%' AND 
-       vorname LIKE '%$f_vorname%' AND 
-       ((bgy_sp1 LIKE '%$f_beruf%' AND schulform NOT LIKE 'bs') OR 
-       (beruf2 LIKE '%$f_beruf%' AND schulform = 'bs') OR 
-       (beruf_anz LIKE '%$f_beruf%' AND schulform = 'bs'))) 
-       AND NOT (dsa_bewerberdaten.status = 'übertragen' AND (fehler.id_bewerberdaten IS NULL OR ignorieren.id_bewerber IS NOT NULL))
-GROUP BY dsa_bewerberdaten.id 
-ORDER BY {$sort} {$rfg}");
-*/
+
 
 //Vermeidung GROUP-Fehler:
 $db->query("SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
@@ -568,6 +544,11 @@ foreach($select_an as $an) {
 	if ($an['schulform'] != "bs") {
 		echo "<td style='padding: 10px;' align='left'>".$an['bgy_sp1']."</td>";
 	}
+	
+	/*
+	if ($an['schulform'] != "bs") {
+		echo "<td style='padding: 10px;' align='left'>".$an['bgy_sp1']."</td>";
+	}
 		//Status bei Ankunft neuer Anmeldung anpassen.
 		if (($an['status'] == "" OR $an['status'] == "gesendet") AND $an['schulform'] != "bs") {
 				if ($db->exec("UPDATE `dsa_bewerberdaten`
@@ -767,7 +748,7 @@ foreach($select_an as $an) {
 
 			}
 			
-			
+			*/
 		
 		$c_status = "black";
 		if ($an['status'] == "eingegangen") {
@@ -812,24 +793,7 @@ if ($treffer_fe > 0) {
 		} else {
 			echo "<td style='padding: 10px; color:".$c_status.";' align='left'><i>".$an['status']."</i></td>";
 		}
-/*
-$summe = md5($an['mail'].$an['geburtsdatum'].$an['schulform']);
 
-
-if ($db->exec("UPDATE `dsa_bewerberdaten`
-									   SET
-										`md5` = '$summe' WHERE `id` = '$id'")) { 
-										
-											
-										}
-										
-										if ($db->exec("UPDATE `dsa_bildungsgang`
-									   SET
-										`md5` = '$summe' WHERE `id_dsa_bewerberdaten` = '$id'")) { 
-										
-											
-										}
-*/
 //ICONs Mail oder Dokument:
 if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) { //wenn keine Lehrkraft
 echo "<td style='padding: 10px; align='left'>";
@@ -856,11 +820,7 @@ if ($mail_status == 1 AND ($_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1 OR $_
 					}
 				
 			}
-	/*	} else {
-			if ($an['dok_neu'] == 1) {
-							echo "<td style='padding: 10px; align='left'><img width='20px' src='./images/pdf.svg'></td>";
-					} 
-					*/
+
 		} else {
 			//echo "<td style='padding: 10px; align='left'></td>";
 		}
