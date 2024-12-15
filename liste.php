@@ -677,7 +677,7 @@ foreach($select_an as $an) {
 			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '{$vg_jahr}%')
 			)
 			AND nachname = '$nachname' 
-			AND (vorname = '$vorname' OR vorname LIKE '%$vorname$') 
+			AND (vorname = '$vorname' OR vorname LIKE '%$vorname%') 
 			AND status_uebernahme = '0'");
 		$treffer_edoo = $select_edoo->rowCount();
 		
@@ -699,8 +699,8 @@ foreach($select_an as $an) {
 			OR (geburtsdatum LIKE '{$vg_jahr}%' AND geburtsdatum LIKE '%{$vg_tag}')
 			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '{$vg_jahr}%')
 			)
-			AND nachname = '$nachname' 
-			AND (vorname = '$vorname' OR vorname LIKE '%$vorname$')");
+			AND (nachname = '$nachname' OR nachname LIKE '%$nachname%') 
+			AND (vorname = '$vorname' OR vorname LIKE '%$vorname%')");
 			$treffer_edoo = $select_edoo->rowCount();
 			//echo $an['nachname']." ".$temp_status_voll." ".$treffer_edoo."<br>";
 			if ($treffer_edoo > 0 AND trim($temp_status_voll) == 1) {
@@ -728,7 +728,7 @@ foreach($select_an as $an) {
 			OR (geburtsdatum LIKE '%{$vg_monat}%' AND geburtsdatum LIKE '{$vg_jahr}%')
 			)
 			AND nachname = '$nachname' 
-			AND (vorname = '$vorname' OR vorname LIKE '%$vorname$')
+			AND (vorname = '$vorname' OR vorname LIKE '%$vorname%')
 			AND austritt > '2000-01-01'");
 			
 			$treffer_edoo_a = $select_edoo_a->rowCount();
