@@ -862,13 +862,14 @@ for ($tabIndex = 1; $tabIndex <= 6; $tabIndex++) {
 					
 					//Ermitteln der Berufsbezeichnung:
 					$beruf = $bil['beruf'];
-					$select_ber1 = $db_temp->query("SELECT anzeigeform FROM berufe WHERE schluessel = '$beruf'");	
+					$select_ber1 = $db_temp->query("SELECT anzeigeform, kurzform FROM berufe WHERE schluessel = '$beruf'");	
 					foreach($select_ber1 as $ber1) {
+						$beruf_kurz = $ber1['kurzform'];
 						$beruf_anz = $ber1['anzeigeform'];
 					}
 			
 					echo "<td style='padding: 5;'><b>Ausbildungsberuf:</b></td>			
-					<td style='padding: 5;'>".$bil['beruf']."<p>".$beruf_anz."</p></td></tr>";
+					<td style='padding: 5;'>".$beruf_kurz."<p>".$beruf_anz."</p></td></tr>";
 					}
 					//Ermitteln der Berufsbezeichnung:
 					$betrieb = $bil['betrieb'];

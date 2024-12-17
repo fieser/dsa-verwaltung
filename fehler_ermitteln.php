@@ -484,9 +484,9 @@ $treffer_an = $select_an->rowCount();
 				// Übermittelt, aber keine Treffer wegen Namensdifferenz
 				if ($treffer_edoo_s == 0 AND $treffer_edoo_b == 0) {
 
-					$hinweis = "Vornamen oder Nachnamen überprüfen!";
+					$hinweis = "<font color=\'blue\'><b>Vornamen</b>, <b>Nachnamen</b>, <b>Geburtsdatum</b> und <b>Geburtsort</b> überprüfen!</font>";
 						$feld_edoo = "";
-						$feld_dsa = $an['vorname'];
+						$feld_dsa = "";
 						$id_bewerberdaten = $an['id_dsa_bewerberdaten'];
 
 							if ($db->exec("INSERT INTO `fehler`
@@ -496,7 +496,7 @@ $treffer_an = $select_an->rowCount();
 											`id_bildungsgang` = '$id_bildungsgang',
 											`feld_edoo` = '$feld_edoo',
 											`feld_dsa` = '$feld_dsa',
-											`feldname` = 'Vorname oder Nachname',
+											`feldname` = 'Vorname, Nachname oder Gebursdatum',
 											`wo_in_edoo` = 'sc oder bw',
 											`hinweis` = '$hinweis',
 											`erledigt` = '0'")) {

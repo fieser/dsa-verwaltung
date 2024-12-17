@@ -16,7 +16,7 @@ if (!isset($pfad_workdir)) {
 }
 
 
-include($pfad_workdir."config.php");
+include_once($pfad_workdir."config.php");
 
 
 // Überprüfen, ob die Verbindungen erfolgreich waren
