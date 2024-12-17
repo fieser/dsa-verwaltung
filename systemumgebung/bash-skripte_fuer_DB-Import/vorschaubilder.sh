@@ -19,5 +19,6 @@ for pdf in "$DIRECTORY"/*.pdf; do
     convert -thumbnail x300 -background white -alpha remove "$pdf[0]" "$thumbnail"
 done
 
-/usr/bin/php /var/www/html/verwaltung/temp2db.php
+# Wenn temp2db.php hier ausgeführt wird, dann bitte in config.php die Ausführung über liste.php deaktivieren!
+# /usr/bin/php /var/www/html/verwaltung/temp2db.php
 

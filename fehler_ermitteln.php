@@ -487,6 +487,7 @@ $treffer_an = $select_an->rowCount();
 					$hinweis = "Vornamen oder Nachnamen überprüfen!";
 						$feld_edoo = "";
 						$feld_dsa = $an['vorname'];
+						$id_bewerberdaten = $an['id_dsa_bewerberdaten'];
 
 							if ($db->exec("INSERT INTO `fehler`
 										   SET

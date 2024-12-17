@@ -6,9 +6,8 @@ ignore_user_abort(true); //auch wenn der Nutzer die Sete verlässt, läuft das S
 
 
 
-include($pfad_workdir."config.php");
+include_once($pfad_workdir."config.php");
 	
-//include("config.php");
 
 function decryptFile($sourcePath, $destPath, $passphrase) {
     $key = openssl_digest($passphrase, 'SHA256', TRUE);

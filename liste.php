@@ -24,8 +24,9 @@ if (isset($_SESSION['username'])) {
 include "./rechte.php";
 include "./config.php";
 
-
-//include "./temp2db.php"; (wird inzwischen per Cronjob mit Datei /vorschaubilder.sh ausgeführt.
+if ($temp2db_in_liste_php == 1) {
+include "./temp2db.php"; //Könnte auch per Cronjob mit Datei /vorschaubilder.sh ausgeführt werden. Beides ist aber nicht optimal.
+}
 
 //Für Lehkräfte keine besondere Sortierung für SuS mit neuen Dokumenten:
 if ($_SESSION['sek'] != 1 AND $_SESSION['admin'] != 1 AND $_SESSION['ft'] != 1) {

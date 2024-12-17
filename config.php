@@ -153,6 +153,7 @@ $button_querliste = 1; //Anzeige des Button Querliste im Menü ein-/ausblenden
 $button_einschulung = 1; //Anzeige des Button Einschulung im Menü ein-/ausblenden
 $button_klassenlisten = 0; //Anzeige des Button Klassenlisten im Menü ein-/ausblenden
 $status_pruefung_in_liste = 0; //Wenn 1, wird der Status der Prüfung in liste.php durchgeführt. Wenn dies per Cronjob mit status_pruefung.php, bitte deaktivieren.
+$temp2db_in_liste_php = 0; //Wenn temp2db.php nicht per crontab aufgerufen wird, dann hier auf 1 setzen.
 
 // FUNKTIONEN:
 
