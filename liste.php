@@ -264,7 +264,7 @@ echo "<td style='".$style_kopf."' align='left'><a href='./liste.php'><b>Beginn</
 	
 }
 echo "<td style='".$style_kopf."' align='left'><a href='./liste.php?sort=beruf&rfg=".$rfg."'><b>Beruf/Schwerpunkt</b></a></td>";
-echo "<td style='".$style_kopf."' align='left'><a href='./liste.php?sort=status&rfg=".$rfg."'><b>Status</b></a></td>";
+echo "<td style='".$style_kopf."' align='left'><a href='./liste.php?sort=status&rfg=".$rfg."'><b>Status</b></a>&nbsp;&nbsp;<a href='liste.php?akt=1'> <img src='images/aktualisieren.svg' width='15px'></a></td>";
 if ($mail_status == 1 AND ($_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1 OR $_SESSION['sek'] == 1)) {
 echo "<td style='".$style_kopf."' align='left'><a href='./liste.php?sort=mail&rfg=".$rfg."'><b></b></a></td>";
 }
@@ -333,6 +333,28 @@ echo "</tr>";
 
 echo "</form>";
 
+//Status aktualisieren:
+if ($_GET['akt'] == 1) {
+	$db->query("SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
+
+		$select_an = $db->query("SELECT DISTINCT dsa_bewerberdaten.*, dsa_bildungsgang.* FROM dsa_bewerberdaten LEFT JOIN dsa_bildungsgang ON dsa_bildungsgang.md5 = dsa_bewerberdaten.md5");
+
+        foreach($select_an as $an) {
+            
+            $klasse = "";
+            $id = trim($an['0']); //Bewer"berdaten
+            $id_bil = trim($an['id']); //Bildungsgang
+            $md5_bew = trim($an['md5']); //Bewerberdaten md5
+            $md5_bil = trim($an['49']); //Bildungsgang md5
+            $nachname = trim($an['nachname']);
+            $vorname = trim($an['vorname']);
+            $geburtsdatum = trim($an['geburtsdatum']);
+
+            include($pfad_workdir."status_setzen.php");
+            
+           
+        }
+}
 
 	
 		$datum_von = date("Y-m-d");
