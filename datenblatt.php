@@ -21,6 +21,8 @@ include "./config.php";
 
 
 
+
+
 if (isset($_GET['sort'])) {
 	
 	$_SESSION['sort'] = $_GET['sort'];
@@ -1167,6 +1169,22 @@ for ($tabIndex = 1; $tabIndex <= 6; $tabIndex++) {
 		<?PHP
 		
 if ($upload_documents == 1) {
+
+
+	/*
+//Funktion für Seitenzahlen:
+function getPdfPageCount($pdfFilePath) {
+    try {
+        $imagick = new Imagick($pdfFilePath);
+        $pageCount = $imagick->getNumberImages();
+        return $pageCount;
+    } catch (Exception $e) {
+        return 'Fehler: ' . $e->getMessage();
+    }
+}
+
+*/
+
 	//Liste mit der hogeladenen Dokumente:
 	$md5_o_sf = md5($bew['mail'].$bew['geburtsdatum']);  // Dies ist die Variable, die den Dateinamensbeginn definiert.
 	$directory = 'dokumente/unpacked'; // Verzeichnis, in dem die PDFs und ihre Vorschaubilder gespeichert sind.
@@ -1191,6 +1209,11 @@ if ($upload_documents == 1) {
 			echo "<div style='margin: 10 0 10 0'>";
 			echo "<a href='$pdfPath' target='_blank'><img src='$thumbnailPath' alt='Vorschau erscheint in 5 min' style='width:200px; height:auto; box-shadow: 10px 20px 30px grey;'></a>"; // Erstellen eines Bild-Links in einer Liste
 			echo "</div>";
+				//Seienzahl anzeigen:
+				//$pageCount = getPdfPageCount($pdfPath);
+				echo "<p>Seite 1/" . $pageCount."</p>";
+
+
 			echo "</td>";
 			if ($n_bilder % 2 == 0) {
 			echo "</tr>";

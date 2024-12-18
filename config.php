@@ -178,7 +178,16 @@ function dateivergleich($a,$b) {
 if ($ldap_aktiviert != 1) {
 	$_SESSION['username'] = "Fieser"; //Adminnutzer gemäß rechte.php
 }
-	
-
+/*
+function getPdfPageCount($pdfFilePath) {
+    try {
+        $imagick = new Imagick($pdfFilePath);
+        $pageCount = $imagick->getNumberImages();
+        return $pageCount;
+    } catch (Exception $e) {
+        return 'Fehler: ' . $e->getMessage();
+    }
+}
+*/
 //ob_end_flush();
 ?>
