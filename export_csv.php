@@ -148,14 +148,16 @@ $bgy_sp3 = $an['bgy_sp3'];
 //Für Schulfromen (außer BS) bei denen keine Schwerpunkte zu wählen wahren:
 if (trim($bgy_sp1) == "") {
 	if ($an['schulform'] == "bvj") {
-		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_810105%' ORDER BY anzeigeform ASC");
+		
+		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BVJ\_%' ORDER BY anzeigeform ASC");
 			foreach($select_bz as $bz) {
 				$bgy_sp1 = trim($bz['kurzform']);
 			}
+
 	
 	}
 	if ($an['schulform'] == "dbos") {
-		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8800000%' ORDER BY anzeigeform ASC");
+		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_DBOS\_%' ORDER BY anzeigeform ASC");
 			foreach($select_bz as $bz) {
 				$bgy_sp1 = trim($bz['kurzform']);
 			}
@@ -163,7 +165,7 @@ if (trim($bgy_sp1) == "") {
 	}
 	
 	if ($an['schulform'] == "bf2") {
-		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8207000T%' ORDER BY anzeigeform ASC");
+		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BF2%' ORDER BY anzeigeform ASC");
 			foreach($select_bz as $bz) {
 				$bgy_sp1 = trim($bz['kurzform']);
 			}
@@ -171,7 +173,7 @@ if (trim($bgy_sp1) == "") {
 	}
 	
 	if ($an['schulform'] == "bos2") {
-		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8702030%' ORDER BY anzeigeform ASC");
+		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BOS2%' ORDER BY anzeigeform ASC");
 			foreach($select_bz as $bz) {
 				$bgy_sp1 = trim($bz['kurzform']);
 			}
@@ -179,7 +181,7 @@ if (trim($bgy_sp1) == "") {
 	}
 	
 	if ($an['schulform'] == "bfp") {
-		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8208000%' ORDER BY anzeigeform ASC");
+		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BFP' ORDER BY anzeigeform ASC");
 			foreach($select_bz as $bz) {
 				$bgy_sp1 = trim($bz['kurzform']);
 				
@@ -187,7 +189,7 @@ if (trim($bgy_sp1) == "") {
 	}
 			
 	if ($an['schulform'] == "aph") {
-		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8609010%' ORDER BY anzeigeform ASC");
+		$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE 'FSAAH' ORDER BY anzeigeform ASC");
 			foreach($select_bz as $bz) {
 				$bgy_sp1 = trim($bz['kurzform']);
 			}
@@ -232,21 +234,21 @@ if (trim($bgy_sp1) == "") {
 							//Für Schulfromen (außer BS) bei denen keine Schwerpunkte zu wählen wahren:
 								if ($dup_sp1 == "") {
 									if ($bild_dub['schulform'] == "bvj") {
-										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_810105%' ORDER BY anzeigeform ASC");
+										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BVJ\_%' ORDER BY anzeigeform ASC");
 											foreach($select_bz as $bz) {
 												$dup_sp1 = trim($bz['kurzform']);
 											}
 									
 									}
 									if ($bild_dub['schulform'] == "dbos") {
-										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8800000' ORDER BY anzeigeform ASC");
+										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_DBOS\_%' ORDER BY anzeigeform ASC");
 											foreach($select_bz as $bz) {
 												$dup_sp1 = trim($bz['kurzform']);
 											}
 									
 									}
 									if ($bild_dub['schulform'] == "bf2") {
-										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8207000T' ORDER BY anzeigeform ASC");
+										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BF2%' ORDER BY anzeigeform ASC");
 											foreach($select_bz as $bz) {
 												$dup_sp1 = trim($bz['kurzform']);
 											}
@@ -254,7 +256,7 @@ if (trim($bgy_sp1) == "") {
 									}
 									
 									if ($bild_dub['schulform'] == "bos2") {
-										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8702030' ORDER BY anzeigeform ASC");
+										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BOS2%' ORDER BY anzeigeform ASC");
 											foreach($select_bz as $bz) {
 												$dup_sp1 = trim($bz['kurzform']);
 											}
@@ -262,14 +264,14 @@ if (trim($bgy_sp1) == "") {
 									}
 									
 									if ($bild_dub['schulform'] == "bfp") {
-										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8208000' ORDER BY anzeigeform ASC");
+										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE '%\_BFP' ORDER BY anzeigeform ASC");
 											foreach($select_bz as $bz) {
 												$dup_sp1 = trim($bz['kurzform']);
 											}
 									}
 											
 									if ($bild_dub['schulform'] == "aph") {
-										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE id_bildungsgang LIKE '1058_8609010' ORDER BY anzeigeform ASC");
+										$select_bz = $db_temp->query("SELECT kurzform FROM edoo_bewerbungsziel WHERE kurzform LIKE 'FSAAH' ORDER BY anzeigeform ASC");
 											foreach($select_bz as $bz) {
 												$dup_sp1 = trim($bz['kurzform']);
 											}
