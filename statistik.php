@@ -126,7 +126,7 @@ echo "</table></tr>";
 
 
 
-$neujahr = strtotime("2024-01-01");
+$neujahr = strtotime(date('Year')."-01-01");
 
 
 

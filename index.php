@@ -42,7 +42,28 @@ if (!isset($_SESSION['schuljahr'])) {
 }
 
 
+function isPackageInstalled($packageName) {
+    // Befehle für verschiedene Paketmanager
+    $commands = [
+        "dpkg-query -W -f='\${Status}' $packageName 2>/dev/null | grep -q 'install ok installed'", // Debian/Ubuntu
+        "rpm -q $packageName >/dev/null 2>&1", // RedHat/CentOS/Fedora
+        "pacman -Q $packageName >/dev/null 2>&1", // Arch Linux
+        "apk info $packageName >/dev/null 2>&1", // Alpine Linux
+        "brew list $packageName >/dev/null 2>&1", // macOS mit Homebrew
+    ];
 
+    foreach ($commands as $command) {
+        $output = null;
+        $returnVar = null;
+        exec($command, $output, $returnVar);
+        if ($returnVar === 0) {
+            return true; // Paket ist installiert
+        }
+    }
+
+    // Wenn kein Paketmanager das Paket gefunden hat
+    return false;
+}
 
 
 
@@ -364,6 +385,7 @@ echo "</table>";
                             // Überspringe .git-Verzeichnis
                             if (strpos($filePath, DIRECTORY_SEPARATOR . '.git') !== false
                              OR strpos($filePath, DIRECTORY_SEPARATOR . 'dokumente/unpacked') !== false
+                             OR strpos($filePath, DIRECTORY_SEPARATOR . 'dokumente') !== false
                              OR strpos($filePath, DIRECTORY_SEPARATOR . 'dokumente/unpacked') !== false) {
                                 continue;
                             }
@@ -390,6 +412,20 @@ echo "</table>";
 
 
                 echo "</li>";
+
+
+                $packages = ['php-imagick', 'php-sqlite3', 'httpd', 'imagemagick', 'unzip', 'wget', 'git'];
+foreach ($packages as $package) {
+    if (isPackageInstalled($package)) {
+        //echo "Das Paket '$package' ist installiert.\n";
+    } else {
+        echo "<li><font color='red'><b>Das Paket '$package' ist NICHT installiert.</b></font><br>";
+        echo "</li>";
+    }
+}
+                
+
+               
 
             }
             
