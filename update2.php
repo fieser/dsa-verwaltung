@@ -131,12 +131,12 @@ function addColumnIfNotExists($db, $schema, $tabelle, $spalte, $definition, $log
 {
     try {
         $checkColumnExists = $db->prepare(
-            "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = :schema AND TABLE_NAME = :tabelle AND COLUMN_NAME = :spalte"
+            "SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = :schema AND TABLE_NAME = :tabelle AND COLUMN_NAME = :spalte"
         );
         $checkColumnExists->execute([':schema' => $schema, ':tabelle' => $tabelle, ':spalte' => $spalte]);
 
-        if ($checkColumnExists->rowCount() == 0) {
-            $stmt = $db->prepare("ALTER TABLE $tabelle ADD `$spalte` $definition");
+        if ($checkColumnExists->fetchColumn() == 0) {
+            $stmt = $db->prepare("ALTER TABLE `$tabelle` ADD `$spalte` $definition");
             $stmt->execute();
 
             echo "<p>Spalte <b>$spalte</b> zur Tabelle <b>$tabelle</b> hinzugefügt.</p>";
@@ -146,6 +146,8 @@ function addColumnIfNotExists($db, $schema, $tabelle, $spalte, $definition, $log
             file_put_contents($logFile, "Spalte '$spalte' existiert bereits in der Tabelle '$tabelle'.\n", FILE_APPEND);
         }
     } catch (PDOException $e) {
-        throw new PDOException("Fehler beim Überprüfen oder Hinzufügen der Spalte '$spalte' zur Tabelle '$tabelle': " . $e->getMessage());
+        $sqlError = $e->getMessage();
+        file_put_contents($logFile, "SQL Fehler bei Spalte '$spalte': $sqlError\n", FILE_APPEND);
+        throw new PDOException("Fehler beim Überprüfen oder Hinzufügen der Spalte '$spalte' zur Tabelle '$tabelle': $sqlError");
     }
 }
