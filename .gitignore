@@ -1,3 +1,5 @@
 dokumente/
 export/Bewerber_Import.xls
 export/csv2edoo.csv
+*.log
+*.tmp
