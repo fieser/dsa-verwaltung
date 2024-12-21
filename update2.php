@@ -131,11 +131,13 @@ function addColumnIfNotExists($db, $schema, $tabelle, $spalte, $definition, $log
 {
     try {
         $checkColumnExists = $db->prepare(
-            "SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = :schema AND TABLE_NAME = :tabelle AND COLUMN_NAME = :spalte"
+            "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = :schema AND TABLE_NAME = :tabelle AND COLUMN_NAME = :spalte"
         );
         $checkColumnExists->execute([':schema' => $schema, ':tabelle' => $tabelle, ':spalte' => $spalte]);
 
-        if ($checkColumnExists->fetchColumn() == 0) {
+        $columnExists = $checkColumnExists->fetch();
+
+        if (!$columnExists) {
             $stmt = $db->prepare("ALTER TABLE `$tabelle` ADD `$spalte` $definition");
             $stmt->execute();
 
