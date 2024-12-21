@@ -130,14 +130,11 @@ include("./fuss.php");
 function addColumnIfNotExists($db, $schema, $tabelle, $spalte, $definition, $logFile)
 {
     try {
-        $checkColumnExists = $db->prepare(
-            "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = :schema AND TABLE_NAME = :tabelle AND COLUMN_NAME = :spalte"
-        );
-        $checkColumnExists->execute([':schema' => $schema, ':tabelle' => $tabelle, ':spalte' => $spalte]);
+        // Überprüfen, ob die Spalte existiert
+        $checkColumnExists = $db->prepare("SHOW COLUMNS FROM `$tabelle` LIKE ?");
+        $checkColumnExists->execute([$spalte]);
 
-        $columnExists = $checkColumnExists->fetch();
-
-        if (!$columnExists) {
+        if ($checkColumnExists->rowCount() == 0) {
             $stmt = $db->prepare("ALTER TABLE `$tabelle` ADD `$spalte` $definition");
             $stmt->execute();
 
