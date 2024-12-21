@@ -299,6 +299,8 @@ echo "</table>";
                         echo "Fehler beim Überprüfen des Status: " . implode("\n", $outputStatus);
                         exit;
                     }
+
+                    
                     
                     // Ausgabe des Status analysieren
                     $status = implode("\n", $outputStatus);
@@ -313,6 +315,50 @@ echo "</table>";
 
                     echo "</li>";
                 }
+
+                //Dantenbankupdate:
+                    // Aktuellen Git-Tag oder Commit abrufen
+                    $gitTag = trim(shell_exec('git describe --tags 2>/dev/null')) ?: trim(shell_exec('git rev-parse --short HEAD'));
+
+                    if (!$gitTag) {
+                        die("<p>Git-Version konnte nicht ermittelt werden. Stellen Sie sicher, dass 'git' verfügbar ist.</p>");
+                    }
+
+                    
+                        // Transaktionen starten
+                        if ($db) {
+                            $db->beginTransaction();
+                            
+                        }
+
+                        if ($db_temp) {
+                            $db_temp->beginTransaction();
+                            
+                        }
+
+                        // Tabelle für Migrationen erstellen
+                        if ($db->query("CREATE TABLE IF NOT EXISTS migration_versions (
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            version VARCHAR(50) NOT NULL,
+                            migration_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+                        ) ENGINE = InnoDB")) {
+                            
+                        }
+
+                        // Prüfen, ob die aktuelle Version bereits eingetragen ist
+                        $checkVersion = $db->prepare("SELECT COUNT(*) FROM migration_versions WHERE version = ?");
+                        $checkVersion->execute([$gitTag]);
+
+                        if ($checkVersion->fetchColumn() == 0) {
+                        // Datenbankmigrationen erforderlich
+                            echo "<li>";
+                            echo "<b>Ihre Datenbank benötigt ein Update!</b><br>";
+                            echo "<form class='flex-container' method='post' action='./db_migration.php'>";
+                                echo "<input style='width: 23.3em;' class='btn btn-default btn-sm' type='submit' name='cmd[doStandardAuthentication]' value='Datenbank aktualisieren' />";
+                                echo "</form>";
+                            echo "</li>"; 
+                        }
+                    
 
                 if ($upload_documents == 1 && !file_exists("./dokumente/unpacked")) {
                     echo "<li><font color='red'><b>Kein Uploadverzeichnis vorhanden!</b></font><br>";

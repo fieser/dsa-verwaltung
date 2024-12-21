@@ -71,7 +71,7 @@ if (isset($_SESSION['username'])) {
             addColumnIfNotExists($db, 'anmeldung_www', 'dsa_bewerberdaten', 'papierkorb', 'VARCHAR(11)', $logFile);
             addColumnIfNotExists($db, 'anmeldung_www', 'dsa_bewerberdaten', 'pap_user', 'VARCHAR(200)', $logFile);
             addColumnIfNotExists($db, 'anmeldung_www', 'dsa_bewerberdaten', 'pap_time', 'VARCHAR(200)', $logFile);
-            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'summen', 'papierkorb', 'VARCHAR(11)', $logFile);
+            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'summen', 'papierkorb', 'VARCHAR(200)', $logFile);
 
             // Aktuelle Version in die Datenbank eintragen
             $insertVersion = $db->prepare("INSERT INTO migration_versions (version) VALUES (?)");
@@ -115,7 +115,7 @@ if (isset($_SESSION['username'])) {
     header("Location: ./login_ad.php?back=liste");
 }
 
-include("./fuss.php");
+
 
 /**
  * Fügt eine Spalte hinzu, falls sie nicht existiert.
@@ -150,3 +150,14 @@ function addColumnIfNotExists($db, $schema, $tabelle, $spalte, $definition, $log
         throw new PDOException("Fehler beim Überprüfen oder Hinzufügen der Spalte '$spalte' zur Tabelle '$tabelle': $sqlError");
     }
 }
+
+?>
+
+<p>
+<form name='form_x' method="post" action="./index.php">
+<input type="submit" class='btn btn-default btn-sm' name="cmd[doStandardAuthentication]" value="zurück" />
+</form></p>
+<?php
+
+	include($pfad_workdir."fuss.php");
+?>
