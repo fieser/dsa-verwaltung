@@ -414,7 +414,7 @@ echo "</table>";
                 echo "</li>";
 
 
-                $packages = ['php-imagick', 'php-sqlite3', 'httpd', 'imagemagick', 'unzip', 'wget', 'git'];
+                $packages = ['php-imagick', 'php-sqlite3', 'imagemagick', 'unzip', 'wget', 'git'];
 foreach ($packages as $package) {
     if (isPackageInstalled($package)) {
         //echo "Das Paket '$package' ist installiert.\n";
