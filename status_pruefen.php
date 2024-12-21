@@ -29,7 +29,7 @@ include($pfad_workdir."config.php");
 
 
 // Ist Nutzer angemeldet?
-if (isset($_SESSION['username'])) {
+//if (isset($_SESSION['username'])) {
 
 
 
@@ -56,7 +56,7 @@ $db->query("SET sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', '')
 echo "Status aktualisiert!";
 
 
-} //Ende, wenn username
+//} //Ende, wenn username
 ?>
 
 <p>
