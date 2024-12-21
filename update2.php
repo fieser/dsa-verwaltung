@@ -26,8 +26,15 @@ if (isset($_SESSION['username'])) {
 
     try {
         // Transaktionen starten
-        $db->beginTransaction();
-        $db_temp->beginTransaction();
+        if ($db) {
+            $db->beginTransaction();
+            file_put_contents($logFile, "Transaktion für \$db gestartet.\n", FILE_APPEND);
+        }
+
+        if ($db_temp) {
+            $db_temp->beginTransaction();
+            file_put_contents($logFile, "Transaktion für \$db_temp gestartet.\n", FILE_APPEND);
+        }
 
         // Tabelle für Migrationen erstellen
         if ($db->query("CREATE TABLE IF NOT EXISTS migration_versions (
@@ -70,8 +77,15 @@ if (isset($_SESSION['username'])) {
             $insertVersion = $db->prepare("INSERT INTO migration_versions (version) VALUES (?)");
             $insertVersion->execute([$gitTag]);
 
-            $db->commit();
-            $db_temp->commit();
+            if ($db) {
+                $db->commit();
+                file_put_contents($logFile, "Transaktion für \$db abgeschlossen.\n", FILE_APPEND);
+            }
+
+            if ($db_temp) {
+                $db_temp->commit();
+                file_put_contents($logFile, "Transaktion für \$db_temp abgeschlossen.\n", FILE_APPEND);
+            }
 
             echo "<p>Migration und Version $gitTag erfolgreich abgeschlossen.</p>";
             file_put_contents($logFile, "Git-Version '$gitTag' in die Datenbank eingetragen.\n", FILE_APPEND);
@@ -81,12 +95,19 @@ if (isset($_SESSION['username'])) {
 
     } catch (PDOException $e) {
         // Rollback bei Fehler
-        $db->rollBack();
-        $db_temp->rollBack();
+        if ($db && $db->inTransaction()) {
+            $db->rollBack();
+            file_put_contents($logFile, "Rollback für \$db durchgeführt.\n", FILE_APPEND);
+        }
+
+        if ($db_temp && $db_temp->inTransaction()) {
+            $db_temp->rollBack();
+            file_put_contents($logFile, "Rollback für \$db_temp durchgeführt.\n", FILE_APPEND);
+        }
 
         $errorMessage = "DB Fehler: " . $e->getMessage();
-        die($errorMessage);
         file_put_contents($logFile, "Fehler: $errorMessage\n", FILE_APPEND);
+        die($errorMessage);
     }
 
 } else {
@@ -115,13 +136,11 @@ function addColumnIfNotExists($db, $schema, $tabelle, $spalte, $definition, $log
         $checkColumnExists->execute([':schema' => $schema, ':tabelle' => $tabelle, ':spalte' => $spalte]);
 
         if ($checkColumnExists->rowCount() == 0) {
-            if ($db->query("ALTER TABLE $tabelle ADD $spalte $definition")) {
-                echo "<p>Spalte <b>$spalte</b> zur Tabelle <b>$tabelle</b> hinzugefügt.</p>";
-                file_put_contents($logFile, "Spalte '$spalte' zur Tabelle '$tabelle' hinzugefügt.\n", FILE_APPEND);
-            } else {
-                echo "<p>Fehler beim Hinzufügen der Spalte <b>$spalte</b> zur Tabelle <b>$tabelle</b>.</p>";
-                file_put_contents($logFile, "Fehler beim Hinzufügen der Spalte '$spalte' zur Tabelle '$tabelle'.\n", FILE_APPEND);
-            }
+            $stmt = $db->prepare("ALTER TABLE $tabelle ADD `$spalte` $definition");
+            $stmt->execute();
+
+            echo "<p>Spalte <b>$spalte</b> zur Tabelle <b>$tabelle</b> hinzugefügt.</p>";
+            file_put_contents($logFile, "Spalte '$spalte' zur Tabelle '$tabelle' hinzugefügt.\n", FILE_APPEND);
         } else {
             echo "<p>Die Spalte <b>$spalte</b> existiert bereits in der Tabelle <b>$tabelle</b>.</p>";
             file_put_contents($logFile, "Spalte '$spalte' existiert bereits in der Tabelle '$tabelle'.\n", FILE_APPEND);
