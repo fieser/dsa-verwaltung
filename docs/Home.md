@@ -21,4 +21,4 @@
 
 [Automatische Installation per Installationsskript für den Verwaltungsserver](Installationsskript-auf-Ubuntu-Server-24.04.1-LTS.md)
 
-[Ex- und Import der edoo.sys-Daten](Ex--und-Import-der-edoo.sys-Daten.md)
+[Ex- und Import der edoo.sys-Daten](ex_und_import.md)
