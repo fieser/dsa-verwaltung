@@ -20,9 +20,9 @@
 <footer class="ilFooter">
         <div class="container">
  <?php         
-      echo "<div class='row ilFooterContainer'><bdo class='' dir='ltr'>powered by ".$_SESSION['schule_kurzname'] ."</bdo> |";
-
-      echo "<a href='".$url_impressum."' target='_blank'>Impressum</a> | <i>Made in 2nd Corona</i>";
+      echo "<div class='row ilFooterContainer'><bdo class='' dir='ltr'>powered by ".$_SESSION['schule_kurzname'] ."</bdo> ";
+      echo "<a href='https://github.com/fieser/dsa-verwaltung/' target='_blank'> (GPL-3.0 license) |";
+      echo "<a href='".$url_impressum."' target='_blank'> Impressum</a> | <i>Made in 2nd Corona</i>";
 ?>
 
 

@@ -23,6 +23,9 @@ Eine [detailierte Funktionsbeschreibung][def] und eine Sammlung von [Screenshots
 ## Installation
 Die Installation erfolgt auf zwei kommunizierenden Webservern. Eine [Anleitung zur Installation][def] befindet sich ebenfalls im Wiki.
 
+## Geplante Funktionen
+Eine Übersicht der geplanten Funktionen finden Sie [hier](https://github.com/fieser/dsa-verwaltung/issues?q=label:"Planned+Feature").
+
 ## Lizenz
 Dieses Projekt steht unter der GNU General Public License v3.0 (GPLv3). Weitere Informationen finden Sie in der Datei [LICENSE](./LICENSE.txt).
 
