@@ -316,9 +316,11 @@ echo "</table>";
                     echo "</li>";
                 }
 
-                //Dantenbankupdate:
+                //Datenbankupdate:
+
+                
                     // Aktuellen Git-Tag oder Commit abrufen
-                    $gitTag = trim(shell_exec('git describe --tags 2>/dev/null')) ?: trim(shell_exec('git rev-parse --short HEAD'));
+                    $gitTag = trim(shell_exec('git describe --tags --abbrev=0 2>/dev/null')) ?: trim(shell_exec('git rev-parse --short HEAD'));
 
                     if (!$gitTag) {
                         die("<p>Git-Version konnte nicht ermittelt werden. Stellen Sie sicher, dass 'git' verfügbar ist.</p>");
@@ -358,7 +360,7 @@ echo "</table>";
                                 echo "</form>";
                             echo "</li>"; 
                         }
-                    
+                
 
                 if ($upload_documents == 1 && !file_exists("./dokumente/unpacked")) {
                     echo "<li><font color='red'><b>Kein Uploadverzeichnis vorhanden!</b></font><br>";
