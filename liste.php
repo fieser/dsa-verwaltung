@@ -145,14 +145,12 @@ if ($xls_download == 1) {
 
 if (($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1) AND $_SESSION['papierkorb'] != 1) {
 
-//Nur aktivieren, wenn ausreichende Filterung gesetzt ist:
-if (($_SESSION['f_schulform'] != "" AND $_SESSION['f_schulform'] != "BS" AND $_SESSION['f_schulform'] != "B" AND $_SESSION['f_schulform'] != "bs") OR $_SESSION['f_beruf'] != "" OR strlen($_SESSION['f_nachname']) > 3) {
-echo "<input style='width: 100%' class='btn btn-default btn-sm' type='submit' name='submit_filter' value='Transfer'>";
-} else {
-	echo "<div class='tooltip_bbs'><input style='width: 100%' class='btn btn-default btn-sm' type='submit' name='submit_filter' value='Transfer' disabled><span class='tooltiptext'>Setzen Sie zunächst einen ausreichenden Filter!</span></div>";
-}
-
-
+	//Nur aktivieren, wenn ausreichende Filterung gesetzt ist:
+	if (($_SESSION['f_schulform'] != "" AND $_SESSION['f_schulform'] != "BS" AND $_SESSION['f_schulform'] != "B" AND $_SESSION['f_schulform'] != "bs") OR $_SESSION['f_beruf'] != "" OR strlen($_SESSION['f_nachname']) > 3) {
+	echo "<input style='width: 100%' class='btn btn-default btn-sm' type='submit' name='submit_filter' value='Transfer'>";
+	} else {
+		echo "<div class='tooltip_bbs'><input style='width: 100%' class='btn btn-default btn-sm' type='submit' name='submit_filter' value='Transfer' disabled><span class='tooltiptext'>Setzen Sie zunächst einen ausreichenden Filter!</span></div>";
+	}
 
 }
 
@@ -483,7 +481,7 @@ foreach($select_an as $an) {
 		
 			}
 	} else {
-		if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) { //kein Link für Lehrkräfte
+		if (($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1 OR $_SESSION['ft'] == 1) AND $_GET['pk'] != 1) { //kein Link für Lehrkräfte
 		echo "<tr bgcolor='#FFB6C1' onmouseover=\"this.style.backgroundColor='#FF82AB'\" onclick=\"window.location.href='./datenblatt.php?id=".$id."&md=".$md5_bew."'\" onmouseout=\"this.style.backgroundColor=''\">";
 		} else {
 				echo "<tr bgcolor='' onmouseover=\"this.style.backgroundColor='#d3d3d3'\" onmouseout=\"this.style.backgroundColor=''\">";

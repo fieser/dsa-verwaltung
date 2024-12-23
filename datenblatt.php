@@ -1567,28 +1567,47 @@ echo "<td>
 }
 
 if ($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1) {
-$bew_md5 = $bew['md5'];	
-$select_md5 = $db_temp->query("SELECT * FROM summen WHERE (md5 = '$bew_md5')");
-$treffer_md5 = $select_md5->rowCount();
+	$bew_md5 = $bew['md5'];	
+	$select_md5 = $db_temp->query("SELECT * FROM summen WHERE (md5 = '$bew_md5')");
+	$treffer_md5 = $select_md5->rowCount();
 
-	if ($treffer_md5 > 0) {	
-		echo "<td style='padding-left: 8em;'>";
-		echo "<form method='post' action='./md5_loeschen.php?id=".$bew['id'].".php'>";
-		echo "<input class='btn btn-default btn-sm' type='submit' style='background-color: red; border: 0;' name='cmd[doStandardAuthentication]' value='weitere Anmeldung für ".strtoupper($bil['schulform'])." zulassen' />";
-		echo "</form>";
-		echo "</td>";
+		if ($treffer_md5 > 0) {	
+			echo "<td style='padding-left: 3em;'>";
+			echo "<form method='post' action='./md5_loeschen.php?id=".$bew['id'].".php'>";
+			echo "<input class='btn btn-default btn-sm' type='submit' style='background-color: red; border: 0;' name='cmd[doStandardAuthentication]' value='weitere Anmeldung für ".strtoupper($bil['schulform'])." zulassen' />";
+			echo "</form>";
+			echo "</td>";
+		}
+		
+	echo "<td style='padding-left: 3em;'>";
+	echo "<form method='post' action='./pdf.php?id=".$bew['id'].".php&schuljahr=".$_SESSION['schuljahr']."'>";
+	echo "<input class='btn btn-default btn-sm' type='submit' border: 0;' name='cmd[doStandardAuthentication]' value='Anschreiben drucken' />";
+	echo "</form>";
+	echo "</td>";
+
+	//Einzeltrasfer
+	
+	if ($xls_download == 1) {
+		echo "<form id='form5' action='./export_py.php' method='POST'>";
+	} else {
+		echo "<form id='form5' action='./export_csv.php' method='POST'>";
 	}
 	
-	echo "<td style='padding-left: 8em;'>";
-echo "<form method='post' action='./pdf.php?id=".$bew['id'].".php&schuljahr=".$_SESSION['schuljahr']."'>";
-echo "<input class='btn btn-default btn-sm' type='submit' border: 0;' name='cmd[doStandardAuthentication]' value='Anschreiben drucken' />";
-echo "</form>";
-echo "</td>";
+	if (($_SESSION['sek'] == 1 OR $_SESSION['admin'] == 1) AND $_SESSION['papierkorb'] != 1 AND $bew['status'] == "vollständig") {
 	
+		echo "<td style='padding-left: 3em;'>";
+			echo "<input type='hidden' name='f_nachname' value='".$bew['nachname']."'>";
+			echo "<input type='hidden' name='f_vorname' value='".$bew['vorname']."'>";
+			echo "<input type='hidden' name='f_geburtsdatum' value='".$bew['geburtsdatum']."'>";
+			echo "<input style='width: 100%' class='btn btn-default btn-sm' type='submit' name='submit_filter' value='Einzeltransfer'>";
+		echo "</td>";
+	
+	}
+	echo "</form>";
 }
 
 if (($_SESSION['admin'] == 1 OR $_SESSION['sek'] == 1) AND $bew['status'] != "übertragen") {
-echo "<td style='padding-left: 8em;'>";
+echo "<td style='padding-left: 3em;'>";
 echo "<form method='post' action='./anmeldung_papierkorb.php?id=".$bew['id'].".php'>";
 if ($bew['papierkorb'] == 1) {
 	echo "<input type='hidden' name='pap_rein' value='0'>";
@@ -1603,7 +1622,7 @@ echo "</td>";
 }
 
 if ($_SESSION['admin'] == 1 AND $_SESSION['username'] != "luzius" AND $_SESSION['username'] != "soyer") {
-echo "<td style='padding-left: 8em;'>";
+echo "<td style='padding-left: 3em;'>";
 echo "<form method='post' action='./anmeldung_loeschen.php?id=".$bew['id'].".php'>";
 echo "<input class='btn btn-default btn-sm' type='submit' style='background-color: red; border: 0;' name='cmd[doStandardAuthentication]' value='Anmeldung löschen' />";
 echo "</form>";
