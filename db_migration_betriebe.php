@@ -1,0 +1,13 @@
+        $betrieb
+        $betrieb2
+        $betrieb_plz
+        $betrieb_ort
+        $betrieb_strasse
+        $betrieb_hausnummer
+        $betrieb_telefon
+        $betrieb_mail
+        $ausbilder_nachname
+        $ausbilder_vorname
+        $ausbilder_telefon
+        $ausbilder_telefon2
+        $ausbilder_mail
