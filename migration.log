@@ -68,3 +68,197 @@ Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
 Transaktion für $db abgeschlossen.
 Transaktion für $db_temp abgeschlossen.
 Git-Version 'v1.0.0' in die Datenbank eingetragen.
+
+2024-12-23 18:57:33 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.
+
+2024-12-23 19:00:52 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2024-12-23 19:04:15 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.
+
+2024-12-24 08:55:38 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2024-12-24 08:58:18 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+
+2024-12-24 08:58:19 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+
+2024-12-24 09:15:52 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Rollback für $db durchgeführt.
+Rollback für $db_temp durchgeführt.
+Fehler: DB Fehler: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'anmeldung_www_2526.config' doesn't exist
+
+2024-12-24 09:16:39 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Rollback für $db durchgeführt.
+Rollback für $db_temp durchgeführt.
+Fehler: DB Fehler: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sever' in 'field list'
+
+2024-12-24 09:17:01 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.
+
+2024-12-24 09:22:58 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.
+
+2024-12-24 09:26:35 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.
+
+2024-12-24 09:29:01 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.
+
+2024-12-27 13:37:01 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2024-12-27 13:38:07 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.
+
+2024-12-27 15:54:18 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2024-12-27 15:54:43 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-12-ge32dc44' in die Datenbank eingetragen.

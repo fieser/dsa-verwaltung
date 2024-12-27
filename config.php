@@ -140,6 +140,15 @@ include "/var/www/verbinden.php";
 include "/var/www/verbinden_temp.php";
 include "/var/www/verbinden_www.php";
 
+function config($e) {
+	
+	$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = '$e')");
+	foreach($select_conf as $conf) {
+		return $conf['wert'];
+	}
+	
+}
+
 
 //Einstellungen:
 $xls_download = 1;

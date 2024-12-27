@@ -211,7 +211,7 @@ echo "</table>";
                     <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Abweichungen ermitteln" />
                 </form>
 
-                <form class='flex-container' method="post" action="./setup.php">
+                <form class='flex-container' method="post" action="./config_form.php">
                     <input style="width: 23.3em;" class='btn btn-default btn-sm' type="submit" name="cmd[doStandardAuthentication]" value="Setup" />
                 </form>
 
