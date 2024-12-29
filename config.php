@@ -104,44 +104,16 @@ $schuljahre["25-26"]["jahr"] = "2025-2026";
 		}
 	}
 
-
-
-//Schuldaten
-$_SESSION['schule_name_zeile1'] = "Berufsbildende Schule 1";
-$_SESSION['schule_name_zeile2'] = "- Gewerbe und Technik -";
-
-$_SESSION['schule_kurz'] = 'bbs1'; //Bitte nur Kleinbuchstaben
-$_SESSION['schule_kurzname'] = 'BBS1-Mainz';
-
-$_SESSION['schule_strasse_nr'] = "Am Judensand 12";
-$_SESSION['schule_plz_ort'] = "55122 Mainz";
-
-$_SESSION['schule_tel'] = "06131-90603-0";
-$_SESSION['schule_fax'] = "06131-90603-99";
-
-$_SESSION['schule_mail'] = "sekretariat@bbs1-mainz.de";
-$_SESSION['schule_url'] = "https://www.bbs1-mainz.de";
- 
- 
-
-//Pfade:
-$url = "https://service.bbs1-mainz.de/verwaltung/"; // BITTE mit / abschließen!
-$url_anmeldung = "https://anmeldung.bbs1-mainz.de/"; // BITTE mit / abschließen!
-$website = "https://www.bbs1-mainz.com";
-$workdir = "/verwaltung/"; // BITTE mit / beginnen und abschließen!
-$pfad_workdir = "/var/www/html/verwaltung/";
-$url_impressum ="http://ilias.bbs1-mainz.de/ilias/goto.php?target=impr_0&client_id=bbs1";
-
-	
-
- 
 // Verbindung zur Datenbank aufbauen.
 include "/var/www/verbinden.php";
 include "/var/www/verbinden_temp.php";
 include "/var/www/verbinden_www.php";
 
+
+
 function config($e) {
-	
+
+	global $db_temp;
 	$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = '$e')");
 	foreach($select_conf as $conf) {
 		return $conf['wert'];
@@ -149,9 +121,41 @@ function config($e) {
 	
 }
 
+//Schuldaten
+$_SESSION['schule_name_zeile1'] = config("schule_name1");
+$_SESSION['schule_name_zeile2'] = config("schule_name2");
+
+$_SESSION['schule_kurz'] = config("schule_kurz"); //Bitte nur Kleinbuchstaben
+$_SESSION['schule_kurzname'] = config("schule_kurzname");
+
+$_SESSION['schule_strasse_nr'] = config("schule_strasse_nr");
+$_SESSION['schule_plz_ort'] = config("schule_plz_ort");
+
+$_SESSION['schule_tel'] = config("schule_tel");
+$_SESSION['schule_fax'] = config("schule_fax");
+
+$_SESSION['schule_mail'] = config("schule_mail");
+$_SESSION['schule_url'] = config("website");
+ 
+
+
+//Pfade:
+$url = "https://service.bbs1-mainz.de/verwaltung/"; // BITTE mit / abschließen!
+$url_anmeldung = config("url_formular"); // BITTE mit / abschließen!
+$website = config("website");
+$workdir = "/verwaltung/"; // BITTE mit / beginnen und abschließen!
+$pfad_workdir = "/var/www/html/verwaltung/";
+$url_impressum ="http://ilias.bbs1-mainz.de/ilias/goto.php?target=impr_0&client_id=bbs1";
+$url_impressum = config("url_impressum");
+
+	
+
+ 
+
+
 
 //Einstellungen:
-$xls_download = 1;
+$xls_download = config("xls_download");
 $fremdsprachen_export_deaktivieren = 0;
 $debug = 0; //Anzeige zusätzlicher Infos zur Fehlersuche
 $mail_status = 1; //Anzeige Spalte E-Mail in Liste

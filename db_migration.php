@@ -242,7 +242,7 @@ if (isset($_SESSION['username'])) {
                                         // Datensatz in DB schreiben:
                                         if ($db_temp->exec("INSERT INTO `config`
                                                     SET
-                                                        `einstellung` = 'bs_aktiv',
+                                                        `einstellung` = 'aph_aktiv',
                                                         `bereich` = 'Schulformen',
                                                         `text` = 'FS Altenpflegehilfe (FS APH)',
                                                         `typ` = 'radio',
@@ -441,6 +441,7 @@ if (isset($_SESSION['username'])) {
                                                                                 $u_neu = ($u_neu + 1);
                                                                                 }					
                                                                             } //Ende - wenn noch nicht vorhanden
+
                                                                             $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'hbf_aktiv')");
                                                                             $treffer = $select_conf->rowCount();
                                                                                 if ($treffer == 0) {
@@ -462,6 +463,340 @@ if (isset($_SESSION['username'])) {
                                                                                     }					
                                                                                 } //Ende - wenn noch nicht vorhanden
         
+$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'umfrage')");
+        $treffer = $select_conf->rowCount();
+            if ($treffer == 0) {
+
+                // Datensatz in DB schreiben:
+                if ($db_temp->exec("INSERT INTO `config`
+                            SET
+                                `einstellung` = 'umfrage',
+                                `bereich` = 'Formular',
+                                `text` = 'Umfrage Wirksamkeit Werbung',
+                                `typ` = 'radio',
+                                `wert` = '0',
+                                `server` = 'f'")) {
+                
+                $last_id = $db->lastInsertId();
+                
+                echo "Datensatz ergänzt!<br>";
+                $u_neu = ($u_neu + 1);
+                }					
+            } //Ende - wenn noch nicht vorhanden
+
+
+        $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'min_anzahl_betriebe')");
+        $treffer = $select_conf->rowCount();
+            if ($treffer == 0) {
+
+                // Datensatz in DB schreiben:
+                if ($db_temp->exec("INSERT INTO `config`
+                            SET
+                                `einstellung` = 'min_anzahl_betriebe',
+                                `bereich` = 'Formular',
+                                `text` = 'Mindestanzahl Betriebe im Auswahlmenü',
+                                `typ` = 'number',
+                                `wert` = '0',
+                                `server` = 'f'")) {
+                
+                $last_id = $db->lastInsertId();
+                
+                echo "Datensatz ergänzt!<br>";
+                $u_neu = ($u_neu + 1);
+                }					
+            } //Ende - wenn noch nicht vorhanden
+
+            $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'url_formular')");
+            $treffer = $select_conf->rowCount();
+                if ($treffer == 0) {
+    
+                    // Datensatz in DB schreiben:
+                    if ($db_temp->exec("INSERT INTO `config`
+                                SET
+                                    `einstellung` = 'url_formular',
+                                    `bereich` = 'Formular',
+                                    `text` = 'URL Formularseite',
+                                    `typ` = 'url',
+                                    `wert` = 'https://anmeldung.bbs1-mainz.de/',
+                                    `server` = 'f'")) {
+                    
+                    $last_id = $db->lastInsertId();
+                    
+                    echo "Datensatz ergänzt!<br>";
+                    $u_neu = ($u_neu + 1);
+                    }					
+                } //Ende - wenn noch nicht vorhanden
+    
+                $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'website')");
+                $treffer = $select_conf->rowCount();
+                    if ($treffer == 0) {
+        
+                        // Datensatz in DB schreiben:
+                        if ($db_temp->exec("INSERT INTO `config`
+                                    SET
+                                        `einstellung` = 'website',
+                                        `bereich` = 'Formular',
+                                        `text` = 'URL Website Schule',
+                                        `typ` = 'url',
+                                        `wert` = 'https://www.bbs1-mainz.com',
+                                        `server` = 'f'")) {
+                        
+                        $last_id = $db->lastInsertId();
+                        
+                        echo "Datensatz ergänzt!<br>";
+                        $u_neu = ($u_neu + 1);
+                        }					
+                    } //Ende - wenn noch nicht vorhanden
+
+                    $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'url_impressum')");
+                    $treffer = $select_conf->rowCount();
+                        if ($treffer == 0) {
+            
+                            // Datensatz in DB schreiben:
+                            if ($db_temp->exec("INSERT INTO `config`
+                                        SET
+                                            `einstellung` = 'url_impressum',
+                                            `bereich` = 'Formular',
+                                            `text` = 'URL Impressum',
+                                            `typ` = 'textfeld',
+                                            `wert` = 'https://www.meine-scule.de/impressum.html',
+                                            `server` = 'f'")) {
+                            
+                            $last_id = $db->lastInsertId();
+                            
+                            echo "Datensatz ergänzt!<br>";
+                            $u_neu = ($u_neu + 1);
+                            }					
+                        } //Ende - wenn noch nicht vorhanden
+
+                    $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_name1')");
+                    $treffer = $select_conf->rowCount();
+                        if ($treffer == 0) {
+            
+                            // Datensatz in DB schreiben:
+                            if ($db_temp->exec("INSERT INTO `config`
+                                        SET
+                                            `einstellung` = 'schule_name1',
+                                            `bereich` = 'Anschrift1',
+                                            `text` = 'Schulname Zeile 1',
+                                            `typ` = 'textfeld',
+                                            `wert` = 'Berufsbildende Schule 1',
+                                            `server` = 'f'")) {
+                            
+                            $last_id = $db->lastInsertId();
+                            
+                            echo "Datensatz ergänzt!<br>";
+                            $u_neu = ($u_neu + 1);
+                            }					
+                        } //Ende - wenn noch nicht vorhanden
+                        $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_name2')");
+                        $treffer = $select_conf->rowCount();
+                            if ($treffer == 0) {
+                
+                                // Datensatz in DB schreiben:
+                                if ($db_temp->exec("INSERT INTO `config`
+                                            SET
+                                                `einstellung` = 'schule_name2',
+                                                `bereich` = 'Anschrift2',
+                                                `text` = 'Schulname Zeile 2',
+                                                `typ` = 'textfeld',
+                                                `wert` = '- Gewerbe und Technik -',
+                                                `server` = 'f'")) {
+                                
+                                $last_id = $db->lastInsertId();
+                                
+                                echo "Datensatz ergänzt!<br>";
+                                $u_neu = ($u_neu + 1);
+                                }					
+                            } //Ende - wenn noch nicht vorhanden                    
+
+                            $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_strasse_nr')");
+            $treffer = $select_conf->rowCount();
+                if ($treffer == 0) {
+    
+                    // Datensatz in DB schreiben:
+                    if ($db_temp->exec("INSERT INTO `config`
+                                SET
+                                    `einstellung` = 'schule_strasse_nr',
+                                    `bereich` = 'Anschrift3',
+                                    `text` = 'Straße und Hausnummer',
+                                    `typ` = 'textfeld',
+                                    `wert` = 'Am Judensand 12',
+                                    `server` = 'f'")) {
+                    
+                    $last_id = $db->lastInsertId();
+                    
+                    echo "Datensatz ergänzt!<br>";
+                    $u_neu = ($u_neu + 1);
+                    }					
+                } //Ende - wenn noch nicht vorhanden
+
+                $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_plz_ort')");
+                $treffer = $select_conf->rowCount();
+                    if ($treffer == 0) {
+        
+                        // Datensatz in DB schreiben:
+                        if ($db_temp->exec("INSERT INTO `config`
+                                    SET
+                                        `einstellung` = 'schule_plz_ort',
+                                        `bereich` = 'Anschrift4',
+                                        `text` = 'PLZ und Ort',
+                                        `typ` = 'textfeld',
+                                        `wert` = '55122 Mainz',
+                                        `server` = 'f'")) {
+                        
+                        $last_id = $db->lastInsertId();
+                        
+                        echo "Datensatz ergänzt!<br>";
+                        $u_neu = ($u_neu + 1);
+                        }					
+                    } //Ende - wenn noch nicht vorhanden
+    
+                    $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_kurz')");
+                    $treffer = $select_conf->rowCount();
+                        if ($treffer == 0) {
+            
+                            // Datensatz in DB schreiben:
+                            if ($db_temp->exec("INSERT INTO `config`
+                                        SET
+                                            `einstellung` = 'schule_kurz',
+                                            `bereich` = 'Anschrift8',
+                                            `text` = 'Schulkürzel',
+                                            `typ` = 'textfeld',
+                                            `wert` = 'bbs1',
+                                            `server` = 'f'")) {
+                            
+                            $last_id = $db->lastInsertId();
+                            
+                            echo "Datensatz ergänzt!<br>";
+                            $u_neu = ($u_neu + 1);
+                            }					
+                        } //Ende - wenn noch nicht vorhanden
+            
+                        $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_kurzname')");
+                        $treffer = $select_conf->rowCount();
+                            if ($treffer == 0) {
+                
+                                // Datensatz in DB schreiben:
+                                if ($db_temp->exec("INSERT INTO `config`
+                                            SET
+                                                `einstellung` = 'schule_kurzname',
+                                                `bereich` = 'Anschrift9',
+                                                `text` = 'Schulname kurz',
+                                                `typ` = 'textfeld',
+                                                `wert` = 'BBS1-Mainz',
+                                                `server` = 'f'")) {
+                                
+                                $last_id = $db->lastInsertId();
+                                
+                                echo "Datensatz ergänzt!<br>";
+                                $u_neu = ($u_neu + 1);
+                                }					
+                            } //Ende - wenn noch nicht vorhanden
+                            $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_mail')");
+                            $treffer = $select_conf->rowCount();
+                                if ($treffer == 0) {
+                    
+                                    // Datensatz in DB schreiben:
+                                    if ($db_temp->exec("INSERT INTO `config`
+                                                SET
+                                                    `einstellung` = 'schule_mail',
+                                                    `bereich` = 'Anschrift5',
+                                                    `text` = 'E-Mail-Adresse Sekretariat',
+                                                    `typ` = 'textfeld',
+                                                    `wert` = 'sekretariat@bbs1-mainz.de',
+                                                    `server` = 'f'")) {
+                                    
+                                    $last_id = $db->lastInsertId();
+                                    
+                                    echo "Datensatz ergänzt!<br>";
+                                    $u_neu = ($u_neu + 1);
+                                    }					
+                                } //Ende - wenn noch nicht vorhanden
+
+
+                            $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_tel')");
+                            $treffer = $select_conf->rowCount();
+                                if ($treffer == 0) {
+                    
+                                    // Datensatz in DB schreiben:
+                                    if ($db_temp->exec("INSERT INTO `config`
+                                                SET
+                                                    `einstellung` = 'schule_tel',
+                                                    `bereich` = 'Anschrift6',
+                                                    `text` = 'Telefon',
+                                                    `typ` = 'textfeld',
+                                                    `wert` = '06131-90603-0',
+                                                    `server` = 'f'")) {
+                                    
+                                    $last_id = $db->lastInsertId();
+                                    
+                                    echo "Datensatz ergänzt!<br>";
+                                    $u_neu = ($u_neu + 1);
+                                    }					
+                                } //Ende - wenn noch nicht vorhanden
+
+                                $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'schule_fax')");
+                                $treffer = $select_conf->rowCount();
+                                    if ($treffer == 0) {
+                        
+                                        // Datensatz in DB schreiben:
+                                        if ($db_temp->exec("INSERT INTO `config`
+                                                    SET
+                                                        `einstellung` = 'schule_fax',
+                                                        `bereich` = 'Anschrift7',
+                                                        `text` = 'Fax',
+                                                        `typ` = 'textfeld',
+                                                        `wert` = '06131-90603-99',
+                                                        `server` = 'f'")) {
+                                        
+                                        $last_id = $db->lastInsertId();
+                                        
+                                        echo "Datensatz ergänzt!<br>";
+                                        $u_neu = ($u_neu + 1);
+                                        }					
+                                    } //Ende - wenn noch nicht vorhanden
+                        $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'vorbelegen_sorge1')");
+                        $treffer = $select_conf->rowCount();
+                            if ($treffer == 0) {
+                
+                                // Datensatz in DB schreiben:
+                                if ($db_temp->exec("INSERT INTO `config`
+                                            SET
+                                                `einstellung` = 'vorbelegen_sorge1',
+                                                `bereich` = 'Formular',
+                                                `text` = 'Vorbelegung Adresse Sorgeberechtigte',
+                                                `typ` = 'radio',
+                                                `wert` = '1',
+                                                `server` = 'f'")) {
+                                
+                                $last_id = $db->lastInsertId();
+                                
+                                echo "Datensatz ergänzt!<br>";
+                                $u_neu = ($u_neu + 1);
+                                }					
+                            } //Ende - wenn noch nicht vorhanden
+                            $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'strasse_pruefen')");
+                            $treffer = $select_conf->rowCount();
+                                if ($treffer == 0) {
+                    
+                                    // Datensatz in DB schreiben:
+                                    if ($db_temp->exec("INSERT INTO `config`
+                                                SET
+                                                    `einstellung` = 'strasse_pruefen',
+                                                    `bereich` = 'Formular',
+                                                    `text` = 'Überprüfung Straßenname',
+                                                    `typ` = 'radio',
+                                                    `wert` = '1',
+                                                    `server` = 'f'")) {
+                                    
+                                    $last_id = $db->lastInsertId();
+                                    
+                                    echo "Datensatz ergänzt!<br>";
+                                    $u_neu = ($u_neu + 1);
+                                    }					
+                                } //Ende - wenn noch nicht vorhanden
+    
 
             // Aktuelle Version in die Datenbank eintragen
             $insertVersion = $db->prepare("INSERT INTO migration_versions (version) VALUES (?)");

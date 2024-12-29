@@ -26,16 +26,20 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_POST['submit'])) {
 	
-	$select_sps = $db_temp->query("SELECT * FROM config");
+	$select_sps = $db_temp->query("SELECT id FROM config");
 		$treffer_sps = $select_sps->rowCount();
 
 	foreach($select_sps as $sps) {
 		$sps_id = $sps['id'];
+        
 		
-		if ($_POST['status'][$sps_id] == 1) {
-			$status = 1;
+		if (isset($_POST['status'][$sps_id])) {
+
+            
+			$status = $_POST['status'][$sps_id];
+            
 		} else {
-			$status = 0;
+        	$status = 0;
 		}
 
 
@@ -120,9 +124,9 @@ echo "</tr>";
             
                 if ($cosf['typ'] == "radio") {	
                     if ($cosf['wert'] == 1) {
-                        echo "<td style='padding: 10px;' align='center'><input type='checkbox' id='".$cosf['id']."' name='status[".$cosf['id']."]' value='1' checked></td>";
+                        echo "<td style='padding: 10px;' align='left'><input type='checkbox' id='".$cosf['id']."' name='status[".$cosf['id']."]' value='1' checked></td>";
                     } else {
-                        echo "<td style='padding: 10px;' align='center'><input type='checkbox' id='".$cosf['id']."' name='status[".$cosf['id']."]' value='1'></td>";
+                        echo "<td style='padding: 10px;' align='left'><input type='checkbox' id='".$cosf['id']."' name='status[".$cosf['id']."]' value='1'></td>";
                     }
                 }	
                 $server_alt = $server;
@@ -132,7 +136,7 @@ echo "</tr>";
 			
 		//Restliche Konfiguration abfragen
 		
-		$select_co = $db_temp->query("SELECT * FROM config WHERE bereich NOT LIKE 'Schulformen' ORDER BY server ASC, text ASC");
+		$select_co = $db_temp->query("SELECT * FROM config WHERE bereich NOT LIKE 'Schulformen' ORDER BY server ASC, bereich ASC");
 		$treffer_co = $select_co->rowCount();
 		$server = "";
         $n = 0;
@@ -145,7 +149,7 @@ echo "</tr>";
 				$einstellung = $co['einstellung'];
 				$wert = $co['wert'];
 				$id = $co['id'];
-				$typ = $co['typ'];
+				$typ_co = $co['typ'];
 				$bereich = $co['bereich'];
 				$text = $co['text'];
 
@@ -188,13 +192,30 @@ echo "</tr>";
                             echo "<td style='padding: 10px;' align='left'>".$einstellung."</td>";
                         }
                     
-                        if ($typ == "radio") {	
+                        if ($typ_co == "radio") {	
                             if ($wert == 1) {
-                                echo "<td style='padding: 10px;' align='center'><input type='checkbox' id='".$id."' name='status[".$id."]' value='1' checked></td>";
+                                echo "<td style='padding: 10px;' align='left'><input type='checkbox' id='".$id."' name='status[".$id."]' value='1' checked></td>";
                             } else {
-                                echo "<td style='padding: 10px;' align='center'><input type='checkbox' id='".$id."' name='status[".$id."]' value='1'></td>";
+                                echo "<td style='padding: 10px;' align='left'><input type='checkbox' id='".$id."' name='status[".$id."]' value='1'></td>";
                             }
-                        }	
+                        }
+
+                        if ($typ_co == "number") {	
+                            echo "<td style='padding: 10px;' align='left'><input style='width: 4em;' id='status[".$id."]' name='status[".$id."]' type='number' value='".$wert."'></td>";
+                        }
+
+                        if ($typ_co == "url") {	
+                            echo "<td style='padding: 10px;' align='left'><input style='width: 27em;' placeholder='https://' id='status[".$id."]' name='status[".$id."]' pattern='.*\/'' type='url' value='".$wert."'>
+                            <br><small><i>Mit abschließendem \"/\" !</i></small></td>";
+                        }
+
+                        if ($typ_co == "textfeld") {	
+                            echo "<td style='padding: 10px;' align='left'><input style='width: 27em;' id='status[".$id."]' name='status[".$id."]' type='text' value='".$wert."'>
+                            </td>";
+                        }
+                            
+                        
+                        
 			$server_alt = $server;
                 echo "</tr>";	
 
