@@ -66,6 +66,20 @@ if (isset($_SESSION['username'])) {
                 file_put_contents($logFile, "Tabelle 'mail' angelegt oder bereits vorhanden.\n", FILE_APPEND);
             }
 
+            // Tabelle ausbilder erstellen
+            if ($db_temp->query("CREATE TABLE IF NOT EXISTS ausbilder (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                ausbilder_vorname VARCHAR(200),
+                ausbilder_nachname VARCHAR(200),
+                ausbilder_mail VARCHAR(200),
+                ausbilder_telefon VARCHAR(200),
+                ausbilder_telefon2 VARCHAR(200),
+                ausbilder_betrieb_id VARCHAR(200)
+            ) ENGINE = InnoDB")) {
+                echo "<p>Tabelle <b>ausbilder</b> angelegt oder bereits vorhanden.</p>";
+                file_put_contents($logFile, "Tabelle 'ausbilder' angelegt oder bereits vorhanden.\n", FILE_APPEND);
+            }
+
             // Tabelle config erstellen
             if ($db_temp->query("CREATE TABLE IF NOT EXISTS config (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -82,10 +96,19 @@ if (isset($_SESSION['username'])) {
 
             // Spalten hinzufügen
             addColumnIfNotExists($db_temp, 'anmeldung_temp', 'summen', 'prio', 'VARCHAR(11)', $logFile);
-            addColumnIfNotExists($db, 'anmeldung_www', 'dsa_bewerberdaten', 'papierkorb', 'VARCHAR(11)', $logFile);
-            addColumnIfNotExists($db, 'anmeldung_www', 'dsa_bewerberdaten', 'pap_user', 'VARCHAR(200)', $logFile);
-            addColumnIfNotExists($db, 'anmeldung_www', 'dsa_bewerberdaten', 'pap_time', 'VARCHAR(200)', $logFile);
+            addColumnIfNotExists($db, 'anmeldung_www_2526', 'dsa_bewerberdaten', 'papierkorb', 'VARCHAR(11)', $logFile);
+            addColumnIfNotExists($db, 'anmeldung_www_2526', 'dsa_bewerberdaten', 'pap_user', 'VARCHAR(200)', $logFile);
+            addColumnIfNotExists($db, 'anmeldung_www_2526', 'dsa_bewerberdaten', 'pap_time', 'VARCHAR(200)', $logFile);
             addColumnIfNotExists($db_temp, 'anmeldung_temp', 'summen', 'papierkorb', 'VARCHAR(200)', $logFile);
+
+            //Neue Spalten für Tabelle betriebe
+            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'betriebe', 'betrieb_plz', 'VARCHAR(200)', $logFile);
+            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'betriebe', 'betrieb_ort', 'VARCHAR(200)', $logFile);
+            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'betriebe', 'betrieb_strasse', 'VARCHAR(200)', $logFile);
+            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'betriebe', 'betrieb_hausnummer', 'VARCHAR(200)', $logFile);
+            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'betriebe', 'betrieb_telefon', 'VARCHAR(200)', $logFile);
+            addColumnIfNotExists($db_temp, 'anmeldung_temp', 'betriebe', 'betrieb_mail', 'VARCHAR(200)', $logFile);
+    
 
             //Datensätze hinzufügen (z.B. in Tabelle config)
             // Nur wenn Datensatz noch nicht existiert:

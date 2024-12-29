@@ -78,7 +78,13 @@ if (file_exists($pfad_workdir."daten/svp_betrieb.csv")) {
 									`id_edoo` = '$id_edoo',
 									`kuerzel` = '$kuerzel',
 									`name1` = '$name1',
-									`name2` = '$name2'")) {
+									`name2` = '$name2',
+									`betrieb_plz` = '$betrieb_plz',
+									`betrieb_ort` = '$betrieb_ort',
+									`betrieb_strasse` = '$betrieb_strasse',
+									`betrieb_hausnummer` = '$betrieb_hausnummer',
+									`betrieb_telefon` = '$betrieb_telefon',
+									`betrieb_mail` = '$betrieb_mail'")) {
 					
 					$last_id = $db_temp->lastInsertId();
 					
