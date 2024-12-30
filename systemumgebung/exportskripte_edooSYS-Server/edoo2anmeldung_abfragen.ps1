@@ -13,7 +13,108 @@ $ziel = $localDirectory + 'svp_wl_ausbildungsberuf.csv'
 
 #Betriebe
 $ziel = $localDirectory + 'svp_betrieb.csv'
-& 'C:\Program Files\PostgreSQL\10\bin\psql.exe' -h localhost -U postgres -d asv -c "\copy (SELECT DISTINCT id, kuerzel, name1, name2 FROM asv.svp_betrieb) TO '$ziel' with (format csv,header false, delimiter ';',encoding 'UTF8');"
+
+& 'C:\Program Files\PostgreSQL\10\bin\psql.exe' -h localhost -U postgres -d asv -c "\copy (
+    WITH RankedEntries AS (
+        SELECT 
+            btr.id AS betrieb_id,
+            btr.kuerzel,
+            btr.name1,
+            btr.name2,
+            a.strasse,
+            a.nummer,
+            a.postleitzahl,
+            a.ortsbezeichnung,
+            a.gemeinde_id,
+            k.kommunikationsadresse,
+            k.wl_kommunikationstyp_id,
+            k.update_date,
+            ROW_NUMBER() OVER (
+                PARTITION BY btr.id, k.wl_kommunikationstyp_id
+                ORDER BY k.update_date DESC
+            ) AS rn
+        FROM 
+             asv.svp_betrieb btr
+        JOIN asv.svp_anschrift a ON a.id = btr.anschrift_id
+        JOIN asv.svp_kommunikation k ON a.id = k.anschrift_id
+    )
+    SELECT 
+        betrieb_id,
+        kuerzel,
+        name1,
+        name2,
+        strasse,
+        nummer,
+        postleitzahl,
+        ortsbezeichnung,
+        gemeinde_id,
+        kommunikationsadresse,
+        wl_kommunikationstyp_id,
+        update_date
+    FROM RankedEntries
+    WHERE rn = 1
+    ORDER BY betrieb_id ASC, wl_kommunikationstyp_id ASC
+) TO '$ziel' with (format csv, header false, delimiter ';', encoding 'UTF8');"
+
+
+#Ausbilder
+$ziel = $localDirectory + 'svp_ausbilder.csv'
+
+& 'C:\Program Files\PostgreSQL\10\bin\psql.exe' -h localhost -U postgres -d asv -c "\copy (
+WITH RankedEntries AS (
+    SELECT 
+        btr.id AS betrieb_id,
+        btr.kuerzel,
+        btr.name1,
+        btr.name2,
+        a.strasse,
+        a.nummer,
+        a.postleitzahl,
+        a.ortsbezeichnung,
+        a.gemeinde_id,
+        per.familienname AS betreuer_familienname,
+        per.vornamen AS betreuer_vornamen,
+        k.kommunikationsadresse,
+        k.wl_kommunikationstyp_id,
+        k.update_date,
+        ROW_NUMBER() OVER (
+            PARTITION BY btr.id, k.wl_kommunikationstyp_id, k.kommunikationsadresse
+            ORDER BY k.update_date DESC
+        ) AS rn
+    FROM 
+         asv.svp_schueler_stamm s
+    JOIN asv.svp_schueler_schuljahr ssj ON s.id = ssj.schueler_stamm_id
+    JOIN asv.svp_ausbildung au ON ssj.id = au.schueler_schuljahr_id
+    JOIN asv.svp_betrieb_beruf_person bbp ON bbp.id = au.betrieb_beruf_person_id
+    JOIN asv.svp_schueler_anschrift sa ON s.id = sa.schueler_stamm_id
+    JOIN asv.svp_person_kommunikation pk ON bbp.person_id = pk.person_id
+    JOIN asv.svp_kommunikation k ON pk.kommunikation_id = k.id
+    JOIN asv.svp_betrieb btr ON bbp.betrieb_id = btr.id
+    JOIN asv.svp_anschrift a ON btr.anschrift_id = a.id
+    JOIN asv.svp_person per ON bbp.person_id = per.id
+    WHERE 
+        a.postleitzahl != '' 
+        AND k.wl_kommunikationstyp_id IN ('1113_04', '1113_05', '1113_01', '1113_03')
+)
+SELECT 
+    betrieb_id,
+    kuerzel,
+    name1,
+    name2,
+    strasse,
+    nummer,
+    postleitzahl,
+    ortsbezeichnung,
+    gemeinde_id,
+    betreuer_familienname,
+    betreuer_vornamen,
+    kommunikationsadresse,
+    wl_kommunikationstyp_id,
+    update_date
+FROM RankedEntries
+WHERE rn = 1
+ORDER BY betrieb_id ASC, wl_kommunikationstyp_id ASC
+) TO '$ziel' with (format csv, header false, delimiter ';', encoding 'UTF8');"
 
 #Berufe, die tatsächlich zugeordnet wurden:
 $ziel = $localDirectory + 'svp_berufe_ist.csv'

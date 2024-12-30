@@ -68,8 +68,17 @@ if (file_exists($pfad_workdir."daten/svp_betrieb.csv")) {
 			  $kuerzel = $teilung[1];
 			  $name1 = $teilung[2];
 			  $name2 = $teilung[3];
-			  
+			  $betrieb_strasse = $teilung[4];
+			  $betrieb_hausnummer = $teilung[5];
+			  $betrieb_plz = $teilung[6];
+			  $betrieb_ort = $teilung[7];
+			  $betrieb_gkz = $teilung[8];
+			  $betrieb_adresse = $teilung[9];
+			  $betrieb_adresstyp = $teilung[10];
+			
+				if ($betrieb_adresstyp == "1113_04") {
 
+					$betrieb_mail = $teilung[9];
 			  
 			  				// Datensatz neu in DB schreiben:
 
@@ -83,7 +92,7 @@ if (file_exists($pfad_workdir."daten/svp_betrieb.csv")) {
 									`betrieb_ort` = '$betrieb_ort',
 									`betrieb_strasse` = '$betrieb_strasse',
 									`betrieb_hausnummer` = '$betrieb_hausnummer',
-									`betrieb_telefon` = '$betrieb_telefon',
+									`betrieb_telefon` = '',
 									`betrieb_mail` = '$betrieb_mail'")) {
 					
 					$last_id = $db_temp->lastInsertId();
@@ -93,6 +102,7 @@ if (file_exists($pfad_workdir."daten/svp_betrieb.csv")) {
 					
 						
 					}
+				} //Ende Typ Mail
 
 			}	
 
@@ -105,10 +115,283 @@ if (file_exists($pfad_workdir."daten/svp_betrieb.csv")) {
 		}
 
 
+// Betiebe mit Telefonnummer ergänzen:
+
+$betriebe_akt = 0;
+
+if (file_exists($pfad_workdir."daten/svp_betrieb.csv")) {
+			
 
 
+		 
+		$file_an = $pfad_workdir."daten/svp_betrieb.csv";
+		 
+		$file_handle = fopen($file_an, 'r');
+								 
+			while (!feof($file_handle)) {
+				
+
+			  $line2 = fgets($file_handle);
+			  
+			  $line2 = str_replace("'"," ", $line2); // Entfernt die Ausführungszeichen
+			  $line2 = str_replace("\"","", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  //$line2 = str_replace("\"", "", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  
+			  $teilung = explode(";", $line2);
+			  
+			  $id_edoo = $teilung[0];
+			  $kuerzel = $teilung[1];
+			  $name1 = $teilung[2];
+			  $name2 = $teilung[3];
+			  $betrieb_strasse = $teilung[4];
+			  $betrieb_hausnummer = $teilung[5];
+			  $betrieb_plz = $teilung[6];
+			  $betrieb_ort = $teilung[7];
+			  $betrieb_gkz = $teilung[8];
+			  $betrieb_adresse = $teilung[9];
+			  $betrieb_adresstyp = $teilung[10];
+			
+				if ($betrieb_adresstyp == "1113_01") {
+
+					$betrieb_telefon = $teilung[9];
+			  
+			  				// Datensatz in DB schreiben:
+
+							  if ($db_temp->exec("UPDATE `betriebe`
+							  SET
+							   `betrieb_telefon` = '$betrieb_telefon' WHERE `id_edoo` = '$id_edoo'")) { 
+							   
+								   $betriebe_akt = ($betriebe_akt + 1);
+							   }
+
+					
+				} //Ende Typ Mail
+
+			}	
+
+		fclose($file_handle);
+		
+		echo $betriebe_akt." Betriebe ergänzt.<br>";
+
+		} else {
+			echo "<p>CSV-Datei nicht gefunden!</p>";
+		}
 
 
+// Ausbilder importieren:
+
+$betriebe_neu = 0;
+
+if (file_exists($pfad_workdir."daten/svp_ausbilder.csv")) {
+			
+				// Tabelle leeren:
+				
+				
+					if ($db_temp->exec("TRUNCATE TABLE `ausbilder`")) {
+		
+						
+
+					}
+
+		 
+		$file_an = $pfad_workdir."daten/svp_ausbilder.csv";
+		 
+		$file_handle = fopen($file_an, 'r');
+								 
+			while (!feof($file_handle)) {
+				
+
+			  $line2 = fgets($file_handle);
+			  
+			  $line2 = str_replace("'"," ", $line2); // Entfernt die Ausführungszeichen
+			  $line2 = str_replace("\"","", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  //$line2 = str_replace("\"", "", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  
+			  $teilung = explode(";", $line2);
+			  
+			  $ausbilder_betrieb_id = $teilung[0];
+			  $kuerzel = $teilung[1];
+			  $name1 = $teilung[2];
+			  $name2 = $teilung[3];
+			  $betrieb_strasse = $teilung[4];
+			  $betrieb_hausnummer = $teilung[5];
+			  $betrieb_plz = $teilung[6];
+			  $betrieb_ort = $teilung[7];
+			  $betrieb_gkz = $teilung[8];
+
+			  $ausbilder_nachname = $teilung[9];
+			  $ausbilder_vorname = $teilung[10];
+			  $ausbilder_adresse = $teilung[11];
+			  $ausbilder_adresstyp = $teilung[12];
+			
+				if ($ausbilder_adresstyp == "1113_04") {
+
+					$ausbilder_mail = $teilung[11];
+			  
+			  				// Datensatz neu in DB schreiben:
+
+					if ($db_temp->exec("INSERT INTO `ausbilder`
+								   SET
+									`ausbilder_betrieb_id` = '$ausbilder_betrieb_id',
+									`ausbilder_vorname` = '$ausbilder_vorname',
+									`ausbilder_nachname` = '$ausbilder_nachname',
+									`ausbilder_telefon` = '',
+									`ausbilder_telefon2` = '',
+									`ausbilder_mail` = '$ausbilder_mail'")) {
+					
+					$last_id = $db_temp->lastInsertId();
+					
+					//echo "<font color='blue'>Datensatz <b>".$name1." ".$name2."</b> wurde neu angelegt!<br>";
+					$ausbilder_neu = ($ausbilder_neu + 1);
+					
+						
+					}
+				} //Ende Typ Mail
+
+			}	
+
+		fclose($file_handle);
+		
+		echo $ausbilder_neu." Ausbilder importiert.<br>";
+
+		} else {
+			echo "<p>CSV-Datei nicht gefunden!</p>";
+		}
+
+
+// Ausbilder mit Telefonnummer ergänzen:
+
+$ausbilder_akt = 0;
+
+if (file_exists($pfad_workdir."daten/svp_ausbilder.csv")) {
+			
+
+
+		 
+		$file_an = $pfad_workdir."daten/svp_ausbilder.csv";
+		 
+		$file_handle = fopen($file_an, 'r');
+								 
+			while (!feof($file_handle)) {
+				
+
+			  $line2 = fgets($file_handle);
+			  
+			  $line2 = str_replace("'"," ", $line2); // Entfernt die Ausführungszeichen
+			  $line2 = str_replace("\"","", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  //$line2 = str_replace("\"", "", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  
+			  $teilung = explode(";", $line2);
+			  
+			  $ausbilder_betrieb_id = $teilung[0];
+			  $kuerzel = $teilung[1];
+			  $name1 = $teilung[2];
+			  $name2 = $teilung[3];
+			  $betrieb_strasse = $teilung[4];
+			  $betrieb_hausnummer = $teilung[5];
+			  $betrieb_plz = $teilung[6];
+			  $betrieb_ort = $teilung[7];
+			  $betrieb_gkz = $teilung[8];
+
+			  $ausbilder_nachname = $teilung[9];
+			  $ausbilder_vorname = $teilung[10];
+			  $ausbilder_adresse = $teilung[11];
+			  $ausbilder_adresstyp = $teilung[12];
+			
+				if ($ausbilder_adresstyp == "1113_01") {
+
+					$ausbilder_telefon = $teilung[11];
+			  
+			  				// Datensatz in DB schreiben:
+
+							  if ($db_temp->exec("UPDATE `ausbilder`
+							  SET
+							   `ausbilder_telefon` = '$ausbilder_telefon' WHERE (`ausbilder_nachname` = '$ausbilder_nachname'
+							   AND `ausbilder_vorname` = '$ausbilder_vorname'
+							   AND `ausbilder_betrieb_id` = '$ausbilder_betrieb_id')")) { 
+							   
+								   $ausbilder_akt = ($ausbilder_akt + 1);
+							   }
+
+					
+				} //Ende Typ Mail
+
+			}	
+
+		fclose($file_handle);
+		
+		echo $ausbilder_akt." Ausbilder ergänzt.<br>";
+
+		} else {
+			echo "<p>CSV-Datei nicht gefunden!</p>";
+		}
+
+// Ausbilder mit Telefonnummer ergänzen:
+
+$ausbilder_akt = 0;
+
+if (file_exists($pfad_workdir."daten/svp_ausbilder.csv")) {
+			
+
+
+		 
+		$file_an = $pfad_workdir."daten/svp_ausbilder.csv";
+		 
+		$file_handle = fopen($file_an, 'r');
+								 
+			while (!feof($file_handle)) {
+				
+
+			  $line2 = fgets($file_handle);
+			  
+			  $line2 = str_replace("'"," ", $line2); // Entfernt die Ausführungszeichen
+			  $line2 = str_replace("\"","", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  //$line2 = str_replace("\"", "", $line2); // Entfernt Sonderzeichen, weil Skript sonst abbrach.
+			  
+			  $teilung = explode(";", $line2);
+			  
+			  $ausbilder_betrieb_id = $teilung[0];
+			  $kuerzel = $teilung[1];
+			  $name1 = $teilung[2];
+			  $name2 = $teilung[3];
+			  $betrieb_strasse = $teilung[4];
+			  $betrieb_hausnummer = $teilung[5];
+			  $betrieb_plz = $teilung[6];
+			  $betrieb_ort = $teilung[7];
+			  $betrieb_gkz = $teilung[8];
+
+			  $ausbilder_nachname = $teilung[9];
+			  $ausbilder_vorname = $teilung[10];
+			  $ausbilder_adresse = $teilung[11];
+			  $ausbilder_adresstyp = $teilung[12];
+			
+				if ($ausbilder_adresstyp == "1113_03") {
+
+					$ausbilder_telefon2 = $teilung[11];
+			  
+			  				// Datensatz in DB schreiben:
+
+							  if ($db_temp->exec("UPDATE `ausbilder`
+							  SET
+							   `ausbilder_telefon2` = '$ausbilder_telefon2' WHERE (`ausbilder_nachname` = '$ausbilder_nachname'
+							   AND `ausbilder_vorname` = '$ausbilder_vorname'
+							   AND `ausbilder_betrieb_id` = '$ausbilder_betrieb_id')")) { 
+							   
+								   $ausbilder_akt = ($ausbilder_akt + 1);
+							   }
+
+					
+				} //Ende Typ Mail
+
+			}	
+
+		fclose($file_handle);
+		
+		echo $ausbilder_akt." Ausbilder ergänzt.<br>";
+
+		} else {
+			echo "<p>CSV-Datei nicht gefunden!</p>";
+		}
 
 
 // Berufe importieren:
