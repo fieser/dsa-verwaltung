@@ -93,6 +93,18 @@ if (isset($_SESSION['username'])) {
                 echo "<p>Tabelle <b>config</b> angelegt oder bereits vorhanden.</p>";
                 file_put_contents($logFile, "Tabelle 'config' angelegt oder bereits vorhanden.\n", FILE_APPEND);
             }
+			
+			// Tabelle config erstellen
+            if ($db_temp->query("CREATE TABLE IF NOT EXISTS anfrage (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                mail_anfrage VARCHAR(200),
+                zufall VARCHAR(200),
+                id_betrieb VARCHAR(200),
+                verifiziert VARCHAR(100)
+            ) ENGINE = InnoDB")) {
+                echo "<p>Tabelle <b>anfrage</b> angelegt oder bereits vorhanden.</p>";
+                file_put_contents($logFile, "Tabelle 'anfrage' angelegt oder bereits vorhanden.\n", FILE_APPEND);
+            }
 
             // Spalten hinzufügen
             addColumnIfNotExists($db_temp, 'anmeldung_temp', 'summen', 'prio', 'VARCHAR(11)', $logFile);
@@ -506,7 +518,90 @@ $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'umfra
                 $u_neu = ($u_neu + 1);
                 }					
             } //Ende - wenn noch nicht vorhanden
+			
+$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'login_betriebe')");
+        $treffer = $select_conf->rowCount();
+            if ($treffer == 0) {
 
+                // Datensatz in DB schreiben:
+                if ($db_temp->exec("INSERT INTO `config`
+                            SET
+                                `einstellung` = 'login_betriebe',
+                                `bereich` = 'Formular',
+                                `text` = 'Login für Einsicht Betriebsdaten aktiv',
+                                `typ` = 'radio',
+                                `wert` = '0',
+                                `server` = 'f'")) {
+                
+                $last_id = $db->lastInsertId();
+                
+                echo "Datensatz ergänzt!<br>";
+                $u_neu = ($u_neu + 1);
+                }					
+            } //Ende - wenn noch nicht vorhanden
+			
+$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'wartungsmodus')");
+        $treffer = $select_conf->rowCount();
+            if ($treffer == 0) {
+
+                // Datensatz in DB schreiben:
+                if ($db_temp->exec("INSERT INTO `config`
+                            SET
+                                `einstellung` = 'wartungsmodus',
+                                `bereich` = 'Formular',
+                                `text` = 'Wartungsmodus aktiv',
+                                `typ` = 'radio',
+                                `wert` = '0',
+                                `server` = 'f'")) {
+                
+                $last_id = $db->lastInsertId();
+                
+                echo "Datensatz ergänzt!<br>";
+                $u_neu = ($u_neu + 1);
+                }					
+            } //Ende - wenn noch nicht vorhanden
+			
+$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'wartungsmodus_ende')");
+        $treffer = $select_conf->rowCount();
+            if ($treffer == 0) {
+
+                // Datensatz in DB schreiben:
+                if ($db_temp->exec("INSERT INTO `config`
+                            SET
+                                `einstellung` = 'wartungsmodus_ende',
+                                `bereich` = 'Formular',
+                                `text` = 'Wartungsmodus bis einschließlich',
+                                `typ` = 'datum',
+                                `wert` = '',
+                                `server` = 'f'")) {
+                
+                $last_id = $db->lastInsertId();
+                
+                echo "Datensatz ergänzt!<br>";
+                $u_neu = ($u_neu + 1);
+                }					
+            } //Ende - wenn noch nicht vorhanden
+
+$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'wartungsmodus_ausnahme')");
+        $treffer = $select_conf->rowCount();
+            if ($treffer == 0) {
+
+                // Datensatz in DB schreiben:
+                if ($db_temp->exec("INSERT INTO `config`
+                            SET
+                                `einstellung` = 'wartungsmodus_ausnahme',
+                                `bereich` = 'Formular',
+                                `text` = 'Wartungsmodus Ausnahme (IP-Adresse)',
+                                `typ` = 'textfeld',
+                                `wert` = '',
+                                `server` = 'f'")) {
+                
+                $last_id = $db->lastInsertId();
+                
+                echo "Datensatz ergänzt!<br>";
+                $u_neu = ($u_neu + 1);
+                }					
+            } //Ende - wenn noch nicht vorhanden
 
         $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'min_anzahl_betriebe')");
         $treffer = $select_conf->rowCount();

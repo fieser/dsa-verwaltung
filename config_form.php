@@ -213,6 +213,11 @@ echo "</tr>";
                             echo "<td style='padding: 10px;' align='left'><input style='width: 27em;' id='status[".$id."]' name='status[".$id."]' type='text' value='".$wert."'>
                             </td>";
                         }
+
+                        if ($typ_co == "datum") {	
+                            echo "<td style='padding: 10px;' align='left'><input id='status[".$id."]' name='status[".$id."]' type='date' value='".$wert."'>
+                            </td>";
+                        }
                             
                         
                         

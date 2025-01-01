@@ -156,6 +156,8 @@ $url_impressum = config("url_impressum");
 
 //Einstellungen:
 $xls_download = config("xls_download");
+$wartungsmodus = config("wartungsmodus");
+$wartungsmodus_ende = config("wartungsmodus_ende");
 $fremdsprachen_export_deaktivieren = 0;
 $debug = 0; //Anzeige zusätzlicher Infos zur Fehlersuche
 $mail_status = 1; //Anzeige Spalte E-Mail in Liste

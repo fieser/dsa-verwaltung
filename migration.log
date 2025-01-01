@@ -399,3 +399,209 @@ Spalte 'betrieb_mail' zur Tabelle 'betriebe' hinzugefügt.
 Transaktion für $db abgeschlossen.
 Transaktion für $db_temp abgeschlossen.
 Git-Version 'v1.0.0-17-g20a35d6' in die Datenbank eingetragen.
+
+2024-12-30 20:18:50 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'ausbilder' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Tabelle 'anfrage' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Spalte 'betrieb_plz' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_ort' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_strasse' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_hausnummer' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_telefon' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_mail' existiert bereits in der Tabelle 'betriebe'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-19-g53446aa' in die Datenbank eingetragen.
+
+2025-01-01 15:40:19 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 15:40:20 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 15:41:14 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'ausbilder' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Tabelle 'anfrage' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Spalte 'betrieb_plz' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_ort' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_strasse' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_hausnummer' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_telefon' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_mail' existiert bereits in der Tabelle 'betriebe'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-19-g53446aa' in die Datenbank eingetragen.
+
+2025-01-01 15:41:16 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 15:42:17 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'ausbilder' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Tabelle 'anfrage' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Spalte 'betrieb_plz' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_ort' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_strasse' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_hausnummer' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_telefon' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_mail' existiert bereits in der Tabelle 'betriebe'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-19-g53446aa' in die Datenbank eingetragen.
+
+2025-01-01 15:44:17 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 15:45:07 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'ausbilder' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Tabelle 'anfrage' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Spalte 'betrieb_plz' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_ort' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_strasse' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_hausnummer' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_telefon' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_mail' existiert bereits in der Tabelle 'betriebe'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-19-g53446aa' in die Datenbank eingetragen.
+
+2025-01-01 16:47:57 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'ausbilder' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Tabelle 'anfrage' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Spalte 'betrieb_plz' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_ort' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_strasse' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_hausnummer' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_telefon' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_mail' existiert bereits in der Tabelle 'betriebe'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-19-g53446aa' in die Datenbank eingetragen.
+
+2025-01-01 16:47:59 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 16:48:27 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'ausbilder' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Tabelle 'anfrage' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Spalte 'betrieb_plz' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_ort' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_strasse' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_hausnummer' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_telefon' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_mail' existiert bereits in der Tabelle 'betriebe'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-19-g53446aa' in die Datenbank eingetragen.
+
+2025-01-01 16:48:50 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 16:48:51 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 16:49:10 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+Tabelle 'mail' angelegt oder bereits vorhanden.
+Tabelle 'ausbilder' angelegt oder bereits vorhanden.
+Tabelle 'config' angelegt oder bereits vorhanden.
+Tabelle 'anfrage' angelegt oder bereits vorhanden.
+Spalte 'prio' existiert bereits in der Tabelle 'summen'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_user' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'pap_time' existiert bereits in der Tabelle 'dsa_bewerberdaten'.
+Spalte 'papierkorb' existiert bereits in der Tabelle 'summen'.
+Spalte 'betrieb_plz' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_ort' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_strasse' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_hausnummer' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_telefon' existiert bereits in der Tabelle 'betriebe'.
+Spalte 'betrieb_mail' existiert bereits in der Tabelle 'betriebe'.
+Transaktion für $db abgeschlossen.
+Transaktion für $db_temp abgeschlossen.
+Git-Version 'v1.0.0-19-g53446aa' in die Datenbank eingetragen.
+
+2025-01-01 16:49:28 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.
+
+2025-01-01 16:52:06 - Datenbankmigration gestartet.
+Transaktion für $db gestartet.
+Transaktion für $db_temp gestartet.
+Tabelle 'migration_versions' angelegt oder bereits vorhanden.

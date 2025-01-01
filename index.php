@@ -260,6 +260,22 @@ echo "</table>";
         </div>
         <div class="flex-item-right">
           <?php
+            if ($_SESSION['admin'] != 1 AND $_SESSION['sek'] == 1) {
+                echo "<div class='box-grau' style='padding: 10px; background-color: #d3d3d3;'>";
+              
+
+                echo "<h2 style='padding: 0px 0 0 25px;'><b>Informationen</b></h2>";
+                echo "<ul>";
+                if ($wartungsmodus == 1) {
+                    echo "<li><font color='red'><b>Wartungsmoduns</b> momentan aktiv!</font><br>";
+                    echo "Das Anmeldeformular ist momentan für externe Nutzer deaktiviert!</li>";
+                }
+                echo "</ul>";
+                echo "</div>";
+
+            }
+
+
             if ($_SESSION['admin'] == 1) {
             echo "<div class='box-grau' style='padding: 10px; background-color: #d3d3d3;'>";
               
@@ -360,7 +376,11 @@ echo "</table>";
                                 echo "</form>";
                             echo "</li>"; 
                         }
-                
+
+                if ($wartungsmodus == 1) {
+                    echo "<li><font color='red'><b>Wartungsmoduns</b> momentan aktiv!</font><br>";
+                    echo "Das Anmeldeformular ist momentan für externe Nutzer deaktiviert!</li>";
+                }
 
                 if ($upload_documents == 1 && !file_exists("./dokumente/unpacked")) {
                     echo "<li><font color='red'><b>Kein Uploadverzeichnis vorhanden!</b></font><br>";
