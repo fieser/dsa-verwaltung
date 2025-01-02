@@ -540,6 +540,27 @@ $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'login
                 }					
             } //Ende - wenn noch nicht vorhanden
 			
+$select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'mail_betriebe')");
+        $treffer = $select_conf->rowCount();
+            if ($treffer == 0) {
+
+                // Datensatz in DB schreiben:
+                if ($db_temp->exec("INSERT INTO `config`
+                            SET
+                                `einstellung` = 'mail_betriebe',
+                                `bereich` = 'Formular',
+                                `text` = 'Email für Änderung Betriebsdaten aktiv',
+                                `typ` = 'radio',
+                                `wert` = '1',
+                                `server` = 'f'")) {
+                
+                $last_id = $db->lastInsertId();
+                
+                echo "Datensatz ergänzt!<br>";
+                $u_neu = ($u_neu + 1);
+                }					
+            } //Ende - wenn noch nicht vorhanden
+			
 $select_conf = $db_temp->query("SELECT * FROM config WHERE (einstellung = 'wartungsmodus')");
         $treffer = $select_conf->rowCount();
             if ($treffer == 0) {
